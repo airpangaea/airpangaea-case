@@ -1,0 +1,8 @@
+---
+title: 成蹊中学・高等学校 (東京) × Bina Bangsa School (インドネシア)
+description: 日本とインドネシアの計10名の高校生が6週間にわたりオンライン協働学習を実施。放課後の時間を活用し2つの異国混成グループに分かれて、異文化交流及び天然資源の保全に関する議論を行いました。最終日には両グループとも校長含めた先生方や専門家ゲストに向けて素晴らしい発表を行うことができました。
+role: 企画協力
+image: sshs-bbs-2022-jan.jpg
+partner: EducationLink
+url: https://ja.airpangaea.com/sshs-bbs-2022-jan
+---

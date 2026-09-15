@@ -71,9 +71,17 @@ airpangaea-case/
 ├── source/
 │   └── tokushima-kita-2025.html          承認済み原本。凍結し、編集しない
 ├── content/
-│   └── tokushima-kita-2025.md            front matter ＋ 本文
+│   ├── index.md                          事例一覧（プログラム見出し＋事例の並び）
+│   ├── tokushima-kita-2025.md            front matter ＋ 本文
+│   └── external/                         Wix に残っている事例のカード（front matter のみ）
 ├── templates/
+│   ├── case.html                         事例ページ
+│   └── index.html                        事例一覧
+├── scripts/
+│   ├── build.py                          content/ ＋ templates/ → public/
+│   └── verify.py                         公開用 HTML と承認済み原本の突き合わせ
 └── public/                               Cloudflare Pages の出力ディレクトリ
+    ├── index.html                        事例一覧
     ├── tokushima-kita-2025/
     │   └── index.html
     └── images/
@@ -96,8 +104,18 @@ front matter の項目は原本から読み取って定義する。事例が1本
 
 ## 今回やらないこと
 
-- 索引ページの本実装
-- 他校の事例ページ
+- 他校の事例ページの移行
 - Wix `/case` の置き換え
 
-徳島北1本の公開を先行させる。Wix 側の編集は手作業で行うため、このリポジトリのスコープ外。
+徳島北は公開済み（2026-09-15）。Wix 側の編集は手作業で行うため、このリポジトリのスコープ外。
+
+---
+
+## 事例一覧（索引ページ `public/index.html`）
+
+徳島北の事例ページとは別に、見た目は Wix の導入事例ページ（`https://ja.airpangaea.com/case`）に合わせる。Wix のトップや他のページから移動してきても違和感がないことを優先する。
+
+- 構成：写真のヒーロー →「最新事例」（控えめなテキストリンク）→ プログラムごとの事例カード →「生徒たちの声」。「生徒たちの成果事例」は載せない
+- 文言：徳島北は front matter、Wix の事例・最新事例・生徒たちの声は Wix `/case` に掲載中の文言をそのまま使う。見やすくするための分割や見出し付けはよいが、文面は変えない
+- 写真：徳島北のカードは同梱の4点から使う。Wix の事例は Wix に掲載中の写真を取得してリポジトリに置く（Wix の配信 URL を直接参照しない）
+- EducationLink：Wix で「企画協力」として EducationLink のロゴが出ている事例には、必ず同じロゴを付ける。外さない
