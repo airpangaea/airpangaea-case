@@ -29,14 +29,6 @@ APPROVED_CHANGES = {
         ('お問い合わせボタンのリンク先',
          '<a class="btn" href="https://ja.airpangaea.com/contact">',
          '<a class="btn" href="https://ja.airpangaea.com/#contactus">'),
-        # 2026-09-15 指示：case.airpangaea.com に索引ページができるまでは Wix の /case へ。
-        # 索引ページを作ったら templates/case.html の2か所を href="/" に戻し、この2件を消す
-        ('ナビの「導入事例」のリンク先',
-         '<a href="/" aria-current="page">導入事例</a>',
-         '<a href="https://ja.airpangaea.com/case" aria-current="page">導入事例</a>'),
-        ('パンくずの「導入事例」のリンク先',
-         '<p class="crumb"><a href="/">導入事例</a>',
-         '<p class="crumb"><a href="https://ja.airpangaea.com/case">導入事例</a>'),
     ],
 }
 

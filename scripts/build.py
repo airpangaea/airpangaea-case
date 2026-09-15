@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""content/<slug>.md と templates/case.html から public/<slug>/index.html を生成する。
+"""content/<slug>.md と templates/case.html から public/<slug>/index.html を、
+content/index.md（事例一覧）と templates/index.html から public/index.html を生成する。
 
 使い方: python3 scripts/build.py （標準ライブラリのみ）
 
@@ -293,7 +294,7 @@ def render_body(lines, images):
 
 # ── ページ ────────────────────────────────────────────
 
-def parse_front_matter(text, path):
+def parse_front_matter(text, path, required=FRONT_MATTER_KEYS, optional=()):
     lines = text.split('\n')
     try:
         if lines[0] != '---':
@@ -301,13 +302,14 @@ def parse_front_matter(text, path):
         end = lines.index('---', 1)
     except ValueError:
         raise BuildError(f'{path.name}: 先頭に --- で囲んだ front matter が必要') from None
+    allowed = (*required, *optional)
     meta = {}
     for line in lines[1:end]:
         key, sep, value = line.partition(': ')
-        if not sep or key not in FRONT_MATTER_KEYS or key in meta or not value:
-            raise BuildError(f'{path.name}: front matter の行が不正（使える項目は {", ".join(FRONT_MATTER_KEYS)}）: {line}')
+        if not sep or key not in allowed or key in meta or not value:
+            raise BuildError(f'{path.name}: front matter の行が不正（使える項目は {", ".join(allowed)}）: {line}')
         meta[key] = value
-    missing = [key for key in FRONT_MATTER_KEYS if key not in meta]
+    missing = [key for key in required if key not in meta]
     if missing:
         raise BuildError(f'{path.name}: front matter に {", ".join(missing)} がない')
     return meta, lines[end + 1:]
@@ -339,10 +341,68 @@ def build(md_path):
     return out
 
 
+# ── 事例一覧 ──────────────────────────────────────────
+
+def card(ref):
+    """index.md の「- 事例」1行をカードにする。external/ は Wix に残っている事例（front matter のみ）"""
+    path = ROOT / 'content' / f'{ref}.md'
+    if not path.is_file():
+        raise BuildError(f'index.md が参照する事例がない: {path.relative_to(ROOT)}')
+    text = path.read_text(encoding='utf-8')
+    if ref.startswith('external/'):
+        meta, body = parse_front_matter(text, path, ('title', 'description', 'url'), ('role',))
+        if any(body):
+            raise BuildError(f'{path.name}: external/ には front matter だけを書く')
+        href = meta['url']
+    else:
+        meta, _ = parse_front_matter(text, path)
+        href = f'/{ref}/'
+    schools = ''.join(f'<span>{attr(s)}</span>' for s in meta['title'].split(' × '))
+    out = ['<li class="card">', f'  <a href="{attr(href)}">', f'    <p class="card-schools">{schools}</p>']
+    if 'role' in meta:
+        out.append(f'    <p class="card-role">{attr(meta["role"])}</p>')
+    return out + [f'    <p class="card-desc">{attr(meta["description"])}</p>',
+                  '    <p class="card-more">→もっと読む</p>', '  </a>', '</li>']
+
+
+def build_index():
+    """content/index.md（## プログラム名 ／ - 事例）から public/index.html を作る"""
+    path = ROOT / 'content' / 'index.md'
+    meta, body = parse_front_matter(path.read_text(encoding='utf-8'), path, ('title',))
+    programs = []
+    for line in body:
+        if not line:
+            continue
+        if line.startswith('## '):
+            programs.append((line[3:], []))
+        elif line.startswith('- ') and programs:
+            programs[-1][1].append(card(line[2:]))
+        else:
+            raise BuildError(f'index.md は「## プログラム名」と「- 事例」の行だけ: {line}')
+    blocks = [['<div class="page-head">', f'  <h1>{attr(meta["title"])}</h1>', '</div>']]
+    for name, cards in programs:
+        if not cards:
+            raise BuildError(f'index.md:「{name}」に事例がない')
+        blocks.append(['<section class="program">', f'  <h2>{attr(name)}</h2>', '  <ul class="cards">',
+                       *indent([line for c in cards for line in c], 4), '  </ul>', '</section>'])
+    logo = Images('tokushima-kita-2025')  # ロゴは徳島北の画像フォルダにある
+    logo.require('logo.png')
+    page = fill((ROOT / 'templates' / 'index.html').read_text(encoding='utf-8'), {
+        'title': attr(meta['title']),
+        'images': logo.url.removeprefix('../'),
+        'content': '\n\n'.join('\n'.join(indent(b)) for b in blocks),
+    })
+    out = ROOT / 'public' / 'index.html'
+    out.write_text(page, encoding='utf-8')
+    return out
+
+
 def main():
     try:
         for md_path in sorted((ROOT / 'content').glob('*.md')):
-            print(build(md_path).relative_to(ROOT))
+            if md_path.name != 'index.md':
+                print(build(md_path).relative_to(ROOT))
+        print(build_index().relative_to(ROOT))
     except BuildError as e:
         sys.exit(f'build error: {e}')
 
