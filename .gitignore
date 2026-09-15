@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+
+# クライアントから受領した資料（実績報告書・仕様書・メール）の混入防止
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.eml
+*.msg
