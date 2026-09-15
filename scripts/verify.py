@@ -4,6 +4,7 @@
 使い方: python3 scripts/build.py && python3 scripts/verify.py （標準ライブラリのみ）
 
 source/<slug>.html ごとに public/<slug>/index.html と突き合わせる。
+原本には先に APPROVED_CHANGES（指示を受けて意図的に変えた箇所）を当ててから比べる。
   1. 本文テキスト  テキストと、alt・aria-label・meta description・href などの属性値
   2. 画像          書き出した画像ファイルが原本の base64 を復号したバイト列と同一で、余分な画像がないこと
   3. HTML          画像の src を除いて、原本とバイト単位で一致すること
@@ -20,6 +21,24 @@ ROOT = Path(__file__).resolve().parent.parent
 TEXT_ATTRS = ('lang', 'content', 'href', 'alt', 'aria-label', 'title')
 DATA_URI = re.compile(r'src="data:image/(?:png|jpeg);base64,([A-Za-z0-9+/=]+)"')
 IMG_SRC = re.compile(r'<img\b[^>]*?\ssrc="([^"]+)"')
+
+# 原本から意図的に変えている箇所：(内容, 原本の文字列, 出力の文字列)。原本の文字列はそれぞれ原本に1か所だけあること
+APPROVED_CHANGES = {
+    'tokushima-kita-2025': [
+        # 2026-09-15 指示：原本の /contact は 404 のため
+        ('お問い合わせボタンのリンク先',
+         '<a class="btn" href="https://ja.airpangaea.com/contact">',
+         '<a class="btn" href="https://ja.airpangaea.com/#contactus">'),
+        # 2026-09-15 指示：case.airpangaea.com に索引ページができるまでは Wix の /case へ。
+        # 索引ページを作ったら templates/case.html の2か所を href="/" に戻し、この2件を消す
+        ('ナビの「導入事例」のリンク先',
+         '<a href="/" aria-current="page">導入事例</a>',
+         '<a href="https://ja.airpangaea.com/case" aria-current="page">導入事例</a>'),
+        ('パンくずの「導入事例」のリンク先',
+         '<p class="crumb"><a href="/">導入事例</a>',
+         '<p class="crumb"><a href="https://ja.airpangaea.com/case">導入事例</a>'),
+    ],
+}
 
 
 class TextExtractor(HTMLParser):
@@ -70,6 +89,18 @@ def verify(source_path):
     src_name, gen_name = str(source_path.relative_to(ROOT)), str(public_path.relative_to(ROOT))
     ok = True
 
+    # 0. 意図的な差分を原本に当てる
+    changes = APPROVED_CHANGES.get(slug, [])
+    for note, old, new in changes:
+        found = source.count(old)
+        if found != 1:
+            ok = False
+            print(f'  NG  意図的な差分「{note}」: 原本に対象の文字列が {found} か所ある（1か所のはず）')
+        source = source.replace(old, new)
+    if changes:
+        src_name += '（意図的な差分を反映）'
+        print(f'  --  意図的な差分 {len(changes)} か所を原本に反映して比較: ' + '、'.join(note for note, _, _ in changes))
+
     # 1. 本文テキスト
     a, b = text_items(source), text_items(generated)
     if a == b:
@@ -111,12 +142,13 @@ def verify(source_path):
     if len(embedded) == len(srcs):
         replacements = iter(srcs)
         expected = DATA_URI.sub(lambda m: f'src="{next(replacements)}"', source)
+        excluded = f'画像の src {len(srcs)} か所' + (f'と意図的な差分 {len(changes)} か所' if changes else '')
         if expected == generated:
-            print(f'  OK  HTML: 画像の src {len(srcs)} か所を除き、原本とバイト単位で一致')
+            print(f'  OK  HTML: {excluded}を除き、原本とバイト単位で一致')
         else:
             ok = False
-            print('  NG  HTML: 画像の src 以外にも差分あり')
-            print(diff(expected.split('\n'), generated.split('\n'), src_name + '（src 置換後）', gen_name))
+            print(f'  NG  HTML: {excluded}以外にも差分あり')
+            print(diff(expected.split('\n'), generated.split('\n'), src_name, gen_name))
     return ok
 
 

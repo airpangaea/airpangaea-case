@@ -185,5 +185,5 @@ Day 6
 
 実施できる時期や規模は、学校の授業時間と相手校の学事日程によって変わります。まずは、想定されているクラス数と時期をお聞かせください。
 
-[お問い合わせ](https://ja.airpangaea.com/contact)
+[お問い合わせ](https://ja.airpangaea.com/#contactus)
 :::
