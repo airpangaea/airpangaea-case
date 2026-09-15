@@ -40,13 +40,12 @@ a:focus-visible{outline:2px solid var(--jp);outline-offset:3px}
 /* ── ヘッダー：Wix の導入事例ページ（https://ja.airpangaea.com/case）に合わせる ── */
 .site-head{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 0 4px rgba(85,85,85,.6);
   font-family:Raleway,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,sans-serif}
-.site-head .bar{display:flex;align-items:center;min-height:60px;padding-inline:8px 28px}
+.site-head .bar{position:relative;display:flex;align-items:center;justify-content:center;min-height:60px;padding-inline:28px}
+.site-head .logo{position:absolute;left:28px;top:50%;transform:translateY(-50%)}
 .site-head .logo img{width:215px;height:auto}
-.site-nav{display:flex;margin-inline:auto;font-weight:700;font-size:.875rem}
+.site-nav{display:flex;font-weight:700;font-size:.875rem}
 .site-nav a{padding-inline:19px;line-height:60px;color:#555;text-decoration:none}
 .site-nav a:hover,.site-nav a[aria-current]{color:#2E58FF}
-.util{display:flex;gap:20px;font-size:.875rem}
-.util a{color:#555;text-decoration:none}
 .crumb{font-size:.8125rem;color:var(--ink-faint);padding-block:20px 0}
 .crumb a{color:var(--ink-faint)}
 
@@ -155,9 +154,9 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
 @media (max-width:760px){
   .site-head{position:relative}
   .site-head .bar{flex-wrap:wrap;padding:6px 16px 0}
+  .site-head .logo{position:static;transform:none}
   .site-head .logo img{width:170px}
-  .util{margin-left:auto}
-  .site-nav{order:3;width:100%;margin:0;overflow-x:auto}
+  .site-nav{width:100%;overflow-x:auto}
   .site-nav a{padding-inline:0 22px;line-height:44px;font-size:14px;white-space:nowrap}
   .hero-shot,.photos,.photos-cap{max-width:none}
   .pair{grid-template-columns:1fr}
@@ -180,9 +179,10 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
   body{font-size:10.5pt;line-height:1.75}
   /* 用紙幅に収まる実寸で指定する（remのままだとA4の版面をはみ出す） */
   .wrap,.wrap-wide{max-width:170mm;padding-inline:0}
-  .site-nav,.util,.crumb{display:none}
+  .site-nav,.crumb{display:none}
   .site-head{position:static;box-shadow:none;border-bottom:1px solid var(--rule);margin-bottom:16px}
-  .site-head .bar{padding-block:5mm 10px}
+  .site-head .bar{justify-content:flex-start;padding-block:5mm 10px}
+  .site-head .logo{position:static;transform:none}
   .site-head .logo img{width:48mm}
   a{color:var(--ink);text-decoration:none}
   h1{font-size:15pt;line-height:1.65}
@@ -221,7 +221,6 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
       <a href="https://ja.airpangaea.com/corporate">会社概要</a>
       <a href="https://ja.airpangaea.com/blog">Blog</a>
     </nav>
-    <div class="util"><a href="https://ja.airpangaea.com">ログイン</a><span>日本語</span></div>
   </div>
 </header>
 

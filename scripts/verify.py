@@ -80,6 +80,50 @@ APPROVED_CHANGES = {
          '<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32.png">\n'
          '<link rel="icon" type="image/png" sizes="192x192" href="../images/favicon/favicon-192.png">\n'
          '<link rel="apple-touch-icon" href="../images/favicon/apple-touch-icon.png">'),
+        # 2026-09-15 指示：ヘッダー右上のログイン・日本語を削除（ロゴは中央寄せのナビを崩さないよう絶対配置に変更）
+        ('ヘッダーの CSS（ログイン・日本語を削除し、ロゴを絶対配置に）',
+         '.site-head .bar{display:flex;align-items:center;min-height:60px;padding-inline:8px 28px}\n'
+         '.site-head .logo img{width:215px;height:auto}\n'
+         '.site-nav{display:flex;margin-inline:auto;font-weight:700;font-size:.875rem}\n'
+         '.site-nav a{padding-inline:19px;line-height:60px;color:#555;text-decoration:none}\n'
+         '.site-nav a:hover,.site-nav a[aria-current]{color:#2E58FF}\n'
+         '.util{display:flex;gap:20px;font-size:.875rem}\n'
+         '.util a{color:#555;text-decoration:none}',
+         '.site-head .bar{position:relative;display:flex;align-items:center;justify-content:center;min-height:60px;padding-inline:28px}\n'
+         '.site-head .logo{position:absolute;left:28px;top:50%;transform:translateY(-50%)}\n'
+         '.site-head .logo img{width:215px;height:auto}\n'
+         '.site-nav{display:flex;font-weight:700;font-size:.875rem}\n'
+         '.site-nav a{padding-inline:19px;line-height:60px;color:#555;text-decoration:none}\n'
+         '.site-nav a:hover,.site-nav a[aria-current]{color:#2E58FF}'),
+        ('ヘッダーのスマホ表示（ログイン・日本語を削除）',
+         '  .site-head .logo img{width:170px}\n'
+         '  .util{margin-left:auto}\n'
+         '  .site-nav{order:3;width:100%;margin:0;overflow-x:auto}\n'
+         '  .site-nav a{padding-inline:0 22px;line-height:44px;font-size:14px;white-space:nowrap}\n'
+         '  .hero-shot,.photos,.photos-cap{max-width:none}',
+         '  .site-head .logo{position:static;transform:none}\n'
+         '  .site-head .logo img{width:170px}\n'
+         '  .site-nav{width:100%;overflow-x:auto}\n'
+         '  .site-nav a{padding-inline:0 22px;line-height:44px;font-size:14px;white-space:nowrap}\n'
+         '  .hero-shot,.photos,.photos-cap{max-width:none}'),
+        ('ヘッダーの印刷表示（ログイン・日本語を削除）',
+         '  .site-nav,.util,.crumb{display:none}\n'
+         '  .site-head{position:static;box-shadow:none;border-bottom:1px solid var(--rule);margin-bottom:16px}\n'
+         '  .site-head .bar{padding-block:5mm 10px}\n'
+         '  .site-head .logo img{width:48mm}',
+         '  .site-nav,.crumb{display:none}\n'
+         '  .site-head{position:static;box-shadow:none;border-bottom:1px solid var(--rule);margin-bottom:16px}\n'
+         '  .site-head .bar{justify-content:flex-start;padding-block:5mm 10px}\n'
+         '  .site-head .logo{position:static;transform:none}\n'
+         '  .site-head .logo img{width:48mm}'),
+        ('ヘッダー右上のログイン・日本語を削除',
+         '    </nav>\n'
+         '    <div class="util"><a href="https://ja.airpangaea.com">ログイン</a><span>日本語</span></div>\n'
+         '  </div>\n'
+         '</header>',
+         '    </nav>\n'
+         '  </div>\n'
+         '</header>'),
     ],
 }
 

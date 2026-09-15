@@ -36,13 +36,12 @@ a:focus-visible{outline:2px solid var(--active);outline-offset:3px}
 
 /* ── ヘッダー ── */
 .site-head{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 0 4px rgba(85,85,85,.6)}
-.site-head .bar{display:flex;align-items:center;min-height:60px;padding-inline:8px 28px}
+.site-head .bar{position:relative;display:flex;align-items:center;justify-content:center;min-height:60px;padding-inline:28px}
+.site-head .logo{position:absolute;left:28px;top:50%;transform:translateY(-50%)}
 .site-head .logo img{width:215px}
-.site-nav{display:flex;margin-inline:auto;font-weight:700;font-size:14px}
+.site-nav{display:flex;font-weight:700;font-size:14px}
 .site-nav a{padding-inline:19px;line-height:60px;color:var(--text);text-decoration:none}
 .site-nav a:hover,.site-nav a[aria-current]{color:var(--active)}
-.util{display:flex;gap:20px;font-size:14px}
-.util a{color:var(--text);text-decoration:none}
 
 /* ── ヒーロー ── */
 .hero{position:relative;height:336px;overflow:hidden;background:var(--navy)}
@@ -110,10 +109,10 @@ a:focus-visible{outline:2px solid var(--active);outline-offset:3px}
 
 @media (max-width:760px){
   .site-head{position:relative}
-  .site-head .bar{flex-wrap:wrap;padding:6px 16px 0}
+  .site-head .bar{justify-content:flex-start;flex-wrap:wrap;padding:6px 16px 0}
+  .site-head .logo{position:static;transform:none}
   .site-head .logo img{width:170px}
-  .util{margin-left:auto}
-  .site-nav{order:3;width:100%;margin:0;overflow-x:auto}
+  .site-nav{width:100%;overflow-x:auto}
   .site-nav a{padding-inline:0 22px;line-height:44px;font-size:14px;white-space:nowrap}
   .hero{height:220px}
   .hero h1{padding-top:80px;font-size:30px}
@@ -138,9 +137,10 @@ a:focus-visible{outline:2px solid var(--active);outline-offset:3px}
   /* 用紙幅に収まる実寸で指定する（remのままだとA4の版面をはみ出す） */
   .inner{max-width:170mm;padding-inline:0}
   .site-head{position:static;box-shadow:none;border-bottom:1px solid var(--line)}
-  .site-head .bar{min-height:0;padding:0 0 3mm}
+  .site-head .bar{justify-content:flex-start;min-height:0;padding:0 0 3mm}
+  .site-head .logo{position:static;transform:none}
   .site-head .logo img{width:48mm}
-  .site-nav,.util{display:none}
+  .site-nav{display:none}
   .hero{height:40mm}
   .hero h1{padding-top:13mm;font-size:20pt}
   .hero-badge{width:16mm;top:auto;bottom:3mm;left:auto;right:12mm}
@@ -196,7 +196,6 @@ a:focus-visible{outline:2px solid var(--active);outline-offset:3px}
       <a href="https://ja.airpangaea.com/corporate">会社概要</a>
       <a href="https://ja.airpangaea.com/blog">Blog</a>
     </nav>
-    <div class="util"><a href="https://ja.airpangaea.com">ログイン</a><span>日本語</span></div>
   </div>
 </header>
 
@@ -380,7 +379,7 @@ a:focus-visible{outline:2px solid var(--active);outline-offset:3px}
     </div>
     <div class="social">
       <a href="https://www.instagram.com/airpangaeajapan/" aria-label="Instagram"><img src="images/index/instagram.png" alt="" width="20" height="20"></a>
-      <a href="https://www.twitter.com/airpangaeajapan" aria-label="Twitter"><img src="images/index/twitter.png" alt="" width="20" height="20"></a>
+      <a href="https://www.twitter.com/airpangaeajapan" aria-label="X"><img src="images/index/x.svg" alt="" width="20" height="20"></a>
       <a href="https://www.facebook.com/airpangaeajapan" aria-label="Facebook"><img src="images/index/facebook.png" alt="" width="20" height="20"></a>
     </div>
   </div>
