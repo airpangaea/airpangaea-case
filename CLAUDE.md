@@ -71,9 +71,17 @@ airpangaea-case/
 ├── source/
 │   └── tokushima-kita-2025.html          承認済み原本。凍結し、編集しない
 ├── content/
-│   └── tokushima-kita-2025.md            front matter ＋ 本文
+│   ├── index.md                          事例一覧（プログラム見出し＋事例の並び）
+│   ├── tokushima-kita-2025.md            front matter ＋ 本文
+│   └── external/                         Wix に残っている事例のカード（front matter のみ）
 ├── templates/
+│   ├── case.html                         事例ページ
+│   └── index.html                        事例一覧
+├── scripts/
+│   ├── build.py                          content/ ＋ templates/ → public/
+│   └── verify.py                         公開用 HTML と承認済み原本の突き合わせ
 └── public/                               Cloudflare Pages の出力ディレクトリ
+    ├── index.html                        事例一覧
     ├── tokushima-kita-2025/
     │   └── index.html
     └── images/
@@ -96,8 +104,7 @@ front matter の項目は原本から読み取って定義する。事例が1本
 
 ## 今回やらないこと
 
-- 索引ページの本実装
-- 他校の事例ページ
+- 他校の事例ページの移行
 - Wix `/case` の置き換え
 
-徳島北1本の公開を先行させる。Wix 側の編集は手作業で行うため、このリポジトリのスコープ外。
+徳島北は公開済み（2026-09-15）。索引ページ（`public/index.html`）は、徳島北と Wix の MOTTAINAI 4事例のカードで構成し、Wix の事例は Wix の各ページへリンクする。カードの文言は、徳島北は front matter、Wix の事例は Wix `/case` に掲載中の文言をそのまま使い（`content/external/`）、画像は使わない。Wix 側の編集は手作業で行うため、このリポジトリのスコープ外。
