@@ -29,6 +29,50 @@ APPROVED_CHANGES = {
         ('お問い合わせボタンのリンク先',
          '<a class="btn" href="https://ja.airpangaea.com/contact">',
          '<a class="btn" href="https://ja.airpangaea.com/#contactus">'),
+        # 2026-09-15 指示：ヘッダーを Wix の導入事例ページ（https://ja.airpangaea.com/case）に合わせる
+        ('ヘッダーの書体読み込み（Raleway を追加）',
+         '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">',
+         '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">'),
+        ('ヘッダーの CSS（配色・書体・固定表示）',
+         '/* ── ヘッダー：ja.airpangaea.com の白帯 ── */\n'
+         '.site-head{background:#fff}\n'
+         '.site-head .bar{display:flex;align-items:center;gap:28px;padding-block:16px}\n'
+         '.site-head .logo img{width:200px;height:auto}\n'
+         '.site-nav{display:flex;gap:26px;margin-left:auto;font-size:.875rem}\n'
+         '.site-nav a{color:#2b2b2b;text-decoration:none}\n'
+         '.site-nav a:hover{color:var(--jp)}\n'
+         '.site-nav a[aria-current]{font-weight:700}\n'
+         '.util{display:flex;gap:18px;font-size:.8125rem;color:#2b2b2b}\n'
+         '.util a{color:#2b2b2b;text-decoration:none}',
+         '/* ── ヘッダー：Wix の導入事例ページ（https://ja.airpangaea.com/case）に合わせる ── */\n'
+         '.site-head{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 0 4px rgba(85,85,85,.6);\n'
+         '  font-family:Raleway,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,sans-serif}\n'
+         '.site-head .bar{display:flex;align-items:center;min-height:60px;padding-inline:8px 28px}\n'
+         '.site-head .logo img{width:215px;height:auto}\n'
+         '.site-nav{display:flex;margin-inline:auto;font-weight:700;font-size:.875rem}\n'
+         '.site-nav a{padding-inline:19px;line-height:60px;color:#555;text-decoration:none}\n'
+         '.site-nav a:hover,.site-nav a[aria-current]{color:#2E58FF}\n'
+         '.util{display:flex;gap:20px;font-size:.875rem}\n'
+         '.util a{color:#555;text-decoration:none}'),
+        ('ヘッダーのスマホ表示（横スクロールのメニュー）',
+         '  .site-head .bar{flex-wrap:wrap;gap:12px}\n'
+         '  .site-nav{width:100%;margin-left:0;flex-wrap:wrap;gap:16px;order:3}\n'
+         '  .util{margin-left:auto}',
+         '  .site-head{position:relative}\n'
+         '  .site-head .bar{flex-wrap:wrap;padding:6px 16px 0}\n'
+         '  .site-head .logo img{width:170px}\n'
+         '  .util{margin-left:auto}\n'
+         '  .site-nav{order:3;width:100%;margin:0;overflow-x:auto}\n'
+         '  .site-nav a{padding-inline:0 22px;line-height:44px;font-size:14px;white-space:nowrap}'),
+        ('ヘッダーの印刷表示（固定表示・影を解除）',
+         '  .site-head{border-bottom:1px solid var(--rule);margin-bottom:16px}\n'
+         '  .site-head .bar{padding-block:5mm 10px}',
+         '  .site-head{position:static;box-shadow:none;border-bottom:1px solid var(--rule);margin-bottom:16px}\n'
+         '  .site-head .bar{padding-block:5mm 10px}\n'
+         '  .site-head .logo img{width:48mm}'),
+        ('ヘッダー帯の幅（サイト幅に制限せず全幅に）',
+         '  <div class="wrap-wide bar">',
+         '  <div class="bar">'),
     ],
 }
 

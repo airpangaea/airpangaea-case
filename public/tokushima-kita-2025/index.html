@@ -7,7 +7,7 @@
 <meta name="description" content="徳島県教育委員会「徳島と世界をつなぐグローカルリーダー育成事業」として、徳島県立徳島北高等学校の2クラスとインドネシア・ジャカルタの高校をつなぎ、5ヶ月間のオンライン交流TOMODACHIプログラムを実施した記録。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#16283D;
@@ -34,16 +34,16 @@ a:focus-visible{outline:2px solid var(--jp);outline-offset:3px}
 .wrap{max-width:var(--prose);margin-inline:auto;padding-inline:24px}
 .wrap-wide{max-width:var(--wide);margin-inline:auto;padding-inline:24px}
 
-/* ── ヘッダー：ja.airpangaea.com の白帯 ── */
-.site-head{background:#fff}
-.site-head .bar{display:flex;align-items:center;gap:28px;padding-block:16px}
-.site-head .logo img{width:200px;height:auto}
-.site-nav{display:flex;gap:26px;margin-left:auto;font-size:.875rem}
-.site-nav a{color:#2b2b2b;text-decoration:none}
-.site-nav a:hover{color:var(--jp)}
-.site-nav a[aria-current]{font-weight:700}
-.util{display:flex;gap:18px;font-size:.8125rem;color:#2b2b2b}
-.util a{color:#2b2b2b;text-decoration:none}
+/* ── ヘッダー：Wix の導入事例ページ（https://ja.airpangaea.com/case）に合わせる ── */
+.site-head{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 0 4px rgba(85,85,85,.6);
+  font-family:Raleway,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,sans-serif}
+.site-head .bar{display:flex;align-items:center;min-height:60px;padding-inline:8px 28px}
+.site-head .logo img{width:215px;height:auto}
+.site-nav{display:flex;margin-inline:auto;font-weight:700;font-size:.875rem}
+.site-nav a{padding-inline:19px;line-height:60px;color:#555;text-decoration:none}
+.site-nav a:hover,.site-nav a[aria-current]{color:#2E58FF}
+.util{display:flex;gap:20px;font-size:.875rem}
+.util a{color:#555;text-decoration:none}
 .crumb{font-size:.8125rem;color:var(--ink-faint);padding-block:20px 0}
 .crumb a{color:var(--ink-faint)}
 
@@ -150,9 +150,12 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
 .foot-links a:hover{text-decoration:underline}
 
 @media (max-width:760px){
-  .site-head .bar{flex-wrap:wrap;gap:12px}
-  .site-nav{width:100%;margin-left:0;flex-wrap:wrap;gap:16px;order:3}
+  .site-head{position:relative}
+  .site-head .bar{flex-wrap:wrap;padding:6px 16px 0}
+  .site-head .logo img{width:170px}
   .util{margin-left:auto}
+  .site-nav{order:3;width:100%;margin:0;overflow-x:auto}
+  .site-nav a{padding-inline:0 22px;line-height:44px;font-size:14px;white-space:nowrap}
   .hero-shot,.photos,.photos-cap{max-width:none}
   .pair{grid-template-columns:1fr}
   .pair .school{padding:20px 0;border-bottom:1px solid var(--rule);text-align:left}
@@ -175,8 +178,9 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
   /* 用紙幅に収まる実寸で指定する（remのままだとA4の版面をはみ出す） */
   .wrap,.wrap-wide{max-width:170mm;padding-inline:0}
   .site-nav,.util,.crumb{display:none}
-  .site-head{border-bottom:1px solid var(--rule);margin-bottom:16px}
+  .site-head{position:static;box-shadow:none;border-bottom:1px solid var(--rule);margin-bottom:16px}
   .site-head .bar{padding-block:5mm 10px}
+  .site-head .logo img{width:48mm}
   a{color:var(--ink);text-decoration:none}
   h1{font-size:15pt;line-height:1.65}
   h2{font-size:12pt}
@@ -205,7 +209,7 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
 <body>
 
 <header class="site-head">
-  <div class="wrap-wide bar">
+  <div class="bar">
     <a class="logo" href="https://ja.airpangaea.com"><img src="../images/tokushima-kita-2025/logo.png" alt="AirPangaea" width="225" height="50"></a>
     <nav class="site-nav">
       <a href="https://ja.airpangaea.com">ホーム</a>
