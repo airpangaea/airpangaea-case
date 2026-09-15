@@ -73,6 +73,13 @@ APPROVED_CHANGES = {
         ('ヘッダー帯の幅（サイト幅に制限せず全幅に）',
          '  <div class="wrap-wide bar">',
          '  <div class="bar">'),
+        # 2026-09-15 指示：favicon を Wix と同じ画像にする
+        ('favicon（Wix の導入事例ページと同じロゴ画像）',
+         '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">',
+         '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">\n'
+         '<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32.png">\n'
+         '<link rel="icon" type="image/png" sizes="192x192" href="../images/favicon/favicon-192.png">\n'
+         '<link rel="apple-touch-icon" href="../images/favicon/apple-touch-icon.png">'),
     ],
 }
 

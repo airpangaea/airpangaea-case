@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="images/favicon/favicon-192.png">
+<link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png">
 <style>
 /* 見た目は Wix の導入事例ページ（https://ja.airpangaea.com/case）に合わせる */
 :root{
@@ -35,7 +38,7 @@ a:focus-visible{outline:2px solid var(--active);outline-offset:3px}
 .site-head{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 0 4px rgba(85,85,85,.6)}
 .site-head .bar{display:flex;align-items:center;min-height:60px;padding-inline:8px 28px}
 .site-head .logo img{width:215px}
-.site-nav{display:flex;margin-inline:auto;font-weight:700}
+.site-nav{display:flex;margin-inline:auto;font-weight:700;font-size:14px}
 .site-nav a{padding-inline:19px;line-height:60px;color:var(--text);text-decoration:none}
 .site-nav a:hover,.site-nav a[aria-current]{color:var(--active)}
 .util{display:flex;gap:20px;font-size:14px}
@@ -44,6 +47,7 @@ a:focus-visible{outline:2px solid var(--active);outline-offset:3px}
 /* ── ヒーロー ── */
 .hero{position:relative;height:336px;overflow:hidden;background:var(--navy)}
 .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.hero-overlay{position:absolute;inset:0;background:rgba(15,29,85,.55)}
 .hero h1{position:relative;margin:0;padding-top:126px;text-align:center;color:#fff;font-size:40px;font-weight:700;
   line-height:1.4;letter-spacing:.04em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
 .hero-badge{position:absolute;left:calc(50% + 210px);top:197px;width:111px}
@@ -200,6 +204,7 @@ a:focus-visible{outline:2px solid var(--active);outline-offset:3px}
 
 <div class="hero">
   <img class="hero-photo" src="images/index/hero.jpg" alt="">
+  <div class="hero-overlay"></div>
   <h1>{{ title }}</h1>
   <img class="hero-badge" src="images/index/sdg-wheel.png" alt="">
 </div>
