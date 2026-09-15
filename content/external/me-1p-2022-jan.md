@@ -2,5 +2,7 @@
 title: 明星中学校・高等学校 (東京) × SMAN 1 Padang (インドネシア)
 description: 日本とインドネシアの計72名の高校生が6週間にわたりオンライン協働学習を実施。異国のクラスを繋ぎ、授業時間を活用して、異文化交流、天然資源の保全に関する議論を行いました。英語を第二言語とする近隣諸国の同世代同士が、互いに刺激を受けながら地球の将来に思いを馳せる機会となりました。
 role: 企画協力
+image: me-1p-2022-jan.jpg
+partner: EducationLink
 url: https://ja.airpangaea.com/me-1p-2022-jan
 ---

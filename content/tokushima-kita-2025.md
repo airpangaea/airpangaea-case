@@ -2,6 +2,7 @@
 title: 徳島県立徳島北高等学校 × MA Pembangunan UIN Jakarta
 description: 徳島県教育委員会「徳島と世界をつなぐグローカルリーダー育成事業」として、徳島県立徳島北高等学校の2クラスとインドネシア・ジャカルタの高校をつなぎ、5ヶ月間のオンライン交流TOMODACHIプログラムを実施した記録。
 school: 徳島県立徳島北高等学校
+image: hero.jpg
 ---
 
 ::: hero

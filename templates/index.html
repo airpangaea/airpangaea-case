@@ -6,101 +6,184 @@
 <title>{{ title }}｜AirPangaea</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* 見た目は Wix の導入事例ページ（https://ja.airpangaea.com/case）に合わせる */
 :root{
-  --ink:#16283D;
-  --ink-soft:#4A5C6E;
-  --ink-faint:#7C8B99;
+  --navy:#0F1D55;
+  --blue:#1F3BAA;
+  --active:#2E58FF;
+  --text:#555555;
+  --muted:#808080;
   --paper:#FFFFFF;
-  --jp:#1C4A6E;
-  --rule:#D3DBE1;
-  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",YuMincho,serif;
-  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,Meiryo,sans-serif;
-  --wide:66rem;
+  --gray:#FAFAFA;
+  --card:#DDE6FA;
+  --voices:#EBEFFF;
+  --line:#DADADA;
+  --font:Raleway,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,sans-serif;
+  --inner:960px;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;}
+body{margin:0;background:var(--paper);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.7}
 img{max-width:100%;height:auto;display:block}
-a{color:var(--jp)}
-a:focus-visible{outline:2px solid var(--jp);outline-offset:3px}
-.wrap-wide{max-width:var(--wide);margin-inline:auto;padding-inline:24px}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--active);outline-offset:3px}
+.inner{max-width:var(--inner);margin-inline:auto;padding-inline:24px}
 
-/* ── ヘッダー：ja.airpangaea.com の白帯（事例ページと同じ） ── */
-.site-head{background:#fff}
-.site-head .bar{display:flex;align-items:center;gap:28px;padding-block:16px}
-.site-head .logo img{width:200px;height:auto}
-.site-nav{display:flex;gap:26px;margin-left:auto;font-size:.875rem}
-.site-nav a{color:#2b2b2b;text-decoration:none}
-.site-nav a:hover{color:var(--jp)}
-.site-nav a[aria-current]{font-weight:700}
-.util{display:flex;gap:18px;font-size:.8125rem;color:#2b2b2b}
-.util a{color:#2b2b2b;text-decoration:none}
+/* ── ヘッダー ── */
+.site-head{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 0 4px rgba(85,85,85,.6)}
+.site-head .bar{display:flex;align-items:center;min-height:60px;padding-inline:8px 28px}
+.site-head .logo img{width:215px}
+.site-nav{display:flex;margin-inline:auto;font-weight:700}
+.site-nav a{padding-inline:19px;line-height:60px;color:var(--text);text-decoration:none}
+.site-nav a:hover,.site-nav a[aria-current]{color:var(--active)}
+.util{display:flex;gap:20px;font-size:14px}
+.util a{color:var(--text);text-decoration:none}
 
-/* ── 見出し ── */
-.page-head{padding-block:36px 0}
-.page-head h1{font-family:var(--serif);font-weight:600;font-size:1.625rem;line-height:1.6;margin:0}
+/* ── ヒーロー ── */
+.hero{position:relative;height:336px;overflow:hidden;background:var(--navy)}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.hero h1{position:relative;margin:0;padding-top:126px;text-align:center;color:#fff;font-size:40px;font-weight:700;
+  line-height:1.4;letter-spacing:.04em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.hero-badge{position:absolute;left:calc(50% + 210px);top:197px;width:111px}
 
-/* ── プログラムごとの事例カード ── */
-.program{margin-block:36px 64px}
-.program h2{font-family:var(--serif);font-weight:600;font-size:1.3125rem;line-height:1.6;
-  margin:0 0 20px;padding-bottom:10px;border-bottom:1px solid var(--rule);}
-.cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.card a{display:flex;flex-direction:column;height:100%;padding:22px 24px 20px;
-  border:1px solid var(--rule);border-top:2px solid var(--ink);color:inherit;text-decoration:none}
-.card a:hover{border-color:var(--jp)}
-.card-schools{font-family:var(--serif);font-size:1rem;font-weight:600;line-height:1.6;margin:0 0 10px}
+/* ── 最新事例（控えめなテキストリンク） ── */
+.news{background:var(--navy);color:#fff;padding:22px 0 26px}
+.news h2{margin:0 0 8px;text-align:center;font-size:20px;font-weight:700;letter-spacing:.06em}
+.news ul{list-style:none;margin:0 auto;padding:0;max-width:860px}
+.news li{padding:7px 0;font-size:14px;line-height:1.7;border-top:1px solid rgba(255,255,255,.16)}
+.news li:first-child{border-top:0}
+.news-label{font-weight:700;white-space:nowrap}
+.news a{color:#fff;text-underline-offset:3px}
+.news a:hover{color:#C9D4FF}
+
+/* ── プログラムごとの事例 ── */
+.program{background:var(--gray);padding:44px 0 60px}
+.program+.program{padding-top:0}
+.program-head{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:28px}
+.program h2{margin:0;font-size:28px;font-weight:700;line-height:1.4;color:var(--navy)}
+.program h2 span{display:block}
+.program h2 span+span{color:var(--blue)}
+.program-logo{width:315px;min-width:0}
+.cards{list-style:none;margin:0 auto;padding:0;max-width:850px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 42px}
+.cards.single{grid-template-columns:minmax(0,404px);justify-content:center}
+.card{background:var(--card);padding:22px 18px 24px}
+.card-schools{margin:0 0 8px;padding-inline:24px;color:var(--blue);font-size:16px;font-weight:700;line-height:1.45}
 .card-schools span{display:block}
-.card-role{font-size:.8125rem;color:var(--ink-faint);margin:0 0 6px}
-.card-desc{font-size:.9375rem;color:var(--ink-soft);line-height:1.8;margin:0 0 16px}
-.card-more{font-size:.875rem;color:var(--jp);margin:auto 0 0}
+.card-role{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin:0;font-size:11px}
+.card-role img{width:97px}
+.card-desc{margin:14px 0 6px;font-size:14px;line-height:1.45;color:var(--muted)}
+.card-more{margin:0 24px 16px;text-align:right;font-size:14px;font-weight:700}
+.card-more a{color:var(--blue)}
+.card-photo{display:block;max-width:292px;margin-inline:auto;border:8px solid #77716B}
+.card-photo img{width:100%;aspect-ratio:3/2;object-fit:cover}
 
-/* ── フッター（事例ページと同じ） ── */
-.site-foot{border-top:1px solid var(--rule);padding-block:30px 48px;
-  font-size:.8125rem;color:var(--ink-faint)}
-.site-foot p{margin:0 0 10px}
-.foot-links{display:flex;flex-wrap:wrap;gap:18px}
-.foot-links a{color:var(--ink-faint);text-decoration:none}
-.foot-links a:hover{text-decoration:underline}
+/* ── 生徒たちの声 ── */
+.voices{background:var(--voices);padding:44px 0 64px}
+.voices h2{margin:0;font-size:28px;font-weight:700;color:var(--navy)}
+.voice-cat{margin-top:30px}
+.voice-cat h3{margin:0 0 12px;font-size:18px;font-weight:700;color:var(--blue);text-decoration:underline;text-underline-offset:5px}
+.voice-subs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.voice-sub{background:#fff;padding:16px 20px 10px;border-radius:6px}
+.voice-sub h4{margin:0 0 4px;font-size:15px;font-weight:700;color:#333}
+.voice-sub ul{margin:0;padding:0;list-style:none}
+.voice-sub li{position:relative;padding:8px 0 8px 1.4em;font-size:14px;line-height:1.75;border-top:1px dashed #D2DAF2}
+.voice-sub li:first-child{border-top:0}
+.voice-sub li::before{content:"\201C";position:absolute;left:0;top:5px;color:var(--blue);font:700 22px/1 Georgia,serif}
+.voice-sub strong{color:#333}
+.voice-wide ul{columns:2 320px;column-gap:40px}
+.voice-wide li,.voice-wide li:first-child{break-inside:avoid;border-top:0;border-bottom:1px dashed #D2DAF2}
+
+/* ── フッター ── */
+.site-foot{border-top:1px solid var(--line);padding:18px 0 30px;font-size:14px}
+.foot-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 36px}
+.foot-bar p{margin:0}
+.foot-links{display:flex;flex-wrap:wrap;gap:10px 36px}
+.foot-links a{color:var(--text)}
+.social{display:flex;gap:10px}
+.social img{width:20px;height:20px}
 
 @media (max-width:760px){
-  .site-head .bar{flex-wrap:wrap;gap:12px}
-  .site-nav{width:100%;margin-left:0;flex-wrap:wrap;gap:16px;order:3}
+  .site-head{position:relative}
+  .site-head .bar{flex-wrap:wrap;padding:6px 16px 0}
+  .site-head .logo img{width:170px}
   .util{margin-left:auto}
-  .cards{grid-template-columns:1fr}
+  .site-nav{order:3;width:100%;margin:0;overflow-x:auto}
+  .site-nav a{padding-inline:0 22px;line-height:44px;font-size:14px;white-space:nowrap}
+  .hero{height:220px}
+  .hero h1{padding-top:80px;font-size:30px}
+  .hero-badge{width:64px;left:auto;right:16px;top:auto;bottom:14px}
+  .program{padding:32px 0 44px}
+  .program-head{flex-direction:column;align-items:flex-start;gap:14px}
+  .program h2{font-size:22px}
+  .program-logo{width:230px}
+  .cards,.cards.single{grid-template-columns:minmax(0,1fr);gap:24px}
+  .card-schools{padding-inline:6px}
+  .card-more{margin-inline:6px}
+  .voices{padding:32px 0 44px}
+  .voices h2{font-size:22px}
+  .foot-bar,.foot-links{justify-content:flex-start;gap:8px 20px}
 }
 /* ── 印刷・PDF ── */
 /* @page はメディアクエリの外に置く（中に入れると効かない） */
 @page{margin:16mm}
 @media print{
   html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  body{font-size:10.5pt;line-height:1.75}
+  body{font-size:9.5pt;line-height:1.55}
   /* 用紙幅に収まる実寸で指定する（remのままだとA4の版面をはみ出す） */
-  .wrap-wide{max-width:170mm;padding-inline:0}
+  .inner{max-width:170mm;padding-inline:0}
+  .site-head{position:static;box-shadow:none;border-bottom:1px solid var(--line)}
+  .site-head .bar{min-height:0;padding:0 0 3mm}
+  .site-head .logo img{width:48mm}
   .site-nav,.util{display:none}
-  .site-head{border-bottom:1px solid var(--rule);margin-bottom:16px}
-  .site-head .bar{padding-block:5mm 10px}
-  a{color:var(--ink);text-decoration:none}
-  .page-head{padding-block:0}
-  .page-head h1{font-size:15pt}
-  .program{margin-block:18px 24px}
-  .program h2{font-size:12pt;break-after:avoid}
-  .cards{gap:10px}
-  .card a{padding:12px 14px}
+  .hero{height:40mm}
+  .hero h1{padding-top:13mm;font-size:20pt}
+  .hero-badge{width:16mm;top:auto;bottom:3mm;left:auto;right:12mm}
+  /* 背景色が落ちても読めるよう、帯の背景と白抜き文字をやめて濃色文字＋罫線にする */
+  .news,.program,.voices{background:none}
+  .news{color:var(--text);padding:4mm 0 3mm;border-bottom:1px solid var(--line)}
+  .news h2{color:var(--navy);font-size:11pt;margin-bottom:1mm}
+  .news a{color:var(--text)}
+  .news li{font-size:8.5pt;padding:1.2mm 0;border-top-color:var(--line)}
+  .program{padding:5mm 0 0}
+  .program-head{margin-bottom:3mm;break-after:avoid}
+  .program h2{font-size:13pt}
+  .program-logo{width:55mm}
+  .cards{max-width:none;gap:4mm}
+  .cards.single{grid-template-columns:84mm}
+  .card{background:none;border:1px solid #B8C5EC;padding:3mm 3.5mm}
+  .card-schools{padding-inline:0;font-size:9.5pt;margin-bottom:1mm}
+  .card-role{font-size:7.5pt}
+  .card-role img{width:22mm}
+  .card-desc{font-size:8.5pt;line-height:1.5;margin:2mm 0}
   .card-more{display:none}
-  /* 改ページ禁止はカード単位に限定する（大きい塊に付けると空白が出る） */
-  .card{break-inside:avoid}
-  .site-foot{break-inside:avoid;padding-block:16px 0}
+  .card-photo{max-width:46mm;border-width:1.2mm}
+  .voices{padding:5mm 0 0;border-top:1px solid var(--line)}
+  .voices h2{font-size:13pt}
+  .voice-cat{margin-top:4mm}
+  .voice-cat h3{font-size:10.5pt;margin-bottom:2mm}
+  .voice-subs{grid-template-columns:repeat(auto-fit,minmax(52mm,1fr));gap:3mm}
+  .voice-sub{border:1px solid #C9D3EE;padding:2.5mm 3mm 1mm}
+  .voice-sub h4{font-size:9pt}
+  .voice-sub li{font-size:8.5pt;line-height:1.55;padding:1.2mm 0 1.2mm 1.3em}
+  .voice-sub li::before{top:1mm;font-size:13pt}
+  .voice-wide ul{columns:2;column-gap:6mm}
+  .site-foot{padding:4mm 0 0;font-size:8.5pt}
+  .social img{width:4mm;height:4mm}
+  /* 改ページ禁止は小さい塊（カード・声1件）だけに限定する（大きい塊に付けると空白が出る） */
+  .card,.voice-sub li{break-inside:avoid}
+  .voices h2,.voice-cat h3,.voice-sub h4{break-after:avoid}
+  .site-foot{break-inside:avoid}
 }
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 
 <header class="site-head">
-  <div class="wrap-wide bar">
+  <div class="bar">
     <a class="logo" href="https://ja.airpangaea.com"><img src="{{ images }}/logo.png" alt="AirPangaea" width="225" height="50"></a>
     <nav class="site-nav">
       <a href="https://ja.airpangaea.com">ホーム</a>
@@ -114,20 +197,29 @@ a:focus-visible{outline:2px solid var(--jp);outline-offset:3px}
 </header>
 
 <main>
-<div class="wrap-wide">
+
+<div class="hero">
+  <img class="hero-photo" src="images/index/hero.jpg" alt="">
+  <h1>{{ title }}</h1>
+  <img class="hero-badge" src="images/index/sdg-wheel.png" alt="">
+</div>
 
 {{ content }}
 
-</div>
 </main>
 
 <footer class="site-foot">
-  <div class="wrap-wide">
+  <div class="inner foot-bar">
     <p>©2021-2026 AirPangaea, Inc.</p>
     <div class="foot-links">
       <a href="https://ja.airpangaea.com/privacy-policy">プライバシーポリシー</a>
       <a href="https://ja.airpangaea.com/terms-and-conditions">利用規約</a>
       <a href="https://ja.airpangaea.com/tokushoho">特定商取引法に基づく表記</a>
+    </div>
+    <div class="social">
+      <a href="https://www.instagram.com/airpangaeajapan/" aria-label="Instagram"><img src="images/index/instagram.png" alt="" width="20" height="20"></a>
+      <a href="https://www.twitter.com/airpangaeajapan" aria-label="Twitter"><img src="images/index/twitter.png" alt="" width="20" height="20"></a>
+      <a href="https://www.facebook.com/airpangaeajapan" aria-label="Facebook"><img src="images/index/facebook.png" alt="" width="20" height="20"></a>
     </div>
   </div>
 </footer>

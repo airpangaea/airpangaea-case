@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-FRONT_MATTER_KEYS = ('title', 'description', 'school')
+FRONT_MATTER_KEYS = ('title', 'description', 'school', 'image')
 
 FLAGS = {
     '日本': '<rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#BC002D"/>',
@@ -343,55 +343,157 @@ def build(md_path):
 
 # ── 事例一覧 ──────────────────────────────────────────
 
+INDEX_IMAGES = 'images/index'
+PARTNER_LOGOS = {'EducationLink': 'educationlink.jpg'}
+
+
+def public_file(src):
+    if not (ROOT / 'public' / src).is_file():
+        raise BuildError(f'画像ファイルがない: public/{src}')
+    return src
+
+
+def inline(text):
+    """**太字** だけを <strong> にする（Wix の強調をそのまま写す）"""
+    parts = html.escape(text, quote=False).split('**')
+    if len(parts) % 2 == 0:
+        raise BuildError(f'** の対応が取れていない: {text}')
+    return ''.join(f'<strong>{p}</strong>' if i % 2 else p for i, p in enumerate(parts))
+
+
 def card(ref):
-    """index.md の「- 事例」1行をカードにする。external/ は Wix に残っている事例（front matter のみ）"""
+    """「- 事例」1行をカードにする。external/ は Wix に残っている事例（front matter のみ）"""
     path = ROOT / 'content' / f'{ref}.md'
     if not path.is_file():
         raise BuildError(f'index.md が参照する事例がない: {path.relative_to(ROOT)}')
     text = path.read_text(encoding='utf-8')
     if ref.startswith('external/'):
-        meta, body = parse_front_matter(text, path, ('title', 'description', 'url'), ('role',))
+        meta, body = parse_front_matter(text, path, ('title', 'description', 'image', 'url'), ('role', 'partner'))
         if any(body):
             raise BuildError(f'{path.name}: external/ には front matter だけを書く')
-        href = meta['url']
+        href, photo = meta['url'], f'images/external/{meta["image"]}'
     else:
         meta, _ = parse_front_matter(text, path)
-        href = f'/{ref}/'
+        href, photo = f'/{ref}/', f'images/{ref}/{meta["image"]}'
     schools = ''.join(f'<span>{attr(s)}</span>' for s in meta['title'].split(' × '))
-    out = ['<li class="card">', f'  <a href="{attr(href)}">', f'    <p class="card-schools">{schools}</p>']
-    if 'role' in meta:
-        out.append(f'    <p class="card-role">{attr(meta["role"])}</p>')
-    return out + [f'    <p class="card-desc">{attr(meta["description"])}</p>',
-                  '    <p class="card-more">→もっと読む</p>', '  </a>', '</li>']
+    out = ['<li class="card">', f'  <p class="card-schools">{schools}</p>']
+    if 'role' in meta or 'partner' in meta:
+        if 'role' not in meta or meta.get('partner') not in PARTNER_LOGOS:
+            raise BuildError(f'{path.name}: role と partner（{"／".join(PARTNER_LOGOS)}）は組で書く')
+        logo = public_file(f'{INDEX_IMAGES}/{PARTNER_LOGOS[meta["partner"]]}')
+        out.append(f'  <p class="card-role">{attr(meta["role"])}<img src="{logo}" alt="{attr(meta["partner"])}" width="97" height="19"></p>')
+    return out + [f'  <p class="card-desc">{attr(meta["description"])}</p>',
+                  f'  <p class="card-more"><a href="{attr(href)}">→もっと読む</a></p>',
+                  f'  <a class="card-photo" href="{attr(href)}" tabindex="-1" aria-hidden="true"><img src="{public_file(photo)}" alt=""></a>',
+                  '</li>']
 
 
-def build_index():
-    """content/index.md（## プログラム名 ／ - 事例）から public/index.html を作る"""
-    path = ROOT / 'content' / 'index.md'
-    meta, body = parse_front_matter(path.read_text(encoding='utf-8'), path, ('title',))
-    programs = []
+def index_program(heading, logo, cards):
+    """## 見出し（1〜2行）／ ![代替テキスト](ロゴ)（任意）／ - 事例"""
+    if not cards:
+        raise BuildError(f'index.md:「{" ".join(heading)}」に事例がない')
+    spans = ''.join(f'<span>{attr(h)}</span>' for h in heading)
+    head = ['    <div class="program-head">', f'      <h2>{spans}</h2>']
+    if logo:
+        src = public_file(f'{INDEX_IMAGES}/{logo[1]}')
+        head.append(f'      <img class="program-logo" src="{src}" alt="{attr(logo[0])}">')
+    return ['<section class="program">', '  <div class="inner">', *head, '    </div>',
+            f'    <ul class="cards{" single" if len(cards) == 1 else ""}">',
+            *indent([line for c in cards for line in c], 6), '    </ul>', '  </div>', '</section>']
+
+
+def index_news(body):
+    """[ラベル] ／ URL ／ タイトル（**太字** 可）を空行で区切る"""
+    items = []
+    for g in split_groups(body):
+        if len(g) != 3 or not (g[0].startswith('[') and g[0].endswith(']')) or not g[1].startswith('https://'):
+            raise BuildError(f'::: news は「[ラベル]」「URL」「タイトル」の3行ずつ: {g}')
+        items.append(f'      <li><span class="news-label">{attr(g[0])}</span> <a href="{attr(g[1])}">{inline(g[2])}</a></li>')
+    return ['<section class="news">', '  <div class="inner">', '    <h2>最新事例</h2>', '    <ul>', *items,
+            '    </ul>', '  </div>', '</section>']
+
+
+def index_voices(body):
+    """### 分類 ／ 小見出し（任意）／ - 声（**太字** 可）"""
+    cats = []
     for line in body:
         if not line:
             continue
-        if line.startswith('## '):
-            programs.append((line[3:], []))
-        elif line.startswith('- ') and programs:
-            programs[-1][1].append(card(line[2:]))
+        if line.startswith('### '):
+            cats.append((line[4:], []))
+        elif not cats:
+            raise BuildError(f'::: voices は ### 分類 から始める: {line}')
+        elif line.startswith('- '):
+            if not cats[-1][1]:
+                cats[-1][1].append((None, []))
+            cats[-1][1][-1][1].append(line[2:])
         else:
-            raise BuildError(f'index.md は「## プログラム名」と「- 事例」の行だけ: {line}')
-    blocks = [['<div class="page-head">', f'  <h1>{attr(meta["title"])}</h1>', '</div>']]
-    for name, cards in programs:
-        if not cards:
-            raise BuildError(f'index.md:「{name}」に事例がない')
-        blocks.append(['<section class="program">', f'  <h2>{attr(name)}</h2>', '  <ul class="cards">',
-                       *indent([line for c in cards for line in c], 4), '  </ul>', '</section>'])
+            cats[-1][1].append((line, []))
+    out = ['<section class="voices">', '  <div class="inner">', '    <h2>生徒たちの声</h2>']
+    for name, subs in cats:
+        wide = len(subs) == 1 and subs[0][0] is None and len(subs[0][1]) >= 6
+        out += [f'    <div class="voice-cat{" voice-wide" if wide else ""}">', f'      <h3>{attr(name)}</h3>', '      <div class="voice-subs">']
+        for label, quotes in subs:
+            if not quotes:
+                raise BuildError(f'::: voices の「{label or name}」に声がない')
+            out += ['        <div class="voice-sub">', *([f'          <h4>{attr(label)}</h4>'] if label else []),
+                    '          <ul>', *(f'            <li>{inline(q)}</li>' for q in quotes), '          </ul>', '        </div>']
+        out += ['      </div>', '    </div>']
+    return out + ['  </div>', '</section>']
+
+
+def build_index():
+    """content/index.md（::: news ／ ## プログラム ＋ - 事例 ／ ::: voices）から public/index.html を作る"""
+    path = ROOT / 'content' / 'index.md'
+    meta, body = parse_front_matter(path.read_text(encoding='utf-8'), path, ('title',))
+    blocks, current = [], None
+
+    def close_program():
+        nonlocal current
+        if current:
+            blocks.append(index_program(*current))
+        current = None
+
+    i = 0
+    while i < len(body):
+        line = body[i]
+        if line.startswith(':::'):
+            renderer = {'news': index_news, 'voices': index_voices}.get(line[3:].strip())
+            if not renderer:
+                raise BuildError(f'index.md: 未知のブロック: {line}')
+            try:
+                end = body.index(':::', i + 1)
+            except ValueError:
+                raise BuildError(f'index.md: 閉じていないブロック: {line}') from None
+            close_program()
+            blocks.append(renderer(body[i + 1:end]))
+            i = end + 1
+            continue
+        if line.startswith('## '):
+            if current is None or current[2]:
+                close_program()
+                current = ([], None, [])
+            current[0].append(line[3:])
+        elif line.startswith('![') and current and not current[2]:
+            m = re.fullmatch(r'!\[([^\]]+)\]\(([\w.-]+)\)', line)
+            if not m:
+                raise BuildError(f'index.md: ロゴは ![代替テキスト](ファイル名) で書く: {line}')
+            current = (current[0], m.groups(), current[2])
+        elif line.startswith('- ') and current:
+            current[2].append(card(line[2:]))
+        elif line:
+            raise BuildError(f'index.md の書式が不正: {line}')
+        i += 1
+    close_program()
     logo = Images('tokushima-kita-2025')  # ロゴは徳島北の画像フォルダにある
     logo.require('logo.png')
     page = fill((ROOT / 'templates' / 'index.html').read_text(encoding='utf-8'), {
         'title': attr(meta['title']),
         'images': logo.url.removeprefix('../'),
-        'content': '\n\n'.join('\n'.join(indent(b)) for b in blocks),
+        'content': '\n\n'.join('\n'.join(b) for b in blocks),
     })
+    for src in re.findall(r'src="(images/[^"]+)"', page):
+        public_file(src)
     out = ROOT / 'public' / 'index.html'
     out.write_text(page, encoding='utf-8')
     return out
