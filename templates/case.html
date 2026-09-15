@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}｜導入事例｜AirPangaea</title>
+<meta name="description" content="{{ description }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16283D;
+  --ink-soft:#4A5C6E;
+  --ink-faint:#7C8B99;
+  --paper:#FFFFFF;
+  --wash:#EEF2F4;
+  --track:#E4EBEF;
+  --data:#3480AE;
+  --jp:#1C4A6E;
+  --rule:#D3DBE1;
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",YuMincho,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,Meiryo,sans-serif;
+  --prose:44rem;
+  --wide:66rem;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--jp)}
+a:focus-visible{outline:2px solid var(--jp);outline-offset:3px}
+.wrap{max-width:var(--prose);margin-inline:auto;padding-inline:24px}
+.wrap-wide{max-width:var(--wide);margin-inline:auto;padding-inline:24px}
+
+/* ── ヘッダー：ja.airpangaea.com の白帯 ── */
+.site-head{background:#fff}
+.site-head .bar{display:flex;align-items:center;gap:28px;padding-block:16px}
+.site-head .logo img{width:200px;height:auto}
+.site-nav{display:flex;gap:26px;margin-left:auto;font-size:.875rem}
+.site-nav a{color:#2b2b2b;text-decoration:none}
+.site-nav a:hover{color:var(--jp)}
+.site-nav a[aria-current]{font-weight:700}
+.util{display:flex;gap:18px;font-size:.8125rem;color:#2b2b2b}
+.util a{color:#2b2b2b;text-decoration:none}
+.crumb{font-size:.8125rem;color:var(--ink-faint);padding-block:20px 0}
+.crumb a{color:var(--ink-faint)}
+
+/* ── ヒーロー ── */
+.hero{padding-block:20px 0}
+.hero h1{font-family:var(--serif);font-weight:600;
+  font-size:clamp(1.25rem,2.8vw,1.625rem);line-height:1.7;letter-spacing:.01em;margin:0 0 18px;}
+.lede{font-size:1rem;color:var(--ink-soft);margin:0 0 32px;max-width:40rem}
+.hero-shot{margin:0 auto 40px;max-width:36rem}
+.hero-shot figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px}
+
+/* ── 二校の対向ブロック ── */
+.pair{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;
+  border-block:1px solid var(--rule);margin-bottom:56px;}
+.pair .school{padding:26px 4px}
+.pair .school:last-child{text-align:right}
+.pair .flag{width:30px;height:20px;margin-bottom:12px}
+.pair .school:last-child .flag{margin-left:auto}
+.country{font-size:.8125rem;color:var(--ink-faint);margin:0 0 4px}
+.school-name{font-family:var(--serif);font-size:1rem;font-weight:600;line-height:1.6;margin:0 0 10px}
+.school-detail{font-size:.875rem;color:var(--ink-soft);margin:0;line-height:1.8}
+.link{display:grid;place-content:center;padding:26px 22px;background:var(--wash);
+  text-align:center;min-width:9.5rem;}
+.link b{display:block;font-family:var(--serif);font-size:1.4375rem;font-weight:600;line-height:1.3}
+.link span{display:block;font-size:.8125rem;color:var(--ink-soft);line-height:1.7}
+
+/* ── 事実ブロック ── */
+.facts{border-top:2px solid var(--ink);margin-bottom:64px}
+.facts dl{display:grid;grid-template-columns:8.5rem 1fr;margin:0}
+.facts dt{padding:14px 0;font-size:.875rem;color:var(--ink-soft);border-bottom:1px solid var(--rule)}
+.facts dd{padding:14px 0;margin:0;border-bottom:1px solid var(--rule);font-size:.9375rem}
+
+/* ── 本文 ── */
+section{margin-bottom:64px}
+h2{font-family:var(--serif);font-weight:600;font-size:1.3125rem;line-height:1.6;
+  margin:0 0 20px;padding-bottom:10px;border-bottom:1px solid var(--rule);}
+h3{font-size:1rem;font-weight:700;margin:32px 0 8px}
+p{margin:0 0 1.3em}
+p:last-child{margin-bottom:0}
+
+/* ── 進行 ── */
+.days{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.days>li{display:grid;grid-template-columns:5.5rem 1fr;gap:20px;
+  padding:20px 0;border-bottom:1px solid var(--rule);}
+.day-no{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--jp);line-height:1.7}
+.days p{margin:0}
+.days .day-title{font-weight:700;margin-bottom:4px}
+
+/* ── 写真 ── */
+figure{margin:0}
+figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:1.7}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:32px 0 0}
+.photos img{aspect-ratio:16/9;object-fit:cover;width:100%}
+.photos-cap{margin:10px 0 0;font-size:.8125rem;color:var(--ink-faint);line-height:1.7}
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:30px 0 0}
+.works img{aspect-ratio:16/9;object-fit:cover;width:100%;border:1px solid var(--rule)}
+.works-cap{font-size:.8125rem;color:var(--ink-faint);margin:10px 0 0;line-height:1.7}
+
+/* ── 役割分担 ── */
+.roles{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--ink)}
+.roles>div{padding:22px 24px 26px}
+.roles>div:first-child{background:var(--wash);border-right:1px solid var(--rule)}
+.roles h3{margin:0 0 12px;font-size:.9375rem}
+.roles ul{margin:0;padding-left:1.15em}
+.roles li{margin-bottom:8px;font-size:.9375rem;line-height:1.8}
+.roles li:last-child{margin-bottom:0}
+
+/* ── アンケート ── */
+.q{margin:0 0 34px}
+.q-text{font-size:.875rem;color:var(--ink-soft);margin:0 0 4px}
+.q-note{font-size:.8125rem;color:var(--ink-faint);margin:0 0 16px}
+.bars{margin:0;padding:0;list-style:none}
+.bars li{margin-bottom:16px}
+.bar-label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  font-size:.9375rem;margin-bottom:5px}
+.bar-val{font-family:var(--serif);font-size:1.25rem;font-weight:600;line-height:1;color:var(--data)}
+.track{height:9px;background:var(--track);border:1px solid var(--rule);box-sizing:border-box}
+.fill{height:100%;background:var(--data);border:1px solid var(--data);box-sizing:border-box}
+
+/* ── 生徒の声 ── */
+.voices{margin:0;padding:0;list-style:none}
+.voices li{border-left:2px solid var(--rule);padding:2px 0 2px 20px;
+  margin-bottom:22px;font-size:.9375rem;color:var(--ink-soft);}
+.voices li:last-child{margin-bottom:0}
+
+/* ── 継続 ── */
+.next{background:var(--wash);padding:26px 28px 28px;margin-bottom:64px}
+.next h2{border:0;padding:0;margin-bottom:10px;font-size:1.0625rem}
+.next p{font-size:.9375rem;margin:0}
+
+/* ── CTA ── */
+.cta{border-top:2px solid var(--ink);padding-top:34px;margin-bottom:72px}
+.cta h2{border:0;padding:0}
+.btn{display:inline-block;margin-top:10px;background:var(--jp);color:#fff;
+  text-decoration:none;padding:13px 30px;font-size:.9375rem;}
+.btn:hover{background:#153A57}
+
+/* ── フッター ── */
+.site-foot{border-top:1px solid var(--rule);padding-block:30px 48px;
+  font-size:.8125rem;color:var(--ink-faint)}
+.site-foot p{margin:0 0 10px}
+.foot-links{display:flex;flex-wrap:wrap;gap:18px}
+.foot-links a{color:var(--ink-faint);text-decoration:none}
+.foot-links a:hover{text-decoration:underline}
+
+@media (max-width:760px){
+  .site-head .bar{flex-wrap:wrap;gap:12px}
+  .site-nav{width:100%;margin-left:0;flex-wrap:wrap;gap:16px;order:3}
+  .util{margin-left:auto}
+  .hero-shot,.photos,.photos-cap{max-width:none}
+  .pair{grid-template-columns:1fr}
+  .pair .school{padding:20px 0;border-bottom:1px solid var(--rule);text-align:left}
+  .pair .school:last-child{text-align:left;border-bottom:0}
+  .pair .school:last-child .flag{margin-left:0}
+  .facts dl{grid-template-columns:1fr}
+  .facts dt{padding-bottom:0;border-bottom:0}
+  .facts dd{padding-top:2px}
+  .roles{grid-template-columns:1fr}
+  .roles>div:first-child{border-right:0;border-bottom:1px solid var(--rule)}
+  .works{grid-template-columns:1fr 1fr}
+  .days>li{grid-template-columns:1fr;gap:6px}
+}
+/* ── 印刷・PDF ── */
+/* @page はメディアクエリの外に置く（中に入れると効かない） */
+@page{margin:16mm}
+@media print{
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-size:10.5pt;line-height:1.75}
+  /* 用紙幅に収まる実寸で指定する（remのままだとA4の版面をはみ出す） */
+  .wrap,.wrap-wide{max-width:170mm;padding-inline:0}
+  .site-nav,.util,.crumb{display:none}
+  .site-head{border-bottom:1px solid var(--rule);margin-bottom:16px}
+  .site-head .bar{padding-block:5mm 10px}
+  a{color:var(--ink);text-decoration:none}
+  h1{font-size:15pt;line-height:1.65}
+  h2{font-size:12pt}
+  .lede{font-size:10.5pt;max-width:none}
+  .hero{padding-block:0}
+  .hero-shot{max-width:105mm;margin-bottom:22px}
+  .photos,.works{max-width:none}
+  section{margin-bottom:24px}
+  .facts,.pair{margin-bottom:22px}
+  /* 背景色が落ちても読める形に置き換える */
+  .link,.roles>div:first-child,.next{background:none}
+  .link{border-inline:1px solid var(--rule)}
+  .next{border:1px solid var(--rule)}
+  .btn{background:none;color:var(--ink);border:1px solid var(--ink)}
+  /* 改ページ禁止は小さい塊だけに限定する（大きい塊に付けると空白が出る） */
+  figure,.photos,.works,.pair,.next,.days>li,.voices li,.bars li,.q{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  /* フッターだけが最終ページに取り残されるのを防ぐ */
+  .cta{margin-bottom:26px;padding-top:26px}
+  .site-foot{break-inside:avoid;padding-block:16px 0}
+  .next{margin-bottom:26px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap-wide bar">
+    <a class="logo" href="https://ja.airpangaea.com"><img src="{{ images }}/logo.png" alt="AirPangaea" width="225" height="50"></a>
+    <nav class="site-nav">
+      <a href="https://ja.airpangaea.com">ホーム</a>
+      <a href="https://ja.airpangaea.com/program">プログラム</a>
+      <a href="/" aria-current="page">導入事例</a>
+      <a href="https://ja.airpangaea.com/corporate">会社概要</a>
+      <a href="https://ja.airpangaea.com/blog">Blog</a>
+    </nav>
+    <div class="util"><a href="https://ja.airpangaea.com">ログイン</a><span>日本語</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="crumb"><a href="/">導入事例</a> ／ {{ school }}</p>
+</div>
+
+<main>
+<div class="wrap">
+
+{{ content }}
+
+</div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap-wide">
+    <p>©2021-2026 AirPangaea, Inc.</p>
+    <div class="foot-links">
+      <a href="https://ja.airpangaea.com/privacy-policy">プライバシーポリシー</a>
+      <a href="https://ja.airpangaea.com/terms-and-conditions">利用規約</a>
+      <a href="https://ja.airpangaea.com/tokushoho">特定商取引法に基づく表記</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
