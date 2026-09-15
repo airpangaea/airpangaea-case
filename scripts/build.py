@@ -37,6 +37,11 @@ def attr(value):
     return html.escape(value, quote=True)
 
 
+def link_attrs(href):
+    """サイトの外に出るリンク（http/https）は新しいタブで開く。サイト内リンクはそのまま"""
+    return ' target="_blank" rel="noopener noreferrer"' if href.startswith('http') else ''
+
+
 def indent(lines, width=2):
     return [' ' * width + line if line else '' for line in lines]
 
@@ -202,7 +207,7 @@ def cta(body, images):
         raise BuildError('::: cta は「## 見出し」「本文」「[ボタンの文言](URL)」')
     label, href = m.groups()
     return ['<section class="cta">', f'  <h2>{h2[3:]}</h2>', f'  <p>{text}</p>',
-            f'  <a class="btn" href="{attr(href)}">{label}</a>', '</section>']
+            f'  <a class="btn" href="{attr(href)}"{link_attrs(href)}>{label}</a>', '</section>']
 
 
 # section の外に置くブロックと、section の中に置くブロック
@@ -383,8 +388,8 @@ def card(ref):
         logo = public_file(f'{INDEX_IMAGES}/{PARTNER_LOGOS[meta["partner"]]}')
         out.append(f'  <p class="card-role">{attr(meta["role"])}<img src="{logo}" alt="{attr(meta["partner"])}" width="97" height="19"></p>')
     return out + [f'  <p class="card-desc">{attr(meta["description"])}</p>',
-                  f'  <p class="card-more"><a href="{attr(href)}">→もっと読む</a></p>',
-                  f'  <a class="card-photo" href="{attr(href)}" tabindex="-1" aria-hidden="true"><img src="{public_file(photo)}" alt=""></a>',
+                  f'  <p class="card-more"><a href="{attr(href)}"{link_attrs(href)}>→もっと読む</a></p>',
+                  f'  <a class="card-photo" href="{attr(href)}"{link_attrs(href)} tabindex="-1" aria-hidden="true"><img src="{public_file(photo)}" alt=""></a>',
                   '</li>']
 
 
@@ -408,7 +413,7 @@ def index_news(body):
     for g in split_groups(body):
         if len(g) != 3 or not (g[0].startswith('[') and g[0].endswith(']')) or not g[1].startswith('https://'):
             raise BuildError(f'::: news は「[ラベル]」「URL」「タイトル」の3行ずつ: {g}')
-        items.append(f'      <li><span class="news-label">{attr(g[0])}</span> <a href="{attr(g[1])}">{inline(g[2])}</a></li>')
+        items.append(f'      <li><span class="news-label">{attr(g[0])}</span> <a href="{attr(g[1])}"{link_attrs(g[1])}>{inline(g[2])}</a></li>')
     return ['<section class="news">', '  <div class="inner">', '    <h2>最新事例</h2>', '    <ul>', *items,
             '    </ul>', '  </div>', '</section>']
 

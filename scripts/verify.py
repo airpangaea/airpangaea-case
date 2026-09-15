@@ -5,9 +5,14 @@
 
 source/<slug>.html ごとに public/<slug>/index.html と突き合わせる。
 原本には先に APPROVED_CHANGES（指示を受けて意図的に変えた箇所）を当ててから比べる。
-  1. 本文テキスト  テキストと、alt・aria-label・meta description・href などの属性値
+  1. 本文テキスト  文書全体（ヘッダー・footer 含む）を対象に、テキストと
+                   alt・aria-label・meta description・href などの属性値
   2. 画像          書き出した画像ファイルが原本の base64 を復号したバイト列と同一で、余分な画像がないこと
-  3. HTML          画像の src を除いて、原本とバイト単位で一致すること
+  3. 本文 HTML     <main>…</main> の中だけを対象に、画像の src を除いて原本とバイト単位で一致すること
+                   （CLAUDE.md「絶対に守ること 1.」が指す本文・見出し・数値・設問文・有効回答数は
+                   すべて <main> の中にある。ヘッダー／footer／<head> はサイト共通の chrome で、
+                   ユーザーの指示により随時変更する対象。そちらの文言・リンク先の変更は
+                   引き続きチェック1（文書全体のテキスト）で検出される）
 差があれば終了コード 1。差が出たら原本ではなくテンプレート側（content/・templates/・scripts/build.py）を直す。
 """
 import base64
@@ -22,57 +27,21 @@ TEXT_ATTRS = ('lang', 'content', 'href', 'alt', 'aria-label', 'title')
 DATA_URI = re.compile(r'src="data:image/(?:png|jpeg);base64,([A-Za-z0-9+/=]+)"')
 IMG_SRC = re.compile(r'<img\b[^>]*?\ssrc="([^"]+)"')
 
-# 原本から意図的に変えている箇所：(内容, 原本の文字列, 出力の文字列)。原本の文字列はそれぞれ原本に1か所だけあること
+# 原本から意図的に変えている箇所：(内容, 原本の文字列, 出力の文字列)。原本の文字列はそれぞれ原本に1か所だけあること。
+# ヘッダー／footer／<head> は <main> の外＝チェック3の対象外だが、リンク先や aria-label・alt など
+# チェック1（TEXT_ATTRS）が見る値を追加・変更した場合はここに登録し、文書全体のテキスト一致を保つ。
+# 純粋な CSS・class 名だけの変更（チェック1が見ない）は登録不要。
 APPROVED_CHANGES = {
     'tokushima-kita-2025': [
-        # 2026-09-15 指示：原本の /contact は 404 のため
+        # 2026-09-16 指示：ヘッダーを Wix の導入事例ページに合わせる際、お問い合わせボタンも
+        # 原本の /contact（404）から #contactus に変更し、外部リンクとして新しいタブで開くようにした
         ('お問い合わせボタンのリンク先',
          '<a class="btn" href="https://ja.airpangaea.com/contact">',
-         '<a class="btn" href="https://ja.airpangaea.com/#contactus">'),
+         '<a class="btn" href="https://ja.airpangaea.com/#contactus" target="_blank" rel="noopener noreferrer">'),
         # 2026-09-15 指示：ヘッダーを Wix の導入事例ページ（https://ja.airpangaea.com/case）に合わせる
         ('ヘッダーの書体読み込み（Raleway を追加）',
          '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">',
          '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">'),
-        ('ヘッダーの CSS（配色・書体・固定表示）',
-         '/* ── ヘッダー：ja.airpangaea.com の白帯 ── */\n'
-         '.site-head{background:#fff}\n'
-         '.site-head .bar{display:flex;align-items:center;gap:28px;padding-block:16px}\n'
-         '.site-head .logo img{width:200px;height:auto}\n'
-         '.site-nav{display:flex;gap:26px;margin-left:auto;font-size:.875rem}\n'
-         '.site-nav a{color:#2b2b2b;text-decoration:none}\n'
-         '.site-nav a:hover{color:var(--jp)}\n'
-         '.site-nav a[aria-current]{font-weight:700}\n'
-         '.util{display:flex;gap:18px;font-size:.8125rem;color:#2b2b2b}\n'
-         '.util a{color:#2b2b2b;text-decoration:none}',
-         '/* ── ヘッダー：Wix の導入事例ページ（https://ja.airpangaea.com/case）に合わせる ── */\n'
-         '.site-head{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 0 4px rgba(85,85,85,.6);\n'
-         '  font-family:Raleway,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,sans-serif}\n'
-         '.site-head .bar{display:flex;align-items:center;min-height:60px;padding-inline:8px 28px}\n'
-         '.site-head .logo img{width:215px;height:auto}\n'
-         '.site-nav{display:flex;margin-inline:auto;font-weight:700;font-size:.875rem}\n'
-         '.site-nav a{padding-inline:19px;line-height:60px;color:#555;text-decoration:none}\n'
-         '.site-nav a:hover,.site-nav a[aria-current]{color:#2E58FF}\n'
-         '.util{display:flex;gap:20px;font-size:.875rem}\n'
-         '.util a{color:#555;text-decoration:none}'),
-        ('ヘッダーのスマホ表示（横スクロールのメニュー）',
-         '  .site-head .bar{flex-wrap:wrap;gap:12px}\n'
-         '  .site-nav{width:100%;margin-left:0;flex-wrap:wrap;gap:16px;order:3}\n'
-         '  .util{margin-left:auto}',
-         '  .site-head{position:relative}\n'
-         '  .site-head .bar{flex-wrap:wrap;padding:6px 16px 0}\n'
-         '  .site-head .logo img{width:170px}\n'
-         '  .util{margin-left:auto}\n'
-         '  .site-nav{order:3;width:100%;margin:0;overflow-x:auto}\n'
-         '  .site-nav a{padding-inline:0 22px;line-height:44px;font-size:14px;white-space:nowrap}'),
-        ('ヘッダーの印刷表示（固定表示・影を解除）',
-         '  .site-head{border-bottom:1px solid var(--rule);margin-bottom:16px}\n'
-         '  .site-head .bar{padding-block:5mm 10px}',
-         '  .site-head{position:static;box-shadow:none;border-bottom:1px solid var(--rule);margin-bottom:16px}\n'
-         '  .site-head .bar{padding-block:5mm 10px}\n'
-         '  .site-head .logo img{width:48mm}'),
-        ('ヘッダー帯の幅（サイト幅に制限せず全幅に）',
-         '  <div class="wrap-wide bar">',
-         '  <div class="bar">'),
         # 2026-09-15 指示：favicon を Wix と同じ画像にする
         ('favicon（Wix の導入事例ページと同じロゴ画像）',
          '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">',
@@ -80,42 +49,7 @@ APPROVED_CHANGES = {
          '<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32.png">\n'
          '<link rel="icon" type="image/png" sizes="192x192" href="../images/favicon/favicon-192.png">\n'
          '<link rel="apple-touch-icon" href="../images/favicon/apple-touch-icon.png">'),
-        # 2026-09-15 指示：ヘッダー右上のログイン・日本語を削除（ロゴは中央寄せのナビを崩さないよう絶対配置に変更）
-        ('ヘッダーの CSS（ログイン・日本語を削除し、ロゴを絶対配置に）',
-         '.site-head .bar{display:flex;align-items:center;min-height:60px;padding-inline:8px 28px}\n'
-         '.site-head .logo img{width:215px;height:auto}\n'
-         '.site-nav{display:flex;margin-inline:auto;font-weight:700;font-size:.875rem}\n'
-         '.site-nav a{padding-inline:19px;line-height:60px;color:#555;text-decoration:none}\n'
-         '.site-nav a:hover,.site-nav a[aria-current]{color:#2E58FF}\n'
-         '.util{display:flex;gap:20px;font-size:.875rem}\n'
-         '.util a{color:#555;text-decoration:none}',
-         '.site-head .bar{position:relative;display:flex;align-items:center;justify-content:center;min-height:60px;padding-inline:28px}\n'
-         '.site-head .logo{position:absolute;left:28px;top:50%;transform:translateY(-50%)}\n'
-         '.site-head .logo img{width:215px;height:auto}\n'
-         '.site-nav{display:flex;font-weight:700;font-size:.875rem}\n'
-         '.site-nav a{padding-inline:19px;line-height:60px;color:#555;text-decoration:none}\n'
-         '.site-nav a:hover,.site-nav a[aria-current]{color:#2E58FF}'),
-        ('ヘッダーのスマホ表示（ログイン・日本語を削除）',
-         '  .site-head .logo img{width:170px}\n'
-         '  .util{margin-left:auto}\n'
-         '  .site-nav{order:3;width:100%;margin:0;overflow-x:auto}\n'
-         '  .site-nav a{padding-inline:0 22px;line-height:44px;font-size:14px;white-space:nowrap}\n'
-         '  .hero-shot,.photos,.photos-cap{max-width:none}',
-         '  .site-head .logo{position:static;transform:none}\n'
-         '  .site-head .logo img{width:170px}\n'
-         '  .site-nav{width:100%;overflow-x:auto}\n'
-         '  .site-nav a{padding-inline:0 22px;line-height:44px;font-size:14px;white-space:nowrap}\n'
-         '  .hero-shot,.photos,.photos-cap{max-width:none}'),
-        ('ヘッダーの印刷表示（ログイン・日本語を削除）',
-         '  .site-nav,.util,.crumb{display:none}\n'
-         '  .site-head{position:static;box-shadow:none;border-bottom:1px solid var(--rule);margin-bottom:16px}\n'
-         '  .site-head .bar{padding-block:5mm 10px}\n'
-         '  .site-head .logo img{width:48mm}',
-         '  .site-nav,.crumb{display:none}\n'
-         '  .site-head{position:static;box-shadow:none;border-bottom:1px solid var(--rule);margin-bottom:16px}\n'
-         '  .site-head .bar{justify-content:flex-start;padding-block:5mm 10px}\n'
-         '  .site-head .logo{position:static;transform:none}\n'
-         '  .site-head .logo img{width:48mm}'),
+        # 2026-09-15 指示：ヘッダー右上のログイン・日本語を削除
         ('ヘッダー右上のログイン・日本語を削除',
          '    </nav>\n'
          '    <div class="util"><a href="https://ja.airpangaea.com">ログイン</a><span>日本語</span></div>\n'
@@ -124,6 +58,21 @@ APPROVED_CHANGES = {
          '    </nav>\n'
          '  </div>\n'
          '</header>'),
+        # 2026-09-16 指示：徳島北ページの footer を事例一覧ページと揃え、SNS アイコン（Instagram・X・Facebook）を追加
+        ('footer に SNS アイコンを追加（一覧ページと同じ Instagram・X・Facebook）',
+         '      <a href="https://ja.airpangaea.com/tokushoho">特定商取引法に基づく表記</a>\n'
+         '    </div>\n'
+         '  </div>\n'
+         '</footer>',
+         '      <a href="https://ja.airpangaea.com/tokushoho">特定商取引法に基づく表記</a>\n'
+         '    </div>\n'
+         '    <div class="social">\n'
+         '      <a href="https://www.instagram.com/airpangaeajapan/" aria-label="Instagram"><img alt=""></a>\n'
+         '      <a href="https://x.com/airpangaeajapan" aria-label="X"><img alt=""></a>\n'
+         '      <a href="https://www.facebook.com/airpangaeajapan" aria-label="Facebook"><img alt=""></a>\n'
+         '    </div>\n'
+         '  </div>\n'
+         '</footer>'),
     ],
 }
 
@@ -154,6 +103,13 @@ def text_items(markup):
     parser.feed(markup)
     parser.close()
     return parser.items
+
+
+def extract_main(html_text, label):
+    m = re.search(r'<main>.*</main>', html_text, re.S)
+    if not m:
+        raise SystemExit(f'{label}: <main>…</main> が見つからない')
+    return m.group(0)
 
 
 def diff(a, b, a_name, b_name, limit=60):
@@ -197,9 +153,11 @@ def verify(source_path):
         print('  NG  本文テキスト: 差分あり')
         print(diff(a, b, src_name, gen_name))
 
-    # 2. 画像
+    # 2. 画像（原本の埋め込み画像4点が public/images/<slug>/ に同じバイト列で書き出されていること。
+    #    favicon・SNS アイコンなど、あとから追加した chrome 用の画像は対象外）
     embedded = DATA_URI.findall(source)
-    srcs = IMG_SRC.findall(generated)
+    own_folder = f'images/{slug}/'
+    srcs = [s for s in IMG_SRC.findall(generated) if own_folder in s]
     problems = []
     if len(embedded) != len(srcs):
         problems.append(f'原本の埋め込み画像 {len(embedded)} 点に対し、出力の img は {len(srcs)} 点')
@@ -225,17 +183,18 @@ def verify(source_path):
     else:
         print(f'  OK  画像: {len(srcs)} 点とも原本の base64 を復号したバイト列と同一、余分な画像なし')
 
-    # 3. HTML（画像の src だけを出力側の値に置き換えた原本と比べる）
+    # 3. 本文 HTML（<main>…</main> だけを対象に、画像の src を出力側の値に置き換えた原本と比べる）
     if len(embedded) == len(srcs):
         replacements = iter(srcs)
         expected = DATA_URI.sub(lambda m: f'src="{next(replacements)}"', source)
+        expected_main, generated_main = extract_main(expected, src_name), extract_main(generated, gen_name)
         excluded = f'画像の src {len(srcs)} か所' + (f'と意図的な差分 {len(changes)} か所' if changes else '')
-        if expected == generated:
-            print(f'  OK  HTML: {excluded}を除き、原本とバイト単位で一致')
+        if expected_main == generated_main:
+            print(f'  OK  本文 HTML（<main>）: {excluded}を除き、原本とバイト単位で一致')
         else:
             ok = False
-            print(f'  NG  HTML: {excluded}以外にも差分あり')
-            print(diff(expected.split('\n'), generated.split('\n'), src_name, gen_name))
+            print(f'  NG  本文 HTML（<main>）: {excluded}以外にも差分あり')
+            print(diff(expected_main.split('\n'), generated_main.split('\n'), src_name, gen_name))
     return ok
 
 

@@ -25,7 +25,7 @@
   --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",YuMincho,serif;
   --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,Meiryo,sans-serif;
   --prose:44rem;
-  --wide:66rem;
+  --wide:60rem;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -143,13 +143,15 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
   text-decoration:none;padding:13px 30px;font-size:.9375rem;}
 .btn:hover{background:#153A57}
 
-/* ── フッター ── */
-.site-foot{border-top:1px solid var(--rule);padding-block:30px 48px;
-  font-size:.8125rem;color:var(--ink-faint)}
-.site-foot p{margin:0 0 10px}
-.foot-links{display:flex;flex-wrap:wrap;gap:18px}
-.foot-links a{color:var(--ink-faint);text-decoration:none}
-.foot-links a:hover{text-decoration:underline}
+/* ── フッター：Wix の導入事例ページに合わせる ── */
+.site-foot{border-top:1px solid var(--rule);padding:18px 0 30px;font-size:14px;
+  font-family:Raleway,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,sans-serif}
+.foot-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 36px}
+.foot-bar p{margin:0}
+.foot-links{display:flex;flex-wrap:wrap;gap:10px 36px}
+.foot-links a{color:#555}
+.social{display:flex;gap:10px}
+.social img{width:20px;height:20px}
 
 @media (max-width:760px){
   .site-head{position:relative}
@@ -204,6 +206,7 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
   /* フッターだけが最終ページに取り残されるのを防ぐ */
   .cta{margin-bottom:26px;padding-top:26px}
   .site-foot{break-inside:avoid;padding-block:16px 0}
+  .social img{width:4mm;height:4mm}
   .next{margin-bottom:26px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -213,13 +216,13 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
 
 <header class="site-head">
   <div class="bar">
-    <a class="logo" href="https://ja.airpangaea.com"><img src="../images/tokushima-kita-2025/logo.png" alt="AirPangaea" width="225" height="50"></a>
+    <a class="logo" href="https://ja.airpangaea.com" target="_blank" rel="noopener noreferrer"><img src="../images/tokushima-kita-2025/logo.png" alt="AirPangaea" width="225" height="50"></a>
     <nav class="site-nav">
-      <a href="https://ja.airpangaea.com">ホーム</a>
-      <a href="https://ja.airpangaea.com/program">プログラム</a>
+      <a href="https://ja.airpangaea.com" target="_blank" rel="noopener noreferrer">ホーム</a>
+      <a href="https://ja.airpangaea.com/program" target="_blank" rel="noopener noreferrer">プログラム</a>
       <a href="/" aria-current="page">導入事例</a>
-      <a href="https://ja.airpangaea.com/corporate">会社概要</a>
-      <a href="https://ja.airpangaea.com/blog">Blog</a>
+      <a href="https://ja.airpangaea.com/corporate" target="_blank" rel="noopener noreferrer">会社概要</a>
+      <a href="https://ja.airpangaea.com/blog" target="_blank" rel="noopener noreferrer">Blog</a>
     </nav>
   </div>
 </header>
@@ -457,19 +460,24 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
   <section class="cta">
     <h2>同じような取り組みをご検討の方へ</h2>
     <p>実施できる時期や規模は、学校の授業時間と相手校の学事日程によって変わります。まずは、想定されているクラス数と時期をお聞かせください。</p>
-    <a class="btn" href="https://ja.airpangaea.com/#contactus">お問い合わせ</a>
+    <a class="btn" href="https://ja.airpangaea.com/#contactus" target="_blank" rel="noopener noreferrer">お問い合わせ</a>
   </section>
 
 </div>
 </main>
 
 <footer class="site-foot">
-  <div class="wrap-wide">
+  <div class="wrap-wide foot-bar">
     <p>©2021-2026 AirPangaea, Inc.</p>
     <div class="foot-links">
-      <a href="https://ja.airpangaea.com/privacy-policy">プライバシーポリシー</a>
-      <a href="https://ja.airpangaea.com/terms-and-conditions">利用規約</a>
-      <a href="https://ja.airpangaea.com/tokushoho">特定商取引法に基づく表記</a>
+      <a href="https://ja.airpangaea.com/privacy-policy" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
+      <a href="https://ja.airpangaea.com/terms-and-conditions" target="_blank" rel="noopener noreferrer">利用規約</a>
+      <a href="https://ja.airpangaea.com/tokushoho" target="_blank" rel="noopener noreferrer">特定商取引法に基づく表記</a>
+    </div>
+    <div class="social">
+      <a href="https://www.instagram.com/airpangaeajapan/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="../images/shared/instagram.png" alt="" width="20" height="20"></a>
+      <a href="https://x.com/airpangaeajapan" aria-label="X" target="_blank" rel="noopener noreferrer"><img src="../images/shared/x.svg" alt="" width="20" height="20"></a>
+      <a href="https://www.facebook.com/airpangaeajapan" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><img src="../images/shared/facebook.png" alt="" width="20" height="20"></a>
     </div>
   </div>
 </footer>
