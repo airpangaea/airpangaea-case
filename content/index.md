@@ -1,5 +1,6 @@
 ---
 title: 導入事例
+description: AirPangaeaの学校向け国際協働学習プログラムの導入事例。徳島県立徳島北高等学校のオンライン国際交流TOMODACHIプログラムをはじめ、SDGs国際協働学習MOTTAINAIプログラムなど、海外校とのオンライン交流の実施事例をご紹介します。
 ---
 
 ::: news

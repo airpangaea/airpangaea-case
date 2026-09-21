@@ -450,7 +450,7 @@ def index_voices(body):
 def build_index():
     """content/index.md（::: news ／ ## プログラム ＋ - 事例 ／ ::: voices）から public/index.html を作る"""
     path = ROOT / 'content' / 'index.md'
-    meta, body = parse_front_matter(path.read_text(encoding='utf-8'), path, ('title',))
+    meta, body = parse_front_matter(path.read_text(encoding='utf-8'), path, ('title', 'description'))
     blocks, current = [], None
 
     def close_program():
@@ -494,6 +494,7 @@ def build_index():
     logo.require('logo.png')
     page = fill((ROOT / 'templates' / 'index.html').read_text(encoding='utf-8'), {
         'title': attr(meta['title']),
+        'description': attr(meta['description']),
         'images': logo.url.removeprefix('../'),
         'content': '\n\n'.join('\n'.join(b) for b in blocks),
     })
