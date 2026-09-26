@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """content/<slug>.md と templates/case.html から public/<slug>/index.html を、
+content/en/<slug>.md（日本語版の英訳）と同じテンプレートから public/en/<slug>/index.html を、
 content/index.md（事例一覧）と templates/index.html から public/index.html を生成する。
 
 使い方: python3 scripts/build.py （標準ライブラリのみ）
@@ -27,6 +28,25 @@ LOGO_SLUG = 'tokushima-kita-2025'  # ヘッダーのロゴは徳島北の画像�
 FLAGS = {
     '日本': '<rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#BC002D"/>',
     'インドネシア': '<rect width="30" height="10" fill="#CE1126"/><rect y="10" width="30" height="10" fill="#fff"/>',
+}
+FLAGS.update({'Japan': FLAGS['日本'], 'Indonesia': FLAGS['インドネシア']})  # 英語版の aria-label
+
+# 事例ページのヘッダー・パンくず・footer（言語ごと）。{{ root }} は public/ までの相対パス
+CHROME = {
+    'ja': {
+        'lang': 'ja', 'root': '..', 'title_suffix': '｜導入事例｜AirPangaea', 'site': 'https://ja.airpangaea.com',
+        'nav_home': 'ホーム', 'nav_program': 'プログラム', 'nav_case': '導入事例', 'nav_corporate': '会社概要',
+        'case_link': '/', 'crumb_sep': ' ／ ',
+        'foot_privacy': 'プライバシーポリシー', 'foot_terms': '利用規約', 'foot_tokushoho': '特定商取引法に基づく表記',
+    },
+    'en': {
+        'lang': 'en', 'root': '../..', 'title_suffix': ' | Case | AirPangaea', 'site': 'https://www.airpangaea.com',
+        'nav_home': 'Home', 'nav_program': 'Program', 'nav_case': 'Case', 'nav_corporate': 'Corporate',
+        'case_link': 'https://www.airpangaea.com/case',  # 英語の事例一覧ができるまでは Wix の英語版 /case
+        'crumb_sep': ' / ',
+        'foot_privacy': 'Privacy Policy', 'foot_terms': 'Terms and Conditions',
+        'foot_tokushoho': 'Specified Commercial Transactions',
+    },
 }
 FLAG_FRAME = '<rect x=".5" y=".5" width="29" height="19" fill="none" stroke="#D3DBE1"/>'
 
@@ -67,9 +87,9 @@ def split_groups(body):
 
 
 class Images:
-    def __init__(self, slug):
+    def __init__(self, slug, root='..'):
         self.dir = ROOT / 'public' / 'images' / slug
-        self.url = f'../images/{slug}'
+        self.url = f'{root}/images/{slug}'
 
     def require(self, name):
         if not (self.dir / name).is_file():
@@ -94,7 +114,7 @@ def hero(body, images):
     h1, lede, *note = lines
     out = ['<div class="hero">', f'  <h1>{h1[2:]}</h1>', f'  <p class="lede">{lede}</p>']
     if note:
-        text = re.sub(r'\[([^\]]+)\]\((https?://\S+?)\)',
+        text = re.sub(r'\[([^\]]+)\]\((https?://[^)\s]+|/[^)\s]*)\)',
                       lambda m: f'<a href="{attr(m.group(2))}"{link_attrs(m.group(2))}>{m.group(1)}</a>', note[0])
         out.append(f'  <p class="source-note">{text}</p>')
     return out + ['</div>']
@@ -118,7 +138,7 @@ def pair(body, images):
             out += ['  <div class="link">', f'    <b>{lines[0]}</b>', f'    <span>{lines[1]}</span>', '  </div>']
             continue
         flag, country, name, detail = lines
-        label = flag.removeprefix('国旗：')
+        label = flag.removeprefix('国旗：').removeprefix('Flag: ')
         if label == flag or label not in FLAGS:
             raise BuildError(f'国旗は「国旗：{"／".join(FLAGS)}」のいずれか: {flag}')
         svg = (f'<svg class="flag" viewBox="0 0 30 20" role="img" aria-label="{attr(label)}">'
@@ -336,20 +356,26 @@ def fill(template, values):
     return re.sub(r'\{\{ (\w+) \}\}', replace, template)
 
 
-def build(md_path):
+def build(md_path, lang='ja'):
     slug = md_path.stem
+    if lang != 'ja' and not (ROOT / 'content' / f'{slug}.md').is_file():
+        raise BuildError(f'{md_path.relative_to(ROOT)}: 元になる日本語版 content/{slug}.md がない')
     meta, body = parse_front_matter(md_path.read_text(encoding='utf-8'), md_path, optional=OPTIONAL_KEYS)
-    images = Images(slug)
-    logo = Images(LOGO_SLUG)
+    chrome = CHROME[lang]
+    images = Images(slug, chrome['root'])
+    logo = Images(LOGO_SLUG, chrome['root'])
     logo.require('logo.png')
+    case_link = chrome['case_link']
     page = fill((ROOT / 'templates' / 'case.html').read_text(encoding='utf-8'), {
+        **{key: value for key, value in chrome.items() if key != 'case_link'},
+        'case_href': f'href="{attr(case_link)}"{link_attrs(case_link)}',
         'title': attr(meta['title']),
         'description': attr(meta['description']),
         'school': attr(meta['school']),
         'images': logo.url,
         'content': render_body(body, images),
     })
-    out = ROOT / 'public' / slug / 'index.html'
+    out = ROOT / 'public' / ('' if lang == 'ja' else lang) / slug / 'index.html'
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(page, encoding='utf-8')
     return out
@@ -520,6 +546,8 @@ def main():
         for md_path in sorted((ROOT / 'content').glob('*.md')):
             if md_path.name != 'index.md':
                 print(build(md_path).relative_to(ROOT))
+        for md_path in sorted((ROOT / 'content' / 'en').glob('*.md')):
+            print(build(md_path, 'en').relative_to(ROOT))
         print(build_index().relative_to(ROOT))
     except BuildError as e:
         sys.exit(f'build error: {e}')

@@ -62,9 +62,9 @@
 
 | 事例 | 状況 | 次にやること |
 |---|---|---|
-| 徳島北（`tokushima-kita-2025`） | 公開済み（2026-09-15） | — |
+| 徳島北（`tokushima-kita-2025`） | 公開済み（2026-09-15）。英訳版（`/en/tokushima-kita-2025/`）の下書きをブランチ `case-en` に作成 | 英訳版の掲載を教育委員会・学校に確認するか判断する |
 | 東京女子 | 未着手。原稿は既存ページの型に合わないが、型は障害にしない | 学校へ掲載許諾を打診 |
-| 西大和学園（`nishiyamato-2023`） | 公開済み（2026-09-26）。プレスの範囲だけで書いた事例ページ（`source/` なし、冒頭にプレスリリースの再構成である旨の注記）。写真はプレス掲載のコラージュ1点（顔はぼかし済み）。指示により原本 PNG（2.5MB）を白背景に合成し、表示幅の2倍の 1152px・JPEG に縮小（約 310KB）。一覧は TOMODACHI 欄（東京女子のハイブリッド掲載時にそちらへ移す） | リリース時に学校の了解を得ていたか確認し、確認メールを送る |
+| 西大和学園（`nishiyamato-2023`） | 公開済み（2026-09-26）。プレスの範囲だけで書いた事例ページ（`source/` なし、冒頭にプレスリリースの再構成である旨の注記）。写真はプレス掲載のコラージュ1点（顔はぼかし済み）。指示により原本 PNG（2.5MB）を白背景に合成し、表示幅の2倍の 1152px・JPEG に縮小（約 310KB）。一覧は TOMODACHI 欄（東京女子のハイブリッド掲載時にそちらへ移す）。英訳版（`/en/nishiyamato-2023/`）も公開済み（2026-09-26） | リリース時に学校の了解を得ていたか確認し、確認メールを送る（英訳版を公開したことも併せて伝える） |
 | HR高等学院 | 保留（リリースの「5カ国」が実績では2カ国、今年度の実施が未確定） | 実施状況が固まってから判断 |
 | MOTTAINAI 4本（明星×Padang、成蹊・武蔵×BBS、成蹊×BBS、ECoN×Mapúa） | Wix に掲載のまま。一覧からは外部リンク | 当面そのまま |
 
@@ -111,6 +111,7 @@
 - ドメインは `case.airpangaea.com`（`airpangaea.com` のサブドメイン。新規ドメインは取得しない）
 - `tomodachi-english.airpangaea.com`（`tden-lp`）とは別リポジトリ・別プロジェクト
 - 公開 URL は `https://case.airpangaea.com/<slug>/`。一覧は `https://case.airpangaea.com/`
+- 英訳版は `https://case.airpangaea.com/en/<slug>/`。英語の一覧はまだ無く、英語版のメニュー・パンくずの「Case」は Wix の英語版 `https://www.airpangaea.com/case` を指す
 
 ---
 
@@ -124,6 +125,7 @@ airpangaea-case/
 ├── content/
 │   ├── index.md                          事例一覧（最新事例・プログラム見出し＋事例の並び・生徒たちの声）
 │   ├── <slug>.md                         front matter ＋ 本文
+│   ├── en/<slug>.md                      日本語版の忠実な英訳（日本語版を正とし、冒頭に日本語版へのリンク付きの注記）
 │   └── external/                         Wix に残っている事例のカード（front matter のみ）
 ├── templates/
 │   ├── case.html                         事例ページ
@@ -135,6 +137,7 @@ airpangaea-case/
     ├── index.html                        事例一覧
     ├── <slug>/
     │   └── index.html
+    ├── en/<slug>/index.html              英訳版（画像は日本語版と同じ public/images/<slug>/ を参照）
     └── images/
         ├── <slug>/                       原本から切り出した画像（ビルドで再生成しない）
         ├── index/                        一覧のヒーロー・SDGs ロゴ・EducationLink ロゴ
