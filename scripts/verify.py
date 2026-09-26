@@ -34,10 +34,11 @@ IMG_SRC = re.compile(r'<img\b[^>]*?\ssrc="([^"]+)"')
 APPROVED_CHANGES = {
     'tokushima-kita-2025': [
         # 2026-09-16 指示：ヘッダーを Wix の導入事例ページに合わせる際、お問い合わせボタンも
-        # 原本の /contact（404）から #contactus に変更し、外部リンクとして新しいタブで開くようにした
+        # 原本の /contact（404）から #contactus に変更した
+        # 2026-09-26 指示：自社サイトへのリンクは同じタブで開く（新しいタブの指定を外した）
         ('お問い合わせボタンのリンク先',
          '<a class="btn" href="https://ja.airpangaea.com/contact">',
-         '<a class="btn" href="https://ja.airpangaea.com/#contactus" target="_blank" rel="noopener noreferrer">'),
+         '<a class="btn" href="https://ja.airpangaea.com/#contactus">'),
         # 2026-09-15 指示：ヘッダーを Wix の導入事例ページ（https://ja.airpangaea.com/case）に合わせる
         ('ヘッダーの書体読み込み（Raleway を追加）',
          '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">',

@@ -19,6 +19,7 @@ import html
 import re
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 FRONT_MATTER_KEYS = ('title', 'description', 'school')
@@ -59,9 +60,15 @@ def attr(value):
     return html.escape(value, quote=True)
 
 
+OWN_HOSTS = ('ja.airpangaea.com', 'www.airpangaea.com', 'case.airpangaea.com')
+
+
 def link_attrs(href):
-    """サイトの外に出るリンク（http/https）は新しいタブで開く。サイト内リンクはそのまま"""
-    return ' target="_blank" rel="noopener noreferrer"' if href.startswith('http') else ''
+    """他社サイト（http/https）へのリンクは新しいタブで開く。
+    サイト内と自社サイト（OWN_HOSTS）へのリンクは、一体感のため同じタブで開く（ヘッダー・footer はテンプレート側）"""
+    if not href.startswith('http') or urlparse(href).hostname in OWN_HOSTS:
+        return ''
+    return ' target="_blank" rel="noopener noreferrer"'
 
 
 def indent(lines, width=2):
@@ -368,7 +375,7 @@ def build(md_path, lang='ja'):
     case_link = chrome['case_link']
     page = fill((ROOT / 'templates' / 'case.html').read_text(encoding='utf-8'), {
         **{key: value for key, value in chrome.items() if key != 'case_link'},
-        'case_href': f'href="{attr(case_link)}"{link_attrs(case_link)}',
+        'case_href': f'href="{attr(case_link)}"',  # 自社サイト内の移動なので同じタブで開く
         'title': attr(meta['title']),
         'description': attr(meta['description']),
         'school': attr(meta['school']),

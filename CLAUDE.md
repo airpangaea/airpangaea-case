@@ -88,7 +88,8 @@
 - ロゴは 500×112px の PNG。Wix の配信 URL を直接参照しない
 - フッター：`©2021-2026 AirPangaea, Inc.` ＋ プライバシーポリシー／利用規約／特定商取引法に基づく表記 ＋ SNS アイコン（Instagram・X・Facebook。X は `https://x.com/airpangaeajapan`、ロゴは現行の X）
 - favicon は Wix と同じ画像（`public/images/favicon/`）
-- サイトの外に出るリンク（http/https）はすべて新しいタブで開く（`target="_blank" rel="noopener noreferrer"`。`build.py` の `link_attrs()`）
+- 自社サイト（`ja.airpangaea.com`／`www.airpangaea.com`）へのリンクは、ヘッダー・footer・本文とも一体感のため同じタブで開く（2026-09-26 指示）
+- 他社サイトへのリンク（PR TIMES、SNS アイコンなど）は新しいタブで開く（`target="_blank" rel="noopener noreferrer"`。本文は `build.py` の `link_attrs()`）
 - お問い合わせは `https://ja.airpangaea.com/#contactus`
 
 ---
