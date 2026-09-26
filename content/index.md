@@ -25,6 +25,7 @@ https://prtimes.jp/main/html/rd/p/000000002.000105905.html
 ## TOMODACHIプログラム
 
 - tokushima-kita-2025
+- nishiyamato-2023
 
 ## オンラインSDGs国際協働学習
 ## MOTTAINAI プログラム

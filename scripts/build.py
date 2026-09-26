@@ -20,7 +20,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-FRONT_MATTER_KEYS = ('title', 'description', 'school', 'image')
+FRONT_MATTER_KEYS = ('title', 'description', 'school')
+OPTIONAL_KEYS = ('image',)  # 索引カードの写真。同梱画像が無い事例（顔の判別できる写真しか無い場合など）は省く
+LOGO_SLUG = 'tokushima-kita-2025'  # ヘッダーのロゴは徳島北の画像フォルダにある（全ページ共通）
 
 FLAGS = {
     '日本': '<rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#BC002D"/>',
@@ -85,11 +87,17 @@ class Images:
 # ── ブロック ──────────────────────────────────────────
 
 def hero(body, images):
-    """# 見出し ／ リード文"""
-    h1, lede = fields(body, 'hero', 2)
-    if not h1.startswith('# '):
-        raise BuildError(f'::: hero の1行目は # 見出し: {h1}')
-    return ['<div class="hero">', f'  <h1>{h1[2:]}</h1>', f'  <p class="lede">{lede}</p>', '</div>']
+    """# 見出し ／ リード文 ／ 出典の注記（任意。[文言](URL) でリンクにできる）"""
+    lines = fields(body, 'hero')
+    if len(lines) not in (2, 3) or not lines[0].startswith('# '):
+        raise BuildError(f'::: hero は「# 見出し」「リード文」「出典の注記（任意）」: {lines}')
+    h1, lede, *note = lines
+    out = ['<div class="hero">', f'  <h1>{h1[2:]}</h1>', f'  <p class="lede">{lede}</p>']
+    if note:
+        text = re.sub(r'\[([^\]]+)\]\((https?://\S+?)\)',
+                      lambda m: f'<a href="{attr(m.group(2))}"{link_attrs(m.group(2))}>{m.group(1)}</a>', note[0])
+        out.append(f'  <p class="source-note">{text}</p>')
+    return out + ['</div>']
 
 
 def hero_shot(body, images):
@@ -330,14 +338,15 @@ def fill(template, values):
 
 def build(md_path):
     slug = md_path.stem
-    meta, body = parse_front_matter(md_path.read_text(encoding='utf-8'), md_path)
+    meta, body = parse_front_matter(md_path.read_text(encoding='utf-8'), md_path, optional=OPTIONAL_KEYS)
     images = Images(slug)
-    images.require('logo.png')
+    logo = Images(LOGO_SLUG)
+    logo.require('logo.png')
     page = fill((ROOT / 'templates' / 'case.html').read_text(encoding='utf-8'), {
         'title': attr(meta['title']),
         'description': attr(meta['description']),
         'school': attr(meta['school']),
-        'images': images.url,
+        'images': logo.url,
         'content': render_body(body, images),
     })
     out = ROOT / 'public' / slug / 'index.html'
@@ -378,8 +387,8 @@ def card(ref):
             raise BuildError(f'{path.name}: external/ には front matter だけを書く')
         href, photo = meta['url'], f'images/external/{meta["image"]}'
     else:
-        meta, _ = parse_front_matter(text, path)
-        href, photo = f'/{ref}/', f'images/{ref}/{meta["image"]}'
+        meta, _ = parse_front_matter(text, path, optional=OPTIONAL_KEYS)
+        href, photo = f'/{ref}/', f'images/{ref}/{meta["image"]}' if 'image' in meta else None
     schools = ''.join(f'<span>{attr(s)}</span>' for s in meta['title'].split(' × '))
     out = ['<li class="card">', f'  <p class="card-schools">{schools}</p>']
     if 'role' in meta or 'partner' in meta:
@@ -387,10 +396,11 @@ def card(ref):
             raise BuildError(f'{path.name}: role と partner（{"／".join(PARTNER_LOGOS)}）は組で書く')
         logo = public_file(f'{INDEX_IMAGES}/{PARTNER_LOGOS[meta["partner"]]}')
         out.append(f'  <p class="card-role">{attr(meta["role"])}<img src="{logo}" alt="{attr(meta["partner"])}" width="97" height="19"></p>')
-    return out + [f'  <p class="card-desc">{attr(meta["description"])}</p>',
-                  f'  <p class="card-more"><a href="{attr(href)}"{link_attrs(href)}>→もっと読む</a></p>',
-                  f'  <a class="card-photo" href="{attr(href)}"{link_attrs(href)} tabindex="-1" aria-hidden="true"><img src="{public_file(photo)}" alt=""></a>',
-                  '</li>']
+    out += [f'  <p class="card-desc">{attr(meta["description"])}</p>',
+            f'  <p class="card-more"><a href="{attr(href)}"{link_attrs(href)}>→もっと読む</a></p>']
+    if photo:
+        out.append(f'  <a class="card-photo" href="{attr(href)}"{link_attrs(href)} tabindex="-1" aria-hidden="true"><img src="{public_file(photo)}" alt=""></a>')
+    return out + ['</li>']
 
 
 def index_program(heading, logo, cards):
@@ -490,7 +500,7 @@ def build_index():
             raise BuildError(f'index.md の書式が不正: {line}')
         i += 1
     close_program()
-    logo = Images('tokushima-kita-2025')  # ロゴは徳島北の画像フォルダにある
+    logo = Images(LOGO_SLUG)
     logo.require('logo.png')
     page = fill((ROOT / 'templates' / 'index.html').read_text(encoding='utf-8'), {
         'title': attr(meta['title']),

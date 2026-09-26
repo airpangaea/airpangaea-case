@@ -49,6 +49,10 @@ APPROVED_CHANGES = {
          '<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32.png">\n'
          '<link rel="icon" type="image/png" sizes="192x192" href="../images/favicon/favicon-192.png">\n'
          '<link rel="apple-touch-icon" href="../images/favicon/apple-touch-icon.png">'),
+        # 2026-09-26 指示：西大和ページの出典の注記を細字にするため、本文書体に Light（300）を追加
+        ('本文書体の読み込みに細字（300）を追加',
+         'family=Noto+Sans+JP:wght@400;500;700&',
+         'family=Noto+Sans+JP:wght@300;400;500;700&'),
         # 2026-09-15 指示：ヘッダー右上のログイン・日本語を削除
         ('ヘッダー右上のログイン・日本語を削除',
          '    </nav>\n'
