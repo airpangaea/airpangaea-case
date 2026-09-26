@@ -8,7 +8,7 @@ school: Nishiyamato Gakuen Junior High School and High School
 # Ahead of an Overseas Exploration Program to Indonesia, a pre-visit online exchange connecting Nishiyamato Gakuen Junior High School and High School with the local school to be visited
 
 Connecting Nishiyamato Gakuen Junior High School and High School in Nara Prefecture with SMA Labschool Kebayoran in Jakarta, Indonesia, the school to be visited, 51 students from the two schools interacted online before the visit. The connections built online carried over into reunions and pair-making on site.
-This page is an English translation of the [Japanese version of this case study](/nishiyamato-2023/), which was reorganized from our press release (in Japanese) issued on November 13, 2023. In the event of any discrepancy, the Japanese version shall prevail.
+This page is an English translation of the [Japanese version of this case study](https://case.airpangaea.com/nishiyamato-2023/), which was reorganized from our press release (in Japanese) issued on November 13, 2023. In the event of any discrepancy, the Japanese version shall prevail.
 :::
 
 ::: hero-shot
@@ -33,13 +33,13 @@ SMA Labschool Kebayoran
 
 ::: facts
 School
-: Nishiyamato Gakuen Junior High School and High School (Kawai Town, Nara Prefecture)
+: Nishiyamato Gakuen Junior High School and High School (Kawai-cho, Nara Prefecture)
 
 Overseas partner school
 : SMA Labschool Kebayoran (Jakarta, Indonesia)
 
 Context
-: A pre-visit online exchange before the visit to Labschool, as part of Nishiyamato Gakuen's “Overseas Exploration Program”
+: A pre-visit online exchange before the visit to Labschool, as part of Nishiyamato Gakuen's “Overseas Exploration Program” <span style="white-space:nowrap">(海外探究プログラム)</span>
 
 Date
 : October 21, 2023 (the visit to Labschool was on October 30)

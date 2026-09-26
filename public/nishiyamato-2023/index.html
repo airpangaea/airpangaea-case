@@ -193,6 +193,8 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
   h2{font-size:12pt}
   .lede{font-size:10.5pt;max-width:none}
   .source-note{font-size:8pt}
+  /* 英訳版の注記：紙でも日本語版の URL がわかるように表示する */
+  html[lang="en"] .source-note a::after{content:" (" attr(href) ")"}
   .hero{padding-block:0}
   .hero-shot{max-width:105mm;margin-bottom:22px}
   .photos,.works{max-width:none}

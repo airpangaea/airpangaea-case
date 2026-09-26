@@ -193,6 +193,8 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
   h2{font-size:12pt}
   .lede{font-size:10.5pt;max-width:none}
   .source-note{font-size:8pt}
+  /* 英訳版の注記：紙でも日本語版の URL がわかるように表示する */
+  html[lang="en"] .source-note a::after{content:" (" attr(href) ")"}
   .hero{padding-block:0}
   .hero-shot{max-width:105mm;margin-bottom:22px}
   .photos,.works{max-width:none}
@@ -240,7 +242,7 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
   <div class="hero">
     <h1>Ahead of an Overseas Exploration Program to Indonesia, a pre-visit online exchange connecting Nishiyamato Gakuen Junior High School and High School with the local school to be visited</h1>
     <p class="lede">Connecting Nishiyamato Gakuen Junior High School and High School in Nara Prefecture with SMA Labschool Kebayoran in Jakarta, Indonesia, the school to be visited, 51 students from the two schools interacted online before the visit. The connections built online carried over into reunions and pair-making on site.</p>
-    <p class="source-note">This page is an English translation of the <a href="/nishiyamato-2023/">Japanese version of this case study</a>, which was reorganized from our press release (in Japanese) issued on November 13, 2023. In the event of any discrepancy, the Japanese version shall prevail.</p>
+    <p class="source-note">This page is an English translation of the <a href="https://case.airpangaea.com/nishiyamato-2023/">Japanese version of this case study</a>, which was reorganized from our press release (in Japanese) issued on November 13, 2023. In the event of any discrepancy, the Japanese version shall prevail.</p>
   </div>
 
   <figure class="hero-shot">
@@ -270,11 +272,11 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
   <div class="facts">
     <dl>
       <dt>School</dt>
-      <dd>Nishiyamato Gakuen Junior High School and High School (Kawai Town, Nara Prefecture)</dd>
+      <dd>Nishiyamato Gakuen Junior High School and High School (Kawai-cho, Nara Prefecture)</dd>
       <dt>Overseas partner school</dt>
       <dd>SMA Labschool Kebayoran (Jakarta, Indonesia)</dd>
       <dt>Context</dt>
-      <dd>A pre-visit online exchange before the visit to Labschool, as part of Nishiyamato Gakuen's “Overseas Exploration Program”</dd>
+      <dd>A pre-visit online exchange before the visit to Labschool, as part of Nishiyamato Gakuen's “Overseas Exploration Program” <span style="white-space:nowrap">(海外探究プログラム)</span></dd>
       <dt>Date</dt>
       <dd>October 21, 2023 (the visit to Labschool was on October 30)</dd>
       <dt>Students</dt>
