@@ -23,12 +23,17 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 FRONT_MATTER_KEYS = ('title', 'description', 'school')
-OPTIONAL_KEYS = ('image',)  # 索引カードの写真。同梱画像が無い事例（顔の判別できる写真しか無い場合など）は省く
+OPTIONAL_KEYS = ('image', 'role', 'partner')  # image：索引カードの写真（無い事例は省く）。role・partner：企画協力など（カードと個別ページに出す）
 LOGO_SLUG = 'tokushima-kita-2025'  # ヘッダーのロゴは徳島北の画像フォルダにある（全ページ共通）
 
 FLAGS = {
     '日本': '<rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#BC002D"/>',
     'インドネシア': '<rect width="30" height="10" fill="#CE1126"/><rect y="10" width="30" height="10" fill="#fff"/>',
+    'カンボジア': ('<rect width="30" height="20" fill="#032EA1"/><rect y="5" width="30" height="10" fill="#E00025"/>'
+                '<path fill="#fff" d="M9 14.2h12v-1h-.8v-1.2h-.8v-1.4h-1.1v-1.2q0-.9-.9-1.6q-.9.7-.9 1.6v.4h-1.2v-1.2'
+                'q0-1.5-1.3-2.6q-1.3 1.1-1.3 2.6v1.2h-1.2v-.4q0-.9-.9-1.6q-.9.7-.9 1.6v1.2h-1.1v1.4h-.8v1.2H9z"/>'),
+    'タイ': ('<rect width="30" height="20" fill="#A51931"/><rect y="3.333" width="30" height="13.334" fill="#fff"/>'
+           '<rect y="6.667" width="30" height="6.666" fill="#2D2A4A"/>'),
 }
 FLAGS.update({'Japan': FLAGS['日本'], 'Indonesia': FLAGS['インドネシア']})  # 英語版の aria-label
 
@@ -135,7 +140,8 @@ def hero_shot(body, images):
 
 
 def pair(body, images):
-    """学校（国旗：国名 ／ 国・地域 ／ 校名 ／ 詳細）、回数（2行）、学校 を空行で区切る"""
+    """学校（国旗：国名 ／ 国・地域 ／ 校名 ／ 詳細）、回数（2行）、学校 を空行で区切る。
+    複数の国の学校をまとめる側は「国旗：インドネシア・カンボジア・タイ」のように「・」で並べる"""
     groups = split_groups(body)
     if [len(g) for g in groups] != [4, 2, 4]:
         raise BuildError('::: pair は「学校4行」「回数2行」「学校4行」を空行で区切る')
@@ -145,11 +151,11 @@ def pair(body, images):
             out += ['  <div class="link">', f'    <b>{lines[0]}</b>', f'    <span>{lines[1]}</span>', '  </div>']
             continue
         flag, country, name, detail = lines
-        label = flag.removeprefix('国旗：').removeprefix('Flag: ')
-        if label == flag or label not in FLAGS:
-            raise BuildError(f'国旗は「国旗：{"／".join(FLAGS)}」のいずれか: {flag}')
-        svg = (f'<svg class="flag" viewBox="0 0 30 20" role="img" aria-label="{attr(label)}">'
-               f'{FLAGS[label]}{FLAG_FRAME}</svg>')
+        labels = flag.removeprefix('国旗：').removeprefix('Flag: ')
+        if labels == flag or not all(label in FLAGS for label in labels.split('・')):
+            raise BuildError(f'国旗は「国旗：{"／".join(FLAGS)}」のいずれか（複数は「・」で並べる）: {flag}')
+        svg = ' '.join(f'<svg class="flag" viewBox="0 0 30 20" role="img" aria-label="{attr(label)}">'
+                       f'{FLAGS[label]}{FLAG_FRAME}</svg>' for label in labels.split('・'))
         out += ['  <div class="school">', f'    {svg}', f'    <p class="country">{country}</p>',
                 f'    <p class="school-name">{name}</p>', f'    <p class="school-detail">{detail}</p>', '  </div>']
     return out + ['</div>']
@@ -165,15 +171,34 @@ def facts(body, images):
     return out + ['  </dl>', '</div>']
 
 
+def day_body(lines):
+    """説明の行：1行ずつ段落。「- 」で始まる行は箇条書き、「1. 」で始まる行は番号付きの箇条書き"""
+    out, current = [], None
+    for line in lines:
+        bullet = re.match(r'(- |\d+\. )(.+)', line)
+        kind = None if not bullet else ('ul' if bullet.group(1) == '- ' else 'ol')
+        if current and current != kind:
+            out.append(f'      </{current}>')
+            current = None
+        if kind and not current:
+            out.append(f'      <{kind} class="list">')
+            current = kind
+        out.append(f'        <li>{bullet.group(2)}</li>' if kind else f'      <p>{line}</p>')
+    if current:
+        out.append(f'      </{current}>')
+    return out
+
+
 def days(body, images):
-    """ラベル ／ タイトル ／ 説明 を空行で区切る"""
+    """ラベル ／ タイトル ／ 説明（1行以上。書き方は day_body）を空行で区切る"""
     out = ['<ol class="days">']
     for g in split_groups(body):
-        if len(g) != 3:
-            raise BuildError(f'::: days は「ラベル」「タイトル」「説明」の3行ずつ: {g}')
-        label, title, text = g
-        out += ['  <li>', f'    <div class="day-no">{label}</div>', '    <div>',
-                f'      <p class="day-title">{title}</p>', f'      <p>{text}</p>', '    </div>', '  </li>']
+        if len(g) < 3:
+            raise BuildError(f'::: days は「ラベル」「タイトル」「説明」の3行以上ずつ: {g}')
+        label, title, *text = g
+        # 説明が複数行の長い項目は、印刷時に途中で改ページできるようにする（class="long"）
+        out += ['  <li class="long">' if len(text) > 1 else '  <li>', f'    <div class="day-no">{label}</div>', '    <div>',
+                f'      <p class="day-title">{title}</p>', *day_body(text), '    </div>', '  </li>']
     return out + ['</ol>']
 
 
@@ -185,6 +210,17 @@ def photos(body, images):
     *shots, caption = lines
     return ['<div class="photos">', *('  ' + images.tag(s) for s in shots), '</div>',
             f'<p class="photos-cap">{caption}</p>']
+
+
+def flow(body, images):
+    """![代替テキスト](画像) ／ ラベル を2組。間に流れを示す三角を入れる（左→右、モバイルでは上→下）"""
+    lines = fields(body, 'flow', 4)
+    out = ['<div class="flow">']
+    for i, (image, label) in enumerate((lines[:2], lines[2:])):
+        if i:
+            out.append('  <div class="flow-arrow" aria-hidden="true"></div>')
+        out += ['  <figure>', '    ' + images.tag(image), f'    <figcaption>{label}</figcaption>', '  </figure>']
+    return out + ['</div>']
 
 
 def roles(body, images):
@@ -247,7 +283,7 @@ def cta(body, images):
 
 # section の外に置くブロックと、section の中に置くブロック
 OUTSIDE = {'hero': hero, 'hero-shot': hero_shot, 'pair': pair, 'facts': facts, 'next': next_block, 'cta': cta}
-INSIDE = {'days': days, 'photos': photos, 'roles': roles, 'q': q, 'voices': voices}
+INSIDE = {'days': days, 'photos': photos, 'flow': flow, 'roles': roles, 'q': q, 'voices': voices}
 
 
 # ── 本文 ──────────────────────────────────────────────
@@ -300,7 +336,8 @@ def render_section(children):
     return out + ['</section>']
 
 
-def render_body(lines, images):
+def render_body(lines, images, after_hero=None):
+    """after_hero：ヒーローの直後に置く行（企画協力など）"""
     top, section = [], None
     for kind, body in split_blocks(lines):
         if kind == 'h2' or kind in OUTSIDE:
@@ -311,6 +348,9 @@ def render_body(lines, images):
                 section = [('h2', [f'<h2>{body[0][3:]}</h2>'])]
             else:
                 top.append(OUTSIDE[kind](body, images))
+                if kind == 'hero' and after_hero:
+                    top.append(after_hero)
+                    after_hero = None
             continue
         if section is None:
             raise BuildError(f'## 見出しより前には置けない: {body[0] if kind in ("h3", "raw", "p") else "::: " + kind}')
@@ -324,6 +364,8 @@ def render_body(lines, images):
             section.append((kind, INSIDE[kind](body, images)))
     if section is not None:
         top.append(render_section(section))
+    if after_hero:
+        raise BuildError('企画協力などを置くヒーロー（::: hero）がない')
     out = []
     for block in top:
         if out:
@@ -363,6 +405,18 @@ def fill(template, values):
     return re.sub(r'\{\{ (\w+) \}\}', replace, template)
 
 
+def partner_line(meta, root):
+    """front matter の role・partner を、索引カードと同じくロゴ付きの1行にする（無ければ None）"""
+    if 'role' not in meta and 'partner' not in meta:
+        return None
+    if 'role' not in meta or meta.get('partner') not in PARTNER_LOGOS:
+        raise BuildError(f'role と partner（{"／".join(PARTNER_LOGOS)}）は組で書く: {meta}')
+    logo = f'{root}/{INDEX_IMAGES}/{PARTNER_LOGOS[meta["partner"]]}'
+    if not (ROOT / 'public' / INDEX_IMAGES / PARTNER_LOGOS[meta['partner']]).is_file():
+        raise BuildError(f'ロゴがない: {logo}')
+    return [f'<p class="partner">{attr(meta["role"])}<img src="{logo}" alt="{attr(meta["partner"])}" width="97" height="19"></p>']
+
+
 def build(md_path, lang='ja'):
     slug = md_path.stem
     if lang != 'ja' and not (ROOT / 'content' / f'{slug}.md').is_file():
@@ -380,7 +434,7 @@ def build(md_path, lang='ja'):
         'description': attr(meta['description']),
         'school': attr(meta['school']),
         'images': logo.url,
-        'content': render_body(body, images),
+        'content': render_body(body, images, partner_line(meta, chrome['root'])),
     })
     out = ROOT / 'public' / ('' if lang == 'ja' else lang) / slug / 'index.html'
     out.parent.mkdir(parents=True, exist_ok=True)

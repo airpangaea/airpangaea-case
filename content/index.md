@@ -26,6 +26,7 @@ https://prtimes.jp/main/html/rd/p/000000002.000105905.html
 
 - tokushima-kita-2025
 - nishiyamato-2023
+- gls-2026
 
 ## オンラインSDGs国際協働学習
 ## MOTTAINAI プログラム

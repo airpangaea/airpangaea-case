@@ -33,6 +33,10 @@ IMG_SRC = re.compile(r'<img\b[^>]*?\ssrc="([^"]+)"')
 # 純粋な CSS・class 名だけの変更（チェック1が見ない）は登録不要。
 APPROVED_CHANGES = {
     'tokushima-kita-2025': [
+        # 2026-10-14 指示：一覧カードの文末を他事例とそろえるため、meta description（カードと共通の front matter）の文末を変更
+        ('meta description の文末',
+         'TOMODACHIプログラムを実施した記録。">',
+         'TOMODACHIプログラムを提供しました。">'),
         # 2026-09-16 指示：ヘッダーを Wix の導入事例ページに合わせる際、お問い合わせボタンも
         # 原本の /contact（404）から #contactus に変更した
         # 2026-09-26 指示：自社サイトへのリンクは同じタブで開く（新しいタブの指定を外した）

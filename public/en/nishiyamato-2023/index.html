@@ -56,6 +56,8 @@ a:focus-visible{outline:2px solid var(--jp);outline-offset:3px}
 .lede{font-size:1rem;color:var(--ink-soft);margin:0 0 32px;max-width:40rem}
 .source-note{font-size:.75rem;font-weight:300;color:var(--ink-faint);margin:-20px 0 32px}
 .source-note a{color:var(--ink-faint)}
+.partner{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin:14px 0 24px;font-size:.8125rem;color:var(--ink-soft)}
+.partner img{width:97px;height:auto}
 .hero-shot{margin:0 auto 40px;max-width:36rem}
 .hero-shot figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px}
 
@@ -95,6 +97,12 @@ p:last-child{margin-bottom:0}
 .day-no{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--jp);line-height:1.7}
 .days p{margin:0}
 .days .day-title{font-weight:700;margin-bottom:4px}
+.days p:not(.day-title)+p,.days .list+p{margin-top:10px}
+.list{margin:0 0 1.3em;padding-left:1.4em}
+ul.list{list-style-type:disc}
+.list li{margin-bottom:6px}
+.list li:last-child{margin-bottom:0}
+.days .list{margin:10px 0 0}
 
 /* ── 写真 ── */
 figure{margin:0}
@@ -102,6 +110,13 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
 .photos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:32px 0 0}
 .photos img{aspect-ratio:16/9;object-fit:cover;width:100%}
 .photos-cap{margin:10px 0 0;font-size:.8125rem;color:var(--ink-faint);line-height:1.7}
+/* 写真2枚の流れ（左→右、モバイルでは上→下）。三角は枠線で描くので印刷でも消えない */
+/* 写真は切り取らず元の比率のまま。横長（約16:9）と標準（約4:3）の2枚の高さがそろうよう、列の幅を比率で配分する */
+.flow{display:grid;grid-template-columns:1.77fr auto 1.33fr;align-items:start;gap:18px;margin:32px 0}
+.flow figure{min-width:0}
+.flow img{width:100%;height:auto}
+.flow-arrow{align-self:center}
+.flow-arrow{width:0;height:0;border-block:54px solid transparent;border-left:36px solid #D3DEE7;margin-bottom:30px}
 .works{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:30px 0 0}
 .works img{aspect-ratio:16/9;object-fit:cover;width:100%;border:1px solid var(--rule)}
 .works-cap{font-size:.8125rem;color:var(--ink-faint);margin:10px 0 0;line-height:1.7}
@@ -174,6 +189,8 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
   .roles>div:first-child{border-right:0;border-bottom:1px solid var(--rule)}
   .works{grid-template-columns:1fr 1fr}
   .days>li{grid-template-columns:1fr;gap:6px}
+  .flow{grid-template-columns:1fr;gap:14px}
+  .flow-arrow{justify-self:center;border-inline:54px solid transparent;border-top:36px solid #D3DEE7;border-bottom:0;margin:0}
 }
 /* ── 印刷・PDF ── */
 /* @page はメディアクエリの外に置く（中に入れると効かない） */
@@ -206,7 +223,13 @@ figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:
   .next{border:1px solid var(--rule)}
   .btn{background:none;color:var(--ink);border:1px solid var(--ink)}
   /* 改ページ禁止は小さい塊だけに限定する（大きい塊に付けると空白が出る） */
-  figure,.photos,.works,.pair,.next,.days>li,.voices li,.bars li,.q{break-inside:avoid}
+  figure,.photos,.flow,.works,.pair,.next,.days>li,.voices li,.bars li,.q{break-inside:avoid}
+  /* 複数段落の長い項目は塊ごと次ページへ送ると大きな空白が出るため、途中の改ページを許す。
+     グリッドのままだと Chrome が分割しないので、ラベルの列を保ったまま回り込みで組む */
+  .days>li.long{display:flow-root;break-inside:auto}
+  .days>li.long>.day-no{float:left;width:5.5rem}
+  .days>li.long>div+div{margin-left:calc(5.5rem + 20px)}
+  .days .day-title{break-after:avoid}
   h2,h3{break-after:avoid}
   /* フッターだけが最終ページに取り残されるのを防ぐ */
   .cta{margin-bottom:26px;padding-top:26px}
