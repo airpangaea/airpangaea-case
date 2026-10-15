@@ -62,10 +62,10 @@
 
 | 事例 | 状況 | 次にやること |
 |---|---|---|
-| 徳島北（`tokushima-kita-2025`） | 公開済み（2026-09-15）。英訳版（`/en/tokushima-kita-2025/`）も県教委・学校の承認を得て公開済み（2026-09-30）。事業名の英訳は県教委の指摘で “Tokushima Glocal Leader Development” Program とし、正式な日本語名をカッコ書きで添える（World は使わない） | 英語の一覧（`/en/`）を作り、Wix 英語版 `/case` を引退させる |
+| 徳島北（`tokushima-kita-2025`） | 公開済み（2026-09-15）。英訳版（`/en/tokushima-kita-2025/`）も県教委・学校の承認を得て公開済み（2026-09-30）。事業名の英訳は県教委の指摘で “Tokushima Glocal Leader Development” Program とし、正式な日本語名をカッコ書きで添える（World は使わない） | 英語の一覧（`/en/`）を公開したら、Wix 英語トップのリンクを `/en/` に切り替え、Wix 英語版 `/case` を引退させる |
 | 東京女子 | 未着手。原稿は既存ページの型に合わないが、型は障害にしない | 学校へ掲載許諾を打診 |
 | 西大和学園（`nishiyamato-2023`） | 公開済み（2026-09-26）。プレスの範囲だけで書いた事例ページ（`source/` なし、冒頭にプレスリリースの再構成である旨の注記）。写真はプレス掲載のコラージュ1点（顔はぼかし済み）。指示により原本 PNG（2.5MB）を白背景に合成し、表示幅の2倍の 1152px・JPEG に縮小（約 310KB）。一覧は TOMODACHI 欄（東京女子のハイブリッド掲載時にそちらへ移す）。英訳版（`/en/nishiyamato-2023/`）も公開済み（2026-09-26） | リリース時に学校の了解を得ていたか確認し、確認メールを送る（英訳版を公開したことも併せて伝える） |
-| GLS 2026 事前交流（`gls-2026`） | 公開済み（2026-10-14）。日本の学校名は出さず、見出し・対比は国の単位でそろえる（日本側は「GLSに参加する日本の学校」）。海外4校の名前は概要表の1か所だけ（Labschool はサイト内で「SMA Labschool Kebayoran」に統一）。EducationLink との協働案件のため、カードと個別ページに企画協力＋ロゴ。写真は受領した3点（顔はぼかし済み）を加工せずに使用。アンケート・生徒の声・課題は原稿にデータがなく未掲載。英語版を作るときは、プログラム名を海外側の名称（Pre-GLS International Friendship Program）にし「英語トレーニング」は出さない。読者は海外校と日本在住の英語話者の先生の両方を想定する | 掲載承認の確認（海外4校・JTBグループ・日本の参加校） |
+| GLS 2026 事前交流（`gls-2026`） | 公開済み（2026-10-14）。日本の学校名は出さず、見出し・対比は国の単位でそろえる（日本側は「GLSに参加する日本の学校」）。海外4校の名前は概要表の1か所だけ（Labschool はサイト内で「SMA Labschool Kebayoran」に統一）。EducationLink との協働案件のため、カードと個別ページに企画協力＋ロゴ。写真は受領した3点（顔はぼかし済み）を加工せずに使用。アンケート・生徒の声・課題は原稿にデータがなく未掲載。英語版を作るときは、プログラム名を海外側の名称（Pre-GLS International Friendship Program）にし「英語トレーニング」は出さない。読者は海外校と日本在住の英語話者の先生の両方を想定する。英語版（`/en/gls-2026/`）の下書きをブランチ `case-gls-2026-en` に作成。忠実な英訳ではなく、海外の生徒も対等な参加者として描く翻案（冒頭の注記は「日本語版をもとにした英語版」で、日本語版を正とする一文は入れない。英検レベルは出さない） | 掲載承認の確認（海外4校・JTBグループ・日本の参加校） |
 | HR高等学院 | 保留（リリースの「5カ国」が実績では2カ国、今年度の実施が未確定） | 実施状況が固まってから判断 |
 | MOTTAINAI 4本（明星×Padang、成蹊・武蔵×BBS、成蹊×BBS、ECoN×Mapúa） | Wix に掲載のまま。一覧からは外部リンク | 当面そのまま |
 
@@ -113,7 +113,7 @@
 - ドメインは `case.airpangaea.com`（`airpangaea.com` のサブドメイン。新規ドメインは取得しない）
 - `tomodachi-english.airpangaea.com`（`tden-lp`）とは別リポジトリ・別プロジェクト
 - 公開 URL は `https://case.airpangaea.com/<slug>/`。一覧は `https://case.airpangaea.com/`
-- 英訳版は `https://case.airpangaea.com/en/<slug>/`。英語の一覧はまだ無く、英語版のメニュー・パンくずの「Case」は Wix の英語版 `https://www.airpangaea.com/case` を指す
+- 英訳版は `https://case.airpangaea.com/en/<slug>/`、英語の一覧は `https://case.airpangaea.com/en/`。英語版のメニュー・パンくずの「Case」は `/en/` を指す
 
 ---
 
@@ -128,6 +128,8 @@ airpangaea-case/
 │   ├── index.md                          事例一覧（最新事例・プログラム見出し＋事例の並び・生徒たちの声）
 │   ├── <slug>.md                         front matter ＋ 本文
 │   ├── en/<slug>.md                      日本語版の忠実な英訳（日本語版を正とし、冒頭に日本語版へのリンク付きの注記）
+│   ├── en/index.md                       英語の事例一覧（最新事例・MOTTAINAI・生徒の声は Wix 英語版 /case の文言のまま）
+│   ├── en/external/                      Wix に残っている事例の英語カード（Wix 英語版の文言、リンク先は www.airpangaea.com）
 │   └── external/                         Wix に残っている事例のカード（front matter のみ）
 ├── templates/
 │   ├── case.html                         事例ページ
@@ -139,6 +141,7 @@ airpangaea-case/
     ├── index.html                        事例一覧
     ├── <slug>/
     │   └── index.html
+    ├── en/index.html                     英語の事例一覧
     ├── en/<slug>/index.html              英訳版（画像は日本語版と同じ public/images/<slug>/ を参照）
     └── images/
         ├── <slug>/                       原本から切り出した画像（ビルドで再生成しない）

@@ -35,7 +35,17 @@ FLAGS = {
     'タイ': ('<rect width="30" height="20" fill="#A51931"/><rect y="3.333" width="30" height="13.334" fill="#fff"/>'
            '<rect y="6.667" width="30" height="6.666" fill="#2D2A4A"/>'),
 }
-FLAGS.update({'Japan': FLAGS['日本'], 'Indonesia': FLAGS['インドネシア']})  # 英語版の aria-label
+FLAGS.update({'Japan': FLAGS['日本'], 'Indonesia': FLAGS['インドネシア'],
+              'Cambodia': FLAGS['カンボジア'], 'Thailand': FLAGS['タイ']})  # 英語版の aria-label
+
+# 事例一覧（言語ごと）。p は public/ までの相対パス（末尾の / 込み）。見出し・ボタンの文言は Wix の各言語の /case に合わせる
+INDEX_CHROME = {
+    'ja': {'content': 'index.md', 'out': 'index.html', 'p': '', 'index_title_suffix': '｜AirPangaea', 'index_link': '/',
+           'hero_alt': '校舎の階段で談笑する学生たちのイメージ写真', 'news': '最新事例', 'voices': '生徒たちの声', 'more': '→もっと読む'},
+    'en': {'content': 'en/index.md', 'out': 'en/index.html', 'p': '../', 'index_title_suffix': ' | AirPangaea', 'index_link': '/en/',
+           'hero_alt': 'Image of students chatting on the stairs of a school building', 'news': 'Latest Cases',
+           'voices': "Students' Voices", 'more': '→Read more'},
+}
 
 # 事例ページのヘッダー・パンくず・footer（言語ごと）。{{ root }} は public/ までの相対パス
 CHROME = {
@@ -48,7 +58,7 @@ CHROME = {
     'en': {
         'lang': 'en', 'root': '../..', 'title_suffix': ' | Case | AirPangaea', 'site': 'https://www.airpangaea.com',
         'nav_home': 'Home', 'nav_program': 'Program', 'nav_case': 'Case', 'nav_corporate': 'Corporate',
-        'case_link': 'https://www.airpangaea.com/case',  # 英語の事例一覧ができるまでは Wix の英語版 /case
+        'case_link': '/en/',
         'crumb_sep': ' / ',
         'foot_privacy': 'Privacy Policy', 'foot_terms': 'Terms and Conditions',
         'foot_tokushoho': 'Specified Commercial Transactions',
@@ -462,9 +472,11 @@ def inline(text):
     return ''.join(f'<strong>{p}</strong>' if i % 2 else p for i, p in enumerate(parts))
 
 
-def card(ref):
-    """「- 事例」1行をカードにする。external/ は Wix に残っている事例（front matter のみ）"""
-    path = ROOT / 'content' / f'{ref}.md'
+def card(ref, lang='ja'):
+    """「- 事例」1行をカードにする。external/ は Wix に残っている事例（front matter のみ）。
+    英語の一覧では content/en/ の同名ファイルを使う（写真は日本語版の front matter から）"""
+    ic = INDEX_CHROME[lang]
+    path = ROOT / 'content' / ('' if lang == 'ja' else lang) / f'{ref}.md'
     if not path.is_file():
         raise BuildError(f'index.md が参照する事例がない: {path.relative_to(ROOT)}')
     text = path.read_text(encoding='utf-8')
@@ -475,47 +487,52 @@ def card(ref):
         href, photo = meta['url'], f'images/external/{meta["image"]}'
     else:
         meta, _ = parse_front_matter(text, path, optional=OPTIONAL_KEYS)
-        href, photo = f'/{ref}/', f'images/{ref}/{meta["image"]}' if 'image' in meta else None
+        if 'image' not in meta and lang != 'ja':
+            ja_path = ROOT / 'content' / f'{ref}.md'
+            ja_meta, _ = parse_front_matter(ja_path.read_text(encoding='utf-8'), ja_path, optional=OPTIONAL_KEYS)
+            meta = {**meta, **({'image': ja_meta['image']} if 'image' in ja_meta else {})}
+        href = f'/{ref}/' if lang == 'ja' else f'/{lang}/{ref}/'
+        photo = f'images/{ref}/{meta["image"]}' if 'image' in meta else None
     schools = ''.join(f'<span>{attr(s)}</span>' for s in meta['title'].split(' × '))
     out = ['<li class="card">', f'  <p class="card-schools">{schools}</p>']
     if 'role' in meta or 'partner' in meta:
         if 'role' not in meta or meta.get('partner') not in PARTNER_LOGOS:
             raise BuildError(f'{path.name}: role と partner（{"／".join(PARTNER_LOGOS)}）は組で書く')
         logo = public_file(f'{INDEX_IMAGES}/{PARTNER_LOGOS[meta["partner"]]}')
-        out.append(f'  <p class="card-role">{attr(meta["role"])}<img src="{logo}" alt="{attr(meta["partner"])}" width="97" height="19"></p>')
+        out.append(f'  <p class="card-role">{attr(meta["role"])}<img src="{ic["p"]}{logo}" alt="{attr(meta["partner"])}" width="97" height="19"></p>')
     out += [f'  <p class="card-desc">{attr(meta["description"])}</p>',
-            f'  <p class="card-more"><a href="{attr(href)}"{link_attrs(href)}>→もっと読む</a></p>']
+            f'  <p class="card-more"><a href="{attr(href)}"{link_attrs(href)}>{ic["more"]}</a></p>']
     if photo:
-        out.append(f'  <a class="card-photo" href="{attr(href)}"{link_attrs(href)} tabindex="-1" aria-hidden="true"><img src="{public_file(photo)}" alt=""></a>')
+        out.append(f'  <a class="card-photo" href="{attr(href)}"{link_attrs(href)} tabindex="-1" aria-hidden="true"><img src="{ic["p"]}{public_file(photo)}" alt=""></a>')
     return out + ['</li>']
 
 
-def index_program(heading, logo, cards):
+def index_program(heading, logo, cards, lang='ja'):
     """## 見出し（1〜2行）／ ![代替テキスト](ロゴ)（任意）／ - 事例"""
     if not cards:
         raise BuildError(f'index.md:「{" ".join(heading)}」に事例がない')
     spans = ''.join(f'<span>{attr(h)}</span>' for h in heading)
     head = ['    <div class="program-head">', f'      <h2>{spans}</h2>']
     if logo:
-        src = public_file(f'{INDEX_IMAGES}/{logo[1]}')
+        src = INDEX_CHROME[lang]['p'] + public_file(f'{INDEX_IMAGES}/{logo[1]}')
         head.append(f'      <img class="program-logo" src="{src}" alt="{attr(logo[0])}">')
     return ['<section class="program">', '  <div class="inner">', *head, '    </div>',
             f'    <ul class="cards{" single" if len(cards) == 1 else ""}">',
             *indent([line for c in cards for line in c], 6), '    </ul>', '  </div>', '</section>']
 
 
-def index_news(body):
+def index_news(body, lang='ja'):
     """[ラベル] ／ URL ／ タイトル（**太字** 可）を空行で区切る"""
     items = []
     for g in split_groups(body):
         if len(g) != 3 or not (g[0].startswith('[') and g[0].endswith(']')) or not g[1].startswith('https://'):
             raise BuildError(f'::: news は「[ラベル]」「URL」「タイトル」の3行ずつ: {g}')
         items.append(f'      <li><span class="news-label">{attr(g[0])}</span> <a href="{attr(g[1])}"{link_attrs(g[1])}>{inline(g[2])}</a></li>')
-    return ['<section class="news">', '  <div class="inner">', '    <h2>最新事例</h2>', '    <ul>', *items,
+    return ['<section class="news">', '  <div class="inner">', f'    <h2>{INDEX_CHROME[lang]["news"]}</h2>', '    <ul>', *items,
             '    </ul>', '  </div>', '</section>']
 
 
-def index_voices(body):
+def index_voices(body, lang='ja'):
     """### 分類 ／ 小見出し（任意）／ - 声（**太字** 可）"""
     cats = []
     for line in body:
@@ -531,7 +548,7 @@ def index_voices(body):
             cats[-1][1][-1][1].append(line[2:])
         else:
             cats[-1][1].append((line, []))
-    out = ['<section class="voices">', '  <div class="inner">', '    <h2>生徒たちの声</h2>']
+    out = ['<section class="voices">', '  <div class="inner">', f'    <h2>{attr(INDEX_CHROME[lang]["voices"])}</h2>']
     for name, subs in cats:
         wide = len(subs) == 1 and subs[0][0] is None and len(subs[0][1]) >= 6
         out += [f'    <div class="voice-cat{" voice-wide" if wide else ""}">', f'      <h3>{attr(name)}</h3>', '      <div class="voice-subs">']
@@ -544,16 +561,18 @@ def index_voices(body):
     return out + ['  </div>', '</section>']
 
 
-def build_index():
-    """content/index.md（::: news ／ ## プログラム ＋ - 事例 ／ ::: voices）から public/index.html を作る"""
-    path = ROOT / 'content' / 'index.md'
+def build_index(lang='ja'):
+    """content/index.md（::: news ／ ## プログラム ＋ - 事例 ／ ::: voices）から public/index.html を作る。
+    英語は content/en/index.md から public/en/index.html を作る"""
+    ic, chrome = INDEX_CHROME[lang], CHROME[lang]
+    path = ROOT / 'content' / ic['content']
     meta, body = parse_front_matter(path.read_text(encoding='utf-8'), path, ('title', 'description'))
     blocks, current = [], None
 
     def close_program():
         nonlocal current
         if current:
-            blocks.append(index_program(*current))
+            blocks.append(index_program(*current, lang))
         current = None
 
     i = 0
@@ -568,7 +587,7 @@ def build_index():
             except ValueError:
                 raise BuildError(f'index.md: 閉じていないブロック: {line}') from None
             close_program()
-            blocks.append(renderer(body[i + 1:end]))
+            blocks.append(renderer(body[i + 1:end], lang))
             i = end + 1
             continue
         if line.startswith('## '):
@@ -582,7 +601,7 @@ def build_index():
                 raise BuildError(f'index.md: ロゴは ![代替テキスト](ファイル名) で書く: {line}')
             current = (current[0], m.groups(), current[2])
         elif line.startswith('- ') and current:
-            current[2].append(card(line[2:]))
+            current[2].append(card(line[2:], lang))
         elif line:
             raise BuildError(f'index.md の書式が不正: {line}')
         i += 1
@@ -590,14 +609,19 @@ def build_index():
     logo = Images(LOGO_SLUG)
     logo.require('logo.png')
     page = fill((ROOT / 'templates' / 'index.html').read_text(encoding='utf-8'), {
+        **{key: chrome[key] for key in ('lang', 'site', 'nav_home', 'nav_program', 'nav_case', 'nav_corporate',
+                                        'foot_privacy', 'foot_terms', 'foot_tokushoho')},
+        'p': ic['p'], 'index_title_suffix': ic['index_title_suffix'], 'index_link': ic['index_link'],
+        'hero_alt': attr(ic['hero_alt']),
         'title': attr(meta['title']),
         'description': attr(meta['description']),
-        'images': logo.url.removeprefix('../'),
+        'images': ic['p'] + logo.url.removeprefix('../'),
         'content': '\n\n'.join('\n'.join(b) for b in blocks),
     })
-    for src in re.findall(r'src="(images/[^"]+)"', page):
+    for src in re.findall(r'src="(?:\.\./)?(images/[^"]+)"', page):
         public_file(src)
-    out = ROOT / 'public' / 'index.html'
+    out = ROOT / 'public' / ic['out']
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(page, encoding='utf-8')
     return out
 
@@ -608,8 +632,11 @@ def main():
             if md_path.name != 'index.md':
                 print(build(md_path).relative_to(ROOT))
         for md_path in sorted((ROOT / 'content' / 'en').glob('*.md')):
-            print(build(md_path, 'en').relative_to(ROOT))
+            if md_path.name != 'index.md':
+                print(build(md_path, 'en').relative_to(ROOT))
         print(build_index().relative_to(ROOT))
+        if (ROOT / 'content' / INDEX_CHROME['en']['content']).is_file():
+            print(build_index('en').relative_to(ROOT))
     except BuildError as e:
         sys.exit(f'build error: {e}')
 
