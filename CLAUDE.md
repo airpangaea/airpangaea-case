@@ -114,6 +114,7 @@
 - `tomodachi-english.airpangaea.com`（`tden-lp`）とは別リポジトリ・別プロジェクト
 - 公開 URL は `https://case.airpangaea.com/<slug>/`。一覧は `https://case.airpangaea.com/`
 - 英訳版は `https://case.airpangaea.com/en/<slug>/`、英語の一覧は `https://case.airpangaea.com/en/`。英語版のメニュー・パンくずの「Case」は `/en/` を指す
+- SEO：`build.py` が `sitemap.xml`・`robots.txt`・`404.html` を生成し、各ページの `<head>` に canonical と、日英がそろうページの hreflang（x-default は日本語版）を入れる。`404.html` を消すと、存在しない URL に一覧ページが 200 で返るようになる（Cloudflare Pages の仕様）ので消さない
 
 ---
 
@@ -133,6 +134,7 @@ airpangaea-case/
 │   └── external/                         Wix に残っている事例のカード（front matter のみ）
 ├── templates/
 │   ├── case.html                         事例ページ
+│   ├── 404.html                          存在しない URL に返すページ（日英併記）
 │   └── index.html                        事例一覧
 ├── scripts/
 │   ├── build.py                          content/ ＋ templates/ → public/

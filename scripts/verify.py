@@ -37,6 +37,15 @@ APPROVED_CHANGES = {
         ('meta description の文末',
          'TOMODACHIプログラムを実施した記録。">',
          'TOMODACHIプログラムを提供しました。">'),
+        # 2026-10-18 指示（SEO）：<head> に canonical と、日英の対応を示す hreflang を追加
+        ('<head> に canonical・hreflang を追加',
+         'TOMODACHIプログラムを提供しました。">\n<link rel="preconnect"',
+         'TOMODACHIプログラムを提供しました。">\n'
+         '<link rel="canonical" href="https://case.airpangaea.com/tokushima-kita-2025/">\n'
+         '<link rel="alternate" hreflang="ja" href="https://case.airpangaea.com/tokushima-kita-2025/">\n'
+         '<link rel="alternate" hreflang="en" href="https://case.airpangaea.com/en/tokushima-kita-2025/">\n'
+         '<link rel="alternate" hreflang="x-default" href="https://case.airpangaea.com/tokushima-kita-2025/">\n'
+         '<link rel="preconnect"'),
         # 2026-09-16 指示：ヘッダーを Wix の導入事例ページに合わせる際、お問い合わせボタンも
         # 原本の /contact（404）から #contactus に変更した
         # 2026-09-26 指示：自社サイトへのリンクは同じタブで開く（新しいタブの指定を外した）

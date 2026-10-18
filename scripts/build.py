@@ -24,6 +24,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent.parent
 FRONT_MATTER_KEYS = ('title', 'description', 'school')
 OPTIONAL_KEYS = ('image', 'role', 'partner')  # image：索引カードの写真（無い事例は省く）。role・partner：企画協力など（カードと個別ページに出す）
+BASE_URL = 'https://case.airpangaea.com'
 LOGO_SLUG = 'tokushima-kita-2025'  # ヘッダーのロゴは徳島北の画像フォルダにある（全ページ共通）
 
 FLAGS = {
@@ -415,6 +416,27 @@ def fill(template, values):
     return re.sub(r'\{\{ (\w+) \}\}', replace, template)
 
 
+def page_path(lang, slug=None):
+    """公開 URL のパス。slug なしは一覧"""
+    return ('/' if lang == 'ja' else f'/{lang}/') + (f'{slug}/' if slug else '')
+
+
+def has_version(lang, slug=None):
+    """その言語の版があるか（一覧は content/<lang>/index.md、事例は content/<lang>/<slug>.md）"""
+    folder = ROOT / 'content' / ('' if lang == 'ja' else lang)
+    return (folder / (f'{slug}.md' if slug else 'index.md')).is_file()
+
+
+def head_links(lang, slug=None):
+    """<head> に置く canonical と、日英がそろうページの hreflang（x-default は日本語版）"""
+    links = [f'<link rel="canonical" href="{BASE_URL}{page_path(lang, slug)}">']
+    versions = [code for code in CHROME if has_version(code, slug)]
+    if len(versions) > 1:
+        links += [f'<link rel="alternate" hreflang="{code}" href="{BASE_URL}{page_path(code, slug)}">' for code in versions]
+        links.append(f'<link rel="alternate" hreflang="x-default" href="{BASE_URL}{page_path("ja", slug)}">')
+    return ''.join('\n' + link for link in links)
+
+
 def partner_line(meta, root):
     """front matter の role・partner を、索引カードと同じくロゴ付きの1行にする（無ければ None）"""
     if 'role' not in meta and 'partner' not in meta:
@@ -442,6 +464,7 @@ def build(md_path, lang='ja'):
         'case_href': f'href="{attr(case_link)}"',  # 自社サイト内の移動なので同じタブで開く
         'title': attr(meta['title']),
         'description': attr(meta['description']),
+        'head_links': head_links(lang, slug),
         'school': attr(meta['school']),
         'images': logo.url,
         'content': render_body(body, images, partner_line(meta, chrome['root'])),
@@ -613,6 +636,7 @@ def build_index(lang='ja'):
                                         'foot_privacy', 'foot_terms', 'foot_tokushoho')},
         'p': ic['p'], 'index_title_suffix': ic['index_title_suffix'], 'index_link': ic['index_link'],
         'hero_alt': attr(ic['hero_alt']),
+        'head_links': head_links(lang),
         'title': attr(meta['title']),
         'description': attr(meta['description']),
         'images': ic['p'] + logo.url.removeprefix('../'),
@@ -626,6 +650,22 @@ def build_index(lang='ja'):
     return out
 
 
+def build_site_files():
+    """sitemap.xml・robots.txt・404.html を作る（404.html があると Cloudflare Pages は存在しない URL に 404 を返す）"""
+    urls = []
+    for lang in CHROME:
+        if has_version(lang):
+            urls.append(page_path(lang))
+        folder = ROOT / 'content' / ('' if lang == 'ja' else lang)
+        urls += [page_path(lang, md.stem) for md in sorted(folder.glob('*.md')) if md.name != 'index.md']
+    sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+               *(f'  <url><loc>{BASE_URL}{url}</loc></url>' for url in urls), '</urlset>', '']
+    (ROOT / 'public' / 'sitemap.xml').write_text('\n'.join(sitemap), encoding='utf-8')
+    (ROOT / 'public' / 'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}/sitemap.xml\n', encoding='utf-8')
+    (ROOT / 'public' / '404.html').write_text((ROOT / 'templates' / '404.html').read_text(encoding='utf-8'), encoding='utf-8')
+    return ['public/sitemap.xml', 'public/robots.txt', 'public/404.html']
+
+
 def main():
     try:
         for md_path in sorted((ROOT / 'content').glob('*.md')):
@@ -637,6 +677,7 @@ def main():
         print(build_index().relative_to(ROOT))
         if (ROOT / 'content' / INDEX_CHROME['en']['content']).is_file():
             print(build_index('en').relative_to(ROOT))
+        print('\n'.join(build_site_files()))
     except BuildError as e:
         sys.exit(f'build error: {e}')
 
