@@ -27,6 +27,7 @@ Meisei High School Implements AirPangaea's Indonesia International Exchange Prog
 - tokushima-kita-2025
 - nishiyamato-2023
 - gls-2026
+- tokyo-joshi-2025
 
 ## Online SDGs Cross-Cultural Collaborative Learning
 ## MOTTAINAI Program
