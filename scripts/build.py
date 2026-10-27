@@ -363,6 +363,9 @@ def render_body(lines, images, after_hero=None):
                     top.append(after_hero)
                     after_hero = None
             continue
+        if section is None and kind == 'raw':
+            top.append(body)
+            continue
         if section is None:
             raise BuildError(f'## 見出しより前には置けない: {body[0] if kind in ("h3", "raw", "p") else "::: " + kind}')
         if kind == 'h3':

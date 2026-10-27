@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>東京女子学園中学校高等学校（芝国際中学校・高等学校） × SMA Dwiwarna｜導入事例｜AirPangaea</title>
+<meta name="description" content="東京女子学園中学校高等学校（芝国際中学校・高等学校）の高校生と、インドネシア・ボゴールの SMA Dwiwarna の生徒が混合チームを組み、半年間のオンライン協働と現地4日間を通して、ジャカルタ・ボゴールの観光の魅力と課題を探り、改善案を発表しました。">
+<link rel="canonical" href="https://case.airpangaea.com/tokyo-joshi-2025/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@500;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../images/favicon/favicon-192.png">
+<link rel="apple-touch-icon" href="../images/favicon/apple-touch-icon.png">
+<style>
+:root{
+  --ink:#16283D;
+  --ink-soft:#4A5C6E;
+  --ink-faint:#7C8B99;
+  --paper:#FFFFFF;
+  --wash:#EEF2F4;
+  --track:#E4EBEF;
+  --data:#3480AE;
+  --jp:#1C4A6E;
+  --rule:#D3DBE1;
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",YuMincho,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,Meiryo,sans-serif;
+  --prose:44rem;
+  --wide:60rem;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.9;font-feature-settings:"palt" 1;}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--jp)}
+a:focus-visible{outline:2px solid var(--jp);outline-offset:3px}
+.wrap{max-width:var(--prose);margin-inline:auto;padding-inline:24px}
+.wrap-wide{max-width:var(--wide);margin-inline:auto;padding-inline:24px}
+
+/* ── ヘッダー：Wix の導入事例ページ（https://ja.airpangaea.com/case）に合わせる ── */
+.site-head{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 0 4px rgba(85,85,85,.6);
+  font-family:Raleway,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,sans-serif}
+.site-head .bar{position:relative;display:flex;align-items:center;justify-content:center;min-height:60px;padding-inline:28px}
+.site-head .logo{position:absolute;left:28px;top:50%;transform:translateY(-50%)}
+.site-head .logo img{width:215px;height:auto}
+.site-nav{display:flex;font-weight:700;font-size:.875rem}
+.site-nav a{padding-inline:19px;line-height:60px;color:#555;text-decoration:none}
+.site-nav a:hover,.site-nav a[aria-current]{color:#2E58FF}
+.crumb{font-size:.8125rem;color:var(--ink-faint);padding-block:20px 0}
+.crumb a{color:var(--ink-faint)}
+
+/* ── ヒーロー ── */
+.hero{padding-block:20px 0}
+.hero h1{font-family:var(--serif);font-weight:600;
+  font-size:clamp(1.25rem,2.8vw,1.625rem);line-height:1.7;letter-spacing:.01em;margin:0 0 18px;}
+.lede{font-size:1rem;color:var(--ink-soft);margin:0 0 32px;max-width:40rem}
+.source-note{font-size:.75rem;font-weight:300;color:var(--ink-faint);margin:-20px 0 32px}
+.source-note a{color:var(--ink-faint)}
+.partner{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin:14px 0 24px;font-size:.8125rem;color:var(--ink-soft)}
+.partner img{width:97px;height:auto}
+.hero-shot{margin:0 auto 40px;max-width:36rem}
+.hero-shot figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px}
+
+/* ── 二校の対向ブロック ── */
+.pair{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;
+  border-block:1px solid var(--rule);margin-bottom:56px;}
+.pair .school{padding:26px 4px}
+.pair .school:last-child{text-align:right}
+.pair .flag{width:30px;height:20px;margin-bottom:12px}
+.pair .school:last-child .flag{margin-left:auto}
+.country{font-size:.8125rem;color:var(--ink-faint);margin:0 0 4px}
+.school-name{font-family:var(--serif);font-size:1rem;font-weight:600;line-height:1.6;margin:0 0 10px}
+.school-detail{font-size:.875rem;color:var(--ink-soft);margin:0;line-height:1.8}
+.link{display:grid;place-content:center;padding:26px 22px;background:var(--wash);
+  text-align:center;min-width:9.5rem;}
+.link b{display:block;font-family:var(--serif);font-size:1.4375rem;font-weight:600;line-height:1.3}
+.link span{display:block;font-size:.8125rem;color:var(--ink-soft);line-height:1.7}
+
+/* ── 事実ブロック ── */
+.facts{border-top:2px solid var(--ink);margin-bottom:64px}
+.facts dl{display:grid;grid-template-columns:8.5rem 1fr;margin:0}
+.facts dt{padding:14px 0;font-size:.875rem;color:var(--ink-soft);border-bottom:1px solid var(--rule)}
+.facts dd{padding:14px 0;margin:0;border-bottom:1px solid var(--rule);font-size:.9375rem}
+
+/* ── 本文 ── */
+section{margin-bottom:64px}
+h2{font-family:var(--serif);font-weight:600;font-size:1.3125rem;line-height:1.6;
+  margin:0 0 20px;padding-bottom:10px;border-bottom:1px solid var(--rule);}
+h3{font-size:1rem;font-weight:700;margin:32px 0 8px}
+p{margin:0 0 1.3em}
+p:last-child{margin-bottom:0}
+
+/* ── 進行 ── */
+.days{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.days>li{display:grid;grid-template-columns:5.5rem 1fr;gap:20px;
+  padding:20px 0;border-bottom:1px solid var(--rule);}
+.day-no{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--jp);line-height:1.7}
+.days p{margin:0}
+.days .day-title{font-weight:700;margin-bottom:4px}
+.days p:not(.day-title)+p,.days .list+p{margin-top:10px}
+.list{margin:0 0 1.3em;padding-left:1.4em}
+ul.list{list-style-type:disc}
+.list li{margin-bottom:6px}
+.list li:last-child{margin-bottom:0}
+.days .list{margin:10px 0 0}
+
+/* ── 写真 ── */
+figure{margin:0}
+figcaption{font-size:.8125rem;color:var(--ink-faint);margin-top:8px;line-height:1.7}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:32px 0 0}
+.photos img{aspect-ratio:16/9;object-fit:cover;width:100%}
+.photos-cap{margin:10px 0 0;font-size:.8125rem;color:var(--ink-faint);line-height:1.7}
+/* 写真2枚の流れ（左→右、モバイルでは上→下）。三角は枠線で描くので印刷でも消えない */
+/* 写真は切り取らず元の比率のまま。横長（約16:9）と標準（約4:3）の2枚の高さがそろうよう、列の幅を比率で配分する */
+.flow{display:grid;grid-template-columns:1.77fr auto 1.33fr;align-items:start;gap:18px;margin:32px 0}
+.flow figure{min-width:0}
+.flow img{width:100%;height:auto}
+.flow-arrow{align-self:center}
+.flow-arrow{width:0;height:0;border-block:54px solid transparent;border-left:36px solid #D3DEE7;margin-bottom:30px}
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:30px 0 0}
+.works img{aspect-ratio:16/9;object-fit:cover;width:100%;border:1px solid var(--rule)}
+.works-cap{font-size:.8125rem;color:var(--ink-faint);margin:10px 0 0;line-height:1.7}
+
+/* ── 役割分担 ── */
+.roles{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--ink)}
+.roles>div{padding:22px 24px 26px}
+.roles>div:first-child{background:var(--wash);border-right:1px solid var(--rule)}
+.roles h3{margin:0 0 12px;font-size:.9375rem}
+.roles ul{margin:0;padding-left:1.15em}
+.roles li{margin-bottom:8px;font-size:.9375rem;line-height:1.8}
+.roles li:last-child{margin-bottom:0}
+
+/* ── アンケート ── */
+.q{margin:0 0 34px}
+.q-text{font-size:.875rem;color:var(--ink-soft);margin:0 0 4px}
+.q-note{font-size:.8125rem;color:var(--ink-faint);margin:0 0 16px}
+.bars{margin:0;padding:0;list-style:none}
+.bars li{margin-bottom:16px}
+.bar-label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  font-size:.9375rem;margin-bottom:5px}
+.bar-val{font-family:var(--serif);font-size:1.25rem;font-weight:600;line-height:1;color:var(--data)}
+.track{height:9px;background:var(--track);border:1px solid var(--rule);box-sizing:border-box}
+.fill{height:100%;background:var(--data);border:1px solid var(--data);box-sizing:border-box}
+
+/* ── 生徒の声 ── */
+.voices{margin:0;padding:0;list-style:none}
+.voices li{border-left:2px solid var(--rule);padding:2px 0 2px 20px;
+  margin-bottom:22px;font-size:.9375rem;color:var(--ink-soft);}
+.voices li:last-child{margin-bottom:0}
+
+/* ── 継続 ── */
+.next{background:var(--wash);padding:26px 28px 28px;margin-bottom:64px}
+.next h2{border:0;padding:0;margin-bottom:10px;font-size:1.0625rem}
+.next p{font-size:.9375rem;margin:0}
+
+/* ── CTA ── */
+.cta{border-top:2px solid var(--ink);padding-top:34px;margin-bottom:72px}
+.cta h2{border:0;padding:0}
+.btn{display:inline-block;margin-top:10px;background:var(--jp);color:#fff;
+  text-decoration:none;padding:13px 30px;font-size:.9375rem;}
+.btn:hover{background:#153A57}
+
+/* ── フッター：Wix の導入事例ページに合わせる ── */
+.site-foot{border-top:1px solid var(--rule);padding:18px 0 30px;font-size:14px;
+  font-family:Raleway,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",YuGothic,Meiryo,sans-serif}
+.foot-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 36px}
+.foot-bar p{margin:0}
+.foot-links{display:flex;flex-wrap:wrap;gap:10px 36px}
+.foot-links a{color:#555}
+.social{display:flex;gap:10px}
+.social img{width:20px;height:20px}
+
+@media (max-width:760px){
+  .site-head{position:relative}
+  .site-head .bar{flex-wrap:wrap;padding:6px 16px 0}
+  .site-head .logo{position:static;transform:none}
+  .site-head .logo img{width:170px}
+  .site-nav{width:100%;overflow-x:auto}
+  .site-nav a{padding-inline:0 22px;line-height:44px;font-size:14px;white-space:nowrap}
+  .hero-shot,.photos,.photos-cap{max-width:none}
+  .pair{grid-template-columns:1fr}
+  .pair .school{padding:20px 0;border-bottom:1px solid var(--rule);text-align:left}
+  .pair .school:last-child{text-align:left;border-bottom:0}
+  .pair .school:last-child .flag{margin-left:0}
+  .facts dl{grid-template-columns:1fr}
+  .facts dt{padding-bottom:0;border-bottom:0}
+  .facts dd{padding-top:2px}
+  .roles{grid-template-columns:1fr}
+  .roles>div:first-child{border-right:0;border-bottom:1px solid var(--rule)}
+  .works{grid-template-columns:1fr 1fr}
+  .days>li{grid-template-columns:1fr;gap:6px}
+  .flow{grid-template-columns:1fr;gap:14px}
+  .flow-arrow{justify-self:center;border-inline:54px solid transparent;border-top:36px solid #D3DEE7;border-bottom:0;margin:0}
+}
+/* ── 印刷・PDF ── */
+/* @page はメディアクエリの外に置く（中に入れると効かない） */
+@page{margin:16mm}
+@media print{
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-size:10.5pt;line-height:1.75}
+  /* 用紙幅に収まる実寸で指定する（remのままだとA4の版面をはみ出す） */
+  .wrap,.wrap-wide{max-width:170mm;padding-inline:0}
+  .site-nav,.crumb{display:none}
+  .site-head{position:static;box-shadow:none;border-bottom:1px solid var(--rule);margin-bottom:16px}
+  .site-head .bar{justify-content:flex-start;padding-block:5mm 10px}
+  .site-head .logo{position:static;transform:none}
+  .site-head .logo img{width:48mm}
+  a{color:var(--ink);text-decoration:none}
+  h1{font-size:15pt;line-height:1.65}
+  h2{font-size:12pt}
+  .lede{font-size:10.5pt;max-width:none}
+  .source-note{font-size:8pt}
+  /* 英訳版の注記：紙でも日本語版の URL がわかるように表示する */
+  html[lang="en"] .source-note a::after{content:" (" attr(href) ")"}
+  .hero{padding-block:0}
+  .hero-shot{max-width:105mm;margin-bottom:22px}
+  .photos,.works{max-width:none}
+  section{margin-bottom:24px}
+  .facts,.pair{margin-bottom:22px}
+  /* 背景色が落ちても読める形に置き換える */
+  .link,.roles>div:first-child,.next{background:none}
+  .link{border-inline:1px solid var(--rule)}
+  .next{border:1px solid var(--rule)}
+  .btn{background:none;color:var(--ink);border:1px solid var(--ink)}
+  /* 改ページ禁止は小さい塊だけに限定する（大きい塊に付けると空白が出る） */
+  figure,.photos,.flow,.works,.pair,.next,.days>li,.voices li,.bars li,.q{break-inside:avoid}
+  /* 複数段落の長い項目は塊ごと次ページへ送ると大きな空白が出るため、途中の改ページを許す。
+     グリッドのままだと Chrome が分割しないので、ラベルの列を保ったまま回り込みで組む */
+  .days>li.long{display:flow-root;break-inside:auto}
+  .days>li.long>.day-no{float:left;width:5.5rem}
+  .days>li.long>div+div{margin-left:calc(5.5rem + 20px)}
+  .days .day-title{break-after:avoid}
+  h2,h3{break-after:avoid}
+  /* フッターだけが最終ページに取り残されるのを防ぐ */
+  .cta{margin-bottom:26px;padding-top:26px}
+  .site-foot{break-inside:avoid;padding-block:16px 0}
+  .social img{width:4mm;height:4mm}
+  .next{margin-bottom:26px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="bar">
+    <a class="logo" href="https://ja.airpangaea.com"><img src="../images/tokushima-kita-2025/logo.png" alt="AirPangaea" width="225" height="50"></a>
+    <nav class="site-nav">
+      <a href="https://ja.airpangaea.com">ホーム</a>
+      <a href="https://ja.airpangaea.com/program">プログラム</a>
+      <a href="/" aria-current="page">導入事例</a>
+      <a href="https://ja.airpangaea.com/corporate">会社概要</a>
+      <a href="https://ja.airpangaea.com/blog">Blog</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="crumb"><a href="/">導入事例</a> ／ 東京女子学園中学校高等学校（芝国際中学校・高等学校）</p>
+</div>
+
+<main>
+<div class="wrap">
+
+  <div class="hero">
+    <h1>日本とインドネシアの高校生が、半年間オンラインでジャカルタの観光を一緒に調べ、現地を歩いて改善案を発表</h1>
+    <p class="lede">東京女子学園中学校高等学校（芝国際中学校・高等学校）の高校1・2年生25名と、インドネシア・ボゴールの SMA Dwiwarna の生徒21名が、7つの混合チームで「ジャカルタ観光・魅力探究プロジェクト」に取り組みました。2025年10月から月1回のオンライン協働でジャカルタの観光地の魅力と課題を調べて改善の仮説を立て、2026年5月には日本の生徒18名が現地を訪問。4日間、両校の生徒が一緒に観光地を歩き、最終日に改善案を英語で発表しました。</p>
+  </div>
+
+  <p class="partner">企画協力<img src="../images/index/educationlink.jpg" alt="EducationLink" width="97" height="19"></p>
+
+  <div class="pair">
+    <div class="school">
+      <svg class="flag" viewBox="0 0 30 20" role="img" aria-label="日本"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#BC002D"/><rect x=".5" y=".5" width="29" height="19" fill="none" stroke="#D3DBE1"/></svg>
+      <p class="country">日本・東京</p>
+      <p class="school-name">東京女子学園中学校高等学校<br>（芝国際中学校・高等学校）</p>
+      <p class="school-detail">高校1・2年 25名<br>（うち18名が現地訪問）</p>
+    </div>
+    <div class="link">
+      <b>オンライン6回<br>＋現地4日間</b>
+      <span>時差2時間</span>
+    </div>
+    <div class="school">
+      <svg class="flag" viewBox="0 0 30 20" role="img" aria-label="インドネシア"><rect width="30" height="10" fill="#CE1126"/><rect y="10" width="30" height="10" fill="#fff"/><rect x=".5" y=".5" width="29" height="19" fill="none" stroke="#D3DBE1"/></svg>
+      <p class="country">インドネシア・ボゴール</p>
+      <p class="school-name">SMA Dwiwarna</p>
+      <p class="school-detail">高校1年 21名</p>
+    </div>
+  </div>
+
+  <figure style="margin:0 0 32px;break-inside:avoid"><div style="display:grid;grid-template-columns:1fr 18px 1fr;gap:10px;align-items:center"><img src="../images/tokyo-joshi-2025/online-zoom.jpg" alt="オンライン協働の Zoom の画面。両国の生徒が画面ごとに手でハートの形をつくっている" style="width:100%;height:auto;aspect-ratio:1297/738;object-fit:cover;border:1px solid #D3DBE1;display:block"><svg viewBox="0 0 14 24" width="14" height="24" aria-hidden="true" style="justify-self:center"><path d="M0 0L14 12L0 24Z" fill="#C9D3DC"/></svg><img src="../images/tokyo-joshi-2025/day4-finale.jpg" alt="現地最終日、教室で撮った両校の生徒と先生方の集合写真" style="width:100%;height:auto;aspect-ratio:1297/738;object-fit:cover;border:1px solid #D3DBE1;display:block"></div><figcaption>左：オンライン協働（Zoom）　右：現地最終日の集合写真<small style="display:block;text-align:right;font-size:.6875rem;margin-top:4px">*写真は全て学校の許可を得て掲載しています</small></figcaption></figure>
+
+  <div class="facts">
+    <dl>
+      <dt>プロジェクト名</dt>
+      <dd>ジャカルタ観光・魅力探究プロジェクト（Discover Jakarta Project）</dd>
+      <dt>実施校</dt>
+      <dd>東京女子学園中学校高等学校（芝国際中学校・高等学校）高校1・2年</dd>
+      <dt>海外協力校</dt>
+      <dd>SMA Dwiwarna（インドネシア・ボゴール／ジャカルタ首都圏の全寮制高校）</dd>
+      <dt>実施期間</dt>
+      <dd>2025年10月〜2026年5月<br>オンライン：2025年10月30日〜2026年4月30日（全6回、木曜6限）<br>現地：2026年5月11日〜14日（4日間）</dd>
+      <dt>参加生徒</dt>
+      <dd>日本 25名（うち18名が現地訪問）／インドネシア 21名<br>両国混合の7チーム</dd>
+      <dt>訪問先</dt>
+      <dd>Kota Tua（旧市街）、Ancol Dreamland (Dufan)、ボゴール宮殿・植物園、SMA Dwiwarna</dd>
+      <dt>形式</dt>
+      <dd>オンライン＋現地訪問</dd>
+      <dt>使用ツール</dt>
+      <dd>Zoom（ブレイクアウトルーム）、Padlet、Google スライド（グループ別ワークシート）、Canva（発表スライド）</dd>
+    </dl>
+  </div>
+
+  <section>
+    <h2>背景</h2>
+    <p>東京女子学園では、2023・2024年度に、DSDA* の授業で SMA Dwiwarna とのオンライン交流 TOMODACHIプログラムに取り組んできました。2025年度は、この交流を一歩進め、オンラインで一緒に考えたことを、現地を訪ねて確かめる協働学習として企画しました。</p>
+    <p style="margin-top:8px;font-size:.8125rem;color:#4A5B6B">*DSDA は、データサイエンス・デザイン&amp;アーツの略で、東京女子学園中学校高等学校（東京都港区）が2020年度から導入している独自の情報・探究カリキュラムです。</p>
+    <p>テーマは「ジャカルタ観光・魅力探究」。ジャカルタは東京と並ぶ大都市ですが、インドネシアの観光地としてはバリ島やボロブドゥール遺跡に比べて印象が薄いと言われます。高校生の目で街の魅力を見つけ、どうすればもっと訪れたくなる場所になるかを、日本とインドネシアの生徒が一緒に考えることにしました。</p>
+    <p>協力校の SMA Dwiwarna は、ジャカルタ首都圏のボゴールにある全寮制の高校です。生徒はインドネシア各地から集まって寮で暮らしており、ジャカルタの観光地に必ずしも詳しいわけではありません。そのため、インドネシアの生徒が案内役になるのではなく、両国の生徒が同じ立場で調べる側に立つことができます。訪問先には、ジャカルタの観光地に加えて、SMA Dwiwarna の提案を受け、学校のあるボゴールの宮殿・植物園も入れました。</p>
+  </section>
+
+  <section>
+    <h2>実施内容</h2>
+    <h3>チームづくりとオンライン協働（全6回）</h3>
+    <p>日本の生徒3〜4名とインドネシアの生徒3名で、6〜7名の混合チームを7つつくりました。各回のセッションは日本の木曜6限（14:20〜15:10、ジャカルタは12:20〜13:10）に行い、日本側は前の5限を準備にあてています。</p>
+    <p>各混合チームには、Google スライドのワークシートを用意しました。ワークシートは、回ごとに何を話し合い、何を書き込むかをあらかじめ設計してあります。両国の生徒は事前にそれぞれ調べて書き込み、当日は画面を共有しながら英語で説明し合います。</p>
+
+    <ol class="days">
+      <li>
+        <div class="day-no">Day 1</div>
+        <div>
+          <p class="day-title">チームビルディング（2025年10月30日）</p>
+          <p>初めての顔合わせです。1対1の会話を相手を替えて2回行い、グループ対抗のゲーム（共通点探しと、身の回りでいちばん古い物を探して見せ合う）で打ち解けました。</p>
+        </div>
+      </li>
+      <li>
+        <div class="day-no">Day 2</div>
+        <div>
+          <p class="day-title">訪問候補地を絞る（11月27日）</p>
+          <p>両国の生徒が「ジャカルタやボゴールで行ってみたい場所」を写真付きでオンライン掲示板（Padlet）に投稿し、チームで話し合って3か所に絞りました。各チームの希望をもとに、先生方・旅行会社と相談して、全員で訪れる4か所を決めています。</p>
+        </div>
+      </li>
+      <li>
+        <div class="day-no">Day 3</div>
+        <div>
+          <p class="day-title">魅力と課題を知る（2026年1月29日）</p>
+          <p>決まった4か所について、「誰にとって、なぜ魅力なのか」「どんな課題が、どの程度あるのか」を、できるだけ数字と出典を添えて調べ、共有しました。そのうえで、現地で確かめたい観点（アクセス、混雑、案内表示と言語、支払い方法、安全・清潔さ、写真映えなど）を、訪問先ごとに3〜5個決めます。</p>
+        </div>
+      </li>
+      <li>
+        <div class="day-no">Day 4</div>
+        <div>
+          <p class="day-title">改善の仮説を立てる（2月12日）</p>
+          <p>観点ごとに調べた発見をもとに、訪問先をより魅力的に、訪れやすくするための改善案を出し合い、「どうすれば、どれくらい良くなるか」まで考えて、現地で確かめられる仮説にまとめました。</p>
+        </div>
+      </li>
+      <li>
+        <div class="day-no">Day 5</div>
+        <div>
+          <p class="day-title">現地のチェックリストをつくる（4月16日）</p>
+          <p>訪問先ごとに「何を・どうやって確かめるか」を整理し、現地で使うチェックリストのもとをつくりました。</p>
+        </div>
+      </li>
+      <li>
+        <div class="day-no">Day 6</div>
+        <div>
+          <p class="day-title">発表の下書き（4月30日）</p>
+          <p>Canva でチームの発表スライドを共同編集し、1枚ずつ内容を確かめました。現地での発見を書き込む欄は空けたまま、渡航します。</p>
+        </div>
+      </li>
+    </ol>
+
+    <p style="margin-top:24px">Day 1・2 は、ゲームや行きたい場所の紹介など、雰囲気でも楽しめる交流が中心でした。Day 3 からは、調べたことを英語で説明し、相手の説明を聞いてすり合わせる議論に変わり、難しさが一段上がります。画面越しに、英語で、相手の考えを確かめながら一つにまとめていくのは簡単ではなく、多くのチームが苦戦しました。それでも、オンラインで海外の相手と物事を進める経験は、これからの社会で珍しいものではなくなります。AirPangaea は、この難しさを乗り越えること自体に意味があると考え、つまずいているところを支えることにしました。</p>
+    <p style="margin-top:24px">Day 5 の前には、多くのチームでチェックポイントの欄が埋まりきっていませんでした。そこで、よく議論できていたチームのワークシートを訪問先ごとに整理した資料と、チェックリストの記入例を日英で作成して配り、「欄が埋まっていなくても、課題と改善案を確かめるための観点を考えればよい」と伝えています。各チームが自分たちの議論をもとに書けるよう、記入には書いた人のイニシャルを添えてもらいました。オンライン期間の終わりには、どのチームも少しずつ、現地で自分が何を確かめるのかを思い描き始めていました。</p>
+    <p style="margin-top:24px">オンライン期間の途中には、インドネシア出身の先生、AirPangaea の留学生、現地の大学生をゲストに招き、日本語でジャカルタの暮らしや訪問先の見どころを聞く特別セッションも行いました（2月26日）。</p>
+    <figure style="margin-top:24px"><img src="../images/tokyo-joshi-2025/worksheet-day3.jpg" alt="ワークシートの Day 3 のページ。Kota Tua、Ancol Dreamland、TMII、ボゴール宮殿・植物園ごとに、確かめる観点（質問）と確認方法を書き込んだ表。1行目は記入例" style="width:100%;height:auto;border:1px solid #D3DBE1"><figcaption>グループ別ワークシート（Google スライド）の Day 3 のページ。訪問先ごとに、現地で確かめる観点と確認方法を両国の生徒が書き込みました。1行目は AirPangaea が書いた記入例。</figcaption></figure>
+    <style>@media print{figure.tall img{width:150mm!important;margin-inline:auto}.cta{margin-bottom:10px;padding-top:18px}.site-foot{padding-block:8px 0}.ig-note a::after{content:" " attr(href);word-break:break-all}}</style>
+    <figure class="tall" style="margin-top:24px"><img src="../images/tokyo-joshi-2025/checklist-sample.jpg" alt="現地チェックリストの記入例の Kota Tua のページ。訪問先の写真、事前調査でインドネシア側・日本側が調べた魅力と課題、現地で確かめるチェックポイント、新発見と改善仮説が並ぶ" style="width:100%;height:auto;border:1px solid #D3DBE1"><figcaption>Day 5 の前に配った、現地チェックリストの記入例（日本語版。英語版も配布）。よく議論できていたチームのワークシートをもとに、AirPangaea が作成。</figcaption></figure>
+    <h3>現地での4日間（2026年5月11日〜14日）</h3>
+    <p class="ig-note" style="margin-top:8px;font-size:.8125rem;color:#4A5B6B">*現地4日間の様子は、AirPangaea の Instagram（<a href="https://www.instagram.com/stories/highlights/17967333150155367/" target="_blank" rel="noopener noreferrer" style="color:inherit">ハイライト「ジャカルタ探究」<img src="../images/shared/instagram.png" alt="Instagram" width="14" height="14" style="display:inline;vertical-align:-2px;margin-left:4px"></a>）でも動画で紹介しています。</p>
+
+    <ol class="days">
+      <li>
+        <div class="day-no">Day 1</div>
+        <div>
+          <p class="day-title">ジャカルタの観光地を歩く（5月11日）</p>
+          <p>朝、旧市街の Kota Tua で、半年間オンラインで話してきたチームの仲間と初めて対面しました。画面越しには知っている相手でも、実際に会うと少し緊張した様子でしたが、チェックシートを手に一緒に歩くうちに、会話が増えていきました。両校の生徒は終日同じバスで各訪問先を巡り、Ancol Dreamland (Dufan) では、各チームに先生が1人ずつ付き添い、3時間のフィールドワークを行いました。予定していた TMII（Taman Mini Indonesia Indah）は、強い日差しの中で疲れの見える生徒もいたため、先生方と相談して安全を優先し、バスの車窓から見るだけにしました。</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="photos"><img src="../images/tokyo-joshi-2025/day1-kotatua.jpg" alt="Kota Tua の建物の前で、両校の生徒が並んだ集合写真" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2025/day1-checksheet.jpg" alt="現地チェックシートを手に、書き込みながら話す両校の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
+    <p class="photos-cap">左：Kota Tua で、初めて対面した両校の生徒　右：現地チェックシートに書き込む両校の生徒</p>
+    <figure class="tall" style="margin-top:24px"><img src="../images/tokyo-joshi-2025/checksheet-kotatua.jpg" alt="現地チェックシートの Kota Tua のページ（1チーム・1か所分）。観光地としての魅力、確かめる課題と仮説、案内表示と言語・支払い・清潔さ・交通・設備の観点ごとのチェック内容と方法、現地で書き込む欄がある" style="width:100%;height:auto;border:1px solid #D3DBE1"><figcaption>Kota Tua で使った現地チェックシート（1チーム・1か所分。各チームに訪問先ごとの4枚を配布）。チームのワークシートと発表の下書きをもとに AirPangaea が作成。右端の列と下の2つの欄は、現地で書き込みます。</figcaption></figure>
+
+    <ol class="days">
+      <li>
+        <div class="day-no">Day 2</div>
+        <div>
+          <p class="day-title">SMA Dwiwarna での1日（5月12日）</p>
+          <p>前日より打ち解けた雰囲気の中、日本の生徒にとっては、寮で暮らす同世代の学校生活を間近に見る1日になりました。校長先生・副校長先生への挨拶の後、日本の生徒は校内を見学し、英語で行われる授業3つに分かれて参加しました。協働学習では、前日のフィールドワークの気づきをチームで共有し、発表に書き込む部分を決めたうえで、ボゴール以外の部分の発表の骨組み（題名、構成、担当）をつくりました。</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="photos"><img src="../images/tokyo-joshi-2025/day2-campus.jpg" alt="SMA Dwiwarna の校舎と中庭の間を歩く日本の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2025/day2-class.jpg" alt="SMA Dwiwarna の教室での授業の一場面" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
+    <p class="photos-cap">左：SMA Dwiwarna の校内を見学する日本の生徒　右：授業体験の一場面</p>
+
+    <ol class="days">
+      <li>
+        <div class="day-no">Day 3</div>
+        <div>
+          <p class="day-title">ボゴール宮殿・植物園（5月13日）</p>
+          <p>午前は学校近くのボゴール宮殿・植物園を両校の生徒で歩きました。その後、現地のイオンモールでグループごとに散策して昼食をとり、学校に戻って発表の仕上げに取り組みました。日を追うごとに打ち解け、両国の生徒が意見を出し合いながら、担当を分けて準備を進めています。担当部分を仕上げて3回練習してくることが、翌日までの課題です。</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="photos"><img src="../images/tokyo-joshi-2025/day3-palace.jpg" alt="白いボゴール宮殿と蓮の池を背にした両校の生徒の集合写真" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2025/day3-groupwork.jpg" alt="教室で、両校の生徒が机を囲んで発表の準備をする協働学習の場面" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
+    <p class="photos-cap">左：ボゴール宮殿の前で　右：協働学習で発表を準備する両校の生徒</p>
+
+    <ol class="days">
+      <li>
+        <div class="day-no">Day 4</div>
+        <div>
+          <p class="day-title">最終発表とお別れ（5月14日）</p>
+          <p>7チームが英語で発表しました（各チーム発表10分・質疑2分）。発表ごとに質問役のチームを決め、会場の生徒が質問を投げかけます。ゲストに招いたジャカルタの旅行会社の経営者から講評をいただき、SMA Dwiwarna の校長先生の挨拶の後、両校で集合写真を撮りました。最後はチームごとに昼食をとり、学校の玄関で SMA Dwiwarna の生徒たちに見送られて別れました。その場で涙を流すチームも少なくありませんでした。</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="photos"><img src="../images/tokyo-joshi-2025/day4-presentation.jpg" alt="最後のスライドの前で最終発表を行う両校の生徒と、聞いている会場" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2025/day4-qa.jpg" alt="質疑で、会場からマイクを持って質問する日本の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
+    <p class="photos-cap">左：最終発表を行う両校の生徒　右：質疑で、会場から質問する日本の生徒</p>
+  </section>
+
+  <section>
+    <h2>生徒たちが考えたこと</h2>
+    <p>7チームの発表は、「チーム紹介」「日常の会話で見つけた両国の共通点と違い」「訪問先ごとの魅力と課題」「仮説・発見・提案」「結論」の流れでまとめています。</p>
+    <h3>日常の会話から見つけた、両国の共通点と違い</h3>
+    <p>家族を大切にすることや、米が主食であることを共通点に挙げたチームが多くありました。違いとしては、週末の過ごし方、味付けや食べ方、四季の有無、1日5回の礼拝やラマダン、ごみの分別、トイレットペーパーを使わない習慣などが挙がっています。</p>
+    <h3>オンラインで調べ、仮説を立てたこと</h3>
+    <p>半年間のオンライン協働では、どのチームも訪問先の来訪者数や料金、口コミを調べ、課題として「週末や休日の混雑と渋滞」「建物や設備の老朽化」「ごみと清潔さ」「外国人にとって分かりにくい案内表示」などを挙げました。Kota Tua の博物館は、プリペイドカード（JakCard）がないと入れず、窓口で入場券を買えないことを調べたチームは、外国人旅行者のために当日券の窓口を残す案を出しています。</p>
+    <h3>現地で歩いて、感じたこと</h3>
+    <p>現地では、日本の生徒が「自分の当たり前」が通じない場面に何度も出会いました。</p>
+    <div class="photos"><img src="../images/tokyo-joshi-2025/kotatua-bridge.jpg" alt="Kota Tua の木の橋。板が外れたりずれたりして、すき間から下が見えている" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2025/dufan-walk.jpg" alt="Ancol Dreamland (Dufan) の広い園内を歩く両校の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
+    <p class="photos-cap" style="margin-bottom:24px">左：板が一部割れた Kota Tua の木の橋　右：Ancol Dreamland (Dufan) の広い園内を歩くチーム</p>
+    <ul class="list"><li>強い日差しと暑さで体力を奪われる。日本のテーマパークには、待ち列の日よけや水のシャワーなど、意識してつくられた暑さ対策がある</li><li>広い園内に紙の地図がなく、どこに何があるか分かりにくい。案内は英語まではあっても、それ以外の言語がない</li><li>来場者のほとんどがインドネシアの人で、外国人旅行者はまだ少ない</li><li>トイレに紙がない、床や便座が濡れている</li><li>木の橋の板が一部割れていて、歩くと危ない</li></ul>
+    <p>あるチームは、訪問先を「行く前」と「行った後」の2枚で比べ、混雑やごみを予想していたのに対し、実際に戸惑ったのは英語の案内や地図の少なさだったと発表しました。木の橋の割れ目には、両国の生徒がそろって「観光地としてよくない」と感じていました。一方で、インドネシアの生徒にとっては見慣れた光景に日本の生徒が驚く様子を見て、「日本の人はそう感じるのか」と気づく場面もありました。</p>
+    <h3>改善の提案</h3>
+    <p>発表では、次のような提案が出ました。</p>
+    <ul class="list"><li>待ち列の日よけ、屋内の涼しい休憩所、給水所など、暑さへの対策</li><li>多言語の紙の地図とパンフレット、分かりやすい案内表示、QRコードで読める解説</li><li>オンライン予約と、混雑する時間帯の表示</li><li>清掃員とごみ箱を増やし、傷んだ通路や設備を直す</li><li>露店の配置を整理し、SNS で魅力を発信する</li></ul>
+    <figure style="margin-top:24px"><div style="display:grid;grid-template-columns:1.793fr 1.782fr;gap:12px;align-items:start"><img src="../images/tokyo-joshi-2025/slide-appeal.jpg" alt="発表スライド「Tourist Appeals &amp; Current Issues」。Kota Tua とボゴール宮殿について、観光の魅力と現在の課題を英語で並べている" style="width:100%;height:auto;aspect-ratio:918/512;border:1px solid #D3DBE1;display:block"><img src="../images/tokyo-joshi-2025/slide-conclusion.jpg" alt="発表スライド「Conclusion」。ジャカルタとボゴールの訪問で見つけた魅力と、清潔さ・安全・衛生などの改善点を英語でまとめている" style="width:100%;height:auto;aspect-ratio:775/435;border:1px solid #D3DBE1;display:block"></div><figcaption>最終発表のスライドの例（左：訪問先の魅力と課題、右：結論）</figcaption></figure>
+    <h3>ゲストの講評</h3>
+    <p>最終日の発表会には、ジャカルタの旅行会社の経営者をゲストに招き、講評をいただきました。講評では、ご自身が日本を訪れた際の経験を例に、外から来た人の視点の大切さが説明されました。日本の満員電車を見て「何とかすべきだ」と感じた一方、日本の人々はそれを当たり前のこととして受け止めていたそうです。地元の人には気づきにくいことも、外から来た人の視点によって見えてくるという話です。また、インドネシアの生徒たちの意見も、高校生ならではの新鮮な視点として評価されました。</p>
+    <p>そのうえで、「実際のビジネスでは定量的に考えることが大切。どう人の流れをつくり、人を集め、心に届け、どれだけのインパクトを生むかという視点を持ってほしい」と次の課題をいただき、数字で分析を示したチームが評価されました。日本語の案内板を増やす提案には、費用に見合う効果があるかという観点からの指摘もありました。講評は英語だったため、AirPangaea が要点を日本語で補っています。</p>
+  </section>
+
+  <section>
+    <h2>先生の声</h2>
+    <div style="margin-top:24px;display:grid;grid-template-columns:minmax(96px,28%) 1fr;gap:20px;align-items:start;break-inside:avoid"><img src="../images/tokyo-joshi-2025/teacher-karasawa.jpg" alt="唐澤 博 先生" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border:1px solid #D3DBE1;display:block"><div><p style="margin:0 0 10px;font-size:.875rem;color:#4A5B6B">東京女子学園中学校高等学校（芝国際中学校・高等学校）<br>英語科／探究学習指導担当　<b style="color:#16283D;font-size:1rem">唐澤 博 先生</b></p><p style="margin:0 0 10px">探究学習では、知識を得るだけでなく、生徒が自分で調べ、話し合い、確かめる仕組みをどうつくるかが大切だと考えています。今回のプロジェクトでは、半年間オンラインでインドネシアの生徒と一緒に調べて仮説を立て、それを現地で自分の目で確かめ、最後に英語で発表するところまでを、生徒たちが一つの流れとして経験しました。</p><p style="margin:0 0 10px">観光という一見扱いやすそうなトピックでしたが、英語がお互いの母国語ではなく、事前のオンラインでの意見交換だけでは難しかった意思疎通が、実際に会うことで、価値観の違いだけでなく同じ考えも共有・体感でき、異文化交流の新しい取り組みとなったと思います。</p><p style="margin:0 0 10px">教室の中だけでは出会えない問いに、海外の仲間と一緒に向き合う。その経験そのものが、生徒にとって大きな学びになったと感じています。</p></div></div>
+  </section>
+
+  <section>
+    <h2>先生方との役割分担</h2>
+    <div class="roles">
+      <div>
+        <h3>AirPangaeaが担当</h3>
+        <ul>
+          <li>海外協力校との企画の調整</li>
+          <li>テーマと、オンライン6回・現地4日間の学習の流れの設計</li>
+          <li>グループ別ワークシート、発表テンプレートの作成</li>
+          <li>各チームが考えたチェック項目とこれまでの調査を生成AIで整理し、チームごとの現地チェックリストに仕上げる</li>
+          <li>オンラインセッションの進行と言語サポート</li>
+          <li>現地での協働学習と最終発表会の進行、講評ゲストの手配</li>
+          <li>保護者説明会での実施内容の説明</li>
+        </ul>
+      </div>
+      <div>
+        <h3>先生方にお願いしたこと</h3>
+        <ul>
+          <li>生徒の選考とチーム編成</li>
+          <li>授業時間の確保と、各回の前後の準備・振り返りサポート</li>
+          <li>校内での実施調整と、修学旅行へのプログラムの組み込み</li>
+          <li>保護者説明会の準備・実施と、保護者への説明・理解促進</li>
+          <li>現地での引率と行程の判断、フィールドワーク中の各チームの見守り</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top:24px">渡航の行程、宿泊、移動は旅行会社が担当し、現地の動きは、学校・旅行会社・SMA Dwiwarna と AirPangaea の4者で調整しました。</p>
+  </section>
+
+  <section>
+    <h2>課題</h2>
+    <h3>調査を深め、提案につなげる</h3>
+    <p>オンライン期間中は、調べた情報を集めるだけでなく、そこから考察を深め、具体的な提案につなげるところに難しさもありました。</p>
+    <p>限られた授業・準備時間の中で学びを深めるには、オンラインで議論する機会に加えて、学校内での準備時間の確保や、各チームが調査・議論を継続的に深められる環境づくりも欠かせません。学校の先生方と相談しながら、AirPangaea としても支え方を工夫していきます。</p>
+    <p>また、オンラインの段階から数字と出典を添えて調べるよう設計していましたが、調べた数字を、課題の大きさや提案の効果を考えるところまでつなげられたチームは一部でした。講評でいただいた「定量的に考える」という視点を踏まえ、数字をもとに考える手順を、オンラインの段階からより具体的に組み込んでいきます。</p>
+    <h3>現地行程に柔軟性を持たせる</h3>
+    <p>現地でのフィールドワークでは、予定していた訪問先を時間内に回れるかだけでなく、暑さや生徒の疲労も考慮する必要がありました。今回は当日の状況を踏まえ、先生方と相談してTMIIを車窓からの見学に変更し、安全を優先しました。</p>
+    <p>今後の行程づくりでも、訪問先の優先順位を踏まえ、天候や生徒の様子に応じて見学方法を柔軟に調整できるようにしてまいります。</p>
+  </section>
+
+  <section class="cta">
+    <h2>お問い合わせ</h2>
+    <p>本事例や AirPangaea のプログラムについて、ご不明な点やご相談がございましたら、お気軽に以下よりお問い合わせください。</p>
+    <a class="btn" href="https://ja.airpangaea.com/#contactus">お問い合わせ</a>
+  </section>
+
+</div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap-wide foot-bar">
+    <p>©2021-2026 AirPangaea, Inc.</p>
+    <div class="foot-links">
+      <a href="https://ja.airpangaea.com/privacy-policy">プライバシーポリシー</a>
+      <a href="https://ja.airpangaea.com/terms-and-conditions">利用規約</a>
+      <a href="https://ja.airpangaea.com/tokushoho">特定商取引法に基づく表記</a>
+    </div>
+    <div class="social">
+      <a href="https://www.instagram.com/airpangaeajapan/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="../images/shared/instagram.png" alt="" width="20" height="20"></a>
+      <a href="https://x.com/airpangaeajapan" aria-label="X" target="_blank" rel="noopener noreferrer"><img src="../images/shared/x.svg" alt="" width="20" height="20"></a>
+      <a href="https://www.facebook.com/airpangaeajapan" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><img src="../images/shared/facebook.png" alt="" width="20" height="20"></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
