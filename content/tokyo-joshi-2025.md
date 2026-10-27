@@ -2,6 +2,8 @@
 title: 東京女子学園中学校高等学校（芝国際中学校・高等学校） × SMA Dwiwarna
 description: 東京女子学園中学校高等学校（芝国際中学校・高等学校）の高校生と、インドネシア・ボゴールの SMA Dwiwarna の生徒が混合チームを組み、半年間のオンライン協働と現地4日間を通して、ジャカルタ・ボゴールの観光の魅力と課題を探り、改善案を発表しました。
 school: 東京女子学園中学校高等学校（芝国際中学校・高等学校）
+image: card.jpg
+og_image: og.jpg
 role: 企画協力
 partner: EducationLink
 ---

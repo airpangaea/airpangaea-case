@@ -23,7 +23,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 FRONT_MATTER_KEYS = ('title', 'description', 'school')
-OPTIONAL_KEYS = ('image', 'role', 'partner')  # image：索引カードの写真（無い事例は省く）。role・partner：企画協力など（カードと個別ページに出す）
+OPTIONAL_KEYS = ('image', 'og_image', 'role', 'partner')  # image：索引カードの写真（無い事例は省く）。role・partner：企画協力など（カードと個別ページに出す）
 BASE_URL = 'https://case.airpangaea.com'
 LOGO_SLUG = 'tokushima-kita-2025'  # ヘッダーのロゴは徳島北の画像フォルダにある（全ページ共通）
 
@@ -430,13 +430,28 @@ def has_version(lang, slug=None):
     return (folder / (f'{slug}.md' if slug else 'index.md')).is_file()
 
 
-def head_links(lang, slug=None):
-    """<head> に置く canonical と、日英がそろうページの hreflang（x-default は日本語版）"""
+def og_tags(lang, slug, title, description, image):
+    """SNS で共有されたときのタイトル・説明・画像（image は public/ からの相対パス。無ければ画像なしのカード）"""
+    tags = [('og:type', 'article' if slug else 'website'), ('og:site_name', 'AirPangaea'), ('og:title', title),
+            ('og:description', description), ('og:url', BASE_URL + page_path(lang, slug)),
+            ('og:locale', 'ja_JP' if lang == 'ja' else 'en_US')]
+    if image:
+        if not (ROOT / 'public' / image).is_file():
+            raise BuildError(f'SNS 用の画像がない: public/{image}')
+        tags.append(('og:image', f'{BASE_URL}/{image}'))
+    tags.append(('twitter:card', 'summary_large_image' if image else 'summary'))
+    return [f'<meta property="{k}" content="{v}">' if k.startswith('og:') else f'<meta name="{k}" content="{v}">' for k, v in tags]
+
+
+def head_links(lang, slug=None, og=None):
+    """<head> に置く canonical と、日英がそろうページの hreflang（x-default は日本語版）、SNS 用のタグ"""
     links = [f'<link rel="canonical" href="{BASE_URL}{page_path(lang, slug)}">']
     versions = [code for code in CHROME if has_version(code, slug)]
     if len(versions) > 1:
         links += [f'<link rel="alternate" hreflang="{code}" href="{BASE_URL}{page_path(code, slug)}">' for code in versions]
         links.append(f'<link rel="alternate" hreflang="x-default" href="{BASE_URL}{page_path("ja", slug)}">')
+    if og:
+        links += og_tags(lang, slug, **og)
     return ''.join('\n' + link for link in links)
 
 
@@ -458,6 +473,13 @@ def build(md_path, lang='ja'):
         raise BuildError(f'{md_path.relative_to(ROOT)}: 元になる日本語版 content/{slug}.md がない')
     meta, body = parse_front_matter(md_path.read_text(encoding='utf-8'), md_path, optional=OPTIONAL_KEYS)
     chrome = CHROME[lang]
+    share = meta
+    if 'og_image' not in meta and 'image' not in meta and lang != 'ja':
+        ja_path = ROOT / 'content' / f'{slug}.md'
+        share, _ = parse_front_matter(ja_path.read_text(encoding='utf-8'), ja_path, optional=OPTIONAL_KEYS)
+    share_image = share.get('og_image') or share.get('image')
+    og = {'title': attr(meta['title']), 'description': attr(meta['description']),
+          'image': f'images/{slug}/{share_image}' if share_image else None}
     images = Images(slug, chrome['root'])
     logo = Images(LOGO_SLUG, chrome['root'])
     logo.require('logo.png')
@@ -467,7 +489,7 @@ def build(md_path, lang='ja'):
         'case_href': f'href="{attr(case_link)}"',  # 自社サイト内の移動なので同じタブで開く
         'title': attr(meta['title']),
         'description': attr(meta['description']),
-        'head_links': head_links(lang, slug),
+        'head_links': head_links(lang, slug, og),
         'school': attr(meta['school']),
         'images': logo.url,
         'content': render_body(body, images, partner_line(meta, chrome['root'])),
@@ -639,7 +661,7 @@ def build_index(lang='ja'):
                                         'foot_privacy', 'foot_terms', 'foot_tokushoho')},
         'p': ic['p'], 'index_title_suffix': ic['index_title_suffix'], 'index_link': ic['index_link'],
         'hero_alt': attr(ic['hero_alt']),
-        'head_links': head_links(lang),
+        'head_links': head_links(lang, None, {'title': attr(meta['title']), 'description': attr(meta['description']), 'image': 'images/index/hero.jpg'}),
         'title': attr(meta['title']),
         'description': attr(meta['description']),
         'images': ic['p'] + logo.url.removeprefix('../'),

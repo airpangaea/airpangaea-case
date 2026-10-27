@@ -2,6 +2,8 @@
 title: Tokyo Joshi Gakuen Junior and Senior High School (now Shiba Kokusai Junior and Senior High School) × SMA Dwiwarna
 description: High school students from Tokyo Joshi Gakuen in Japan and SMA Dwiwarna in Bogor, Indonesia, formed mixed teams, researched the appeal and challenges of tourism in Jakarta and Bogor through six months of online collaboration and four days on site, and presented ideas for improvement.
 school: Tokyo Joshi Gakuen Junior and Senior High School (now Shiba Kokusai Junior and Senior High School)
+image: card-en.jpg
+og_image: og-en.jpg
 role: In cooperation with
 partner: EducationLink
 ---

@@ -46,6 +46,19 @@ APPROVED_CHANGES = {
          '<link rel="alternate" hreflang="en" href="https://case.airpangaea.com/en/tokushima-kita-2025/">\n'
          '<link rel="alternate" hreflang="x-default" href="https://case.airpangaea.com/tokushima-kita-2025/">\n'
          '<link rel="preconnect"'),
+        # 2026-10-27 指示（SNS 共有）：<head> に SNS 共有用のタグ（og:・twitter:）を追加。画像は事例のカード写真
+        ('<head> に SNS 共有用のタグを追加',
+         '<link rel="alternate" hreflang="x-default" href="https://case.airpangaea.com/tokushima-kita-2025/">\n<link rel="preconnect"',
+         '<link rel="alternate" hreflang="x-default" href="https://case.airpangaea.com/tokushima-kita-2025/">\n'
+         '<meta property="og:type" content="article">\n'
+         '<meta property="og:site_name" content="AirPangaea">\n'
+         '<meta property="og:title" content="徳島県立徳島北高等学校 × MA Pembangunan UIN Jakarta">\n'
+         '<meta property="og:description" content="徳島県教育委員会「徳島と世界をつなぐグローカルリーダー育成事業」として、徳島県立徳島北高等学校の2クラスとインドネシア・ジャカルタの高校をつなぎ、5ヶ月間のオンライン交流TOMODACHIプログラムを提供しました。">\n'
+         '<meta property="og:url" content="https://case.airpangaea.com/tokushima-kita-2025/">\n'
+         '<meta property="og:locale" content="ja_JP">\n'
+         '<meta property="og:image" content="https://case.airpangaea.com/images/tokushima-kita-2025/hero.jpg">\n'
+         '<meta name="twitter:card" content="summary_large_image">\n'
+         '<link rel="preconnect"'),
         # 2026-09-16 指示：ヘッダーを Wix の導入事例ページに合わせる際、お問い合わせボタンも
         # 原本の /contact（404）から #contactus に変更した
         # 2026-09-26 指示：自社サイトへのリンクは同じタブで開く（新しいタブの指定を外した）
