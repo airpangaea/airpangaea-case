@@ -1,0 +1,6 @@
+# 2025 → 2026 の URL 変更（2026-10-28）。SNS・外部サイトに出た旧 URL を新 URL へ恒久転送する
+/tokyo-joshi-2025 /tokyo-joshi-2026/ 301
+/tokyo-joshi-2025/ /tokyo-joshi-2026/ 301
+/en/tokyo-joshi-2025 /en/tokyo-joshi-2026/ 301
+/en/tokyo-joshi-2025/ /en/tokyo-joshi-2026/ 301
+/images/tokyo-joshi-2025/* /images/tokyo-joshi-2026/:splat 301

@@ -29,7 +29,7 @@ SMA Dwiwarna
 高校1年 21名
 :::
 
-<figure style="margin:0 0 32px;break-inside:avoid"><div style="display:grid;grid-template-columns:1fr 18px 1fr;gap:10px;align-items:center"><img src="../images/tokyo-joshi-2025/online-zoom.jpg" alt="オンライン協働の Zoom の画面。両国の生徒が画面ごとに手でハートの形をつくっている" style="width:100%;height:auto;aspect-ratio:1297/738;object-fit:cover;border:1px solid #D3DBE1;display:block"><svg viewBox="0 0 14 24" width="14" height="24" aria-hidden="true" style="justify-self:center"><path d="M0 0L14 12L0 24Z" fill="#C9D3DC"/></svg><img src="../images/tokyo-joshi-2025/day4-finale.jpg" alt="現地最終日、教室で撮った両校の生徒と先生方の集合写真" style="width:100%;height:auto;aspect-ratio:1297/738;object-fit:cover;border:1px solid #D3DBE1;display:block"></div><figcaption>左：オンライン協働（Zoom）　右：現地最終日の集合写真<small style="display:block;text-align:right;font-size:.6875rem;margin-top:4px">*写真は全て学校の許可を得て掲載しています</small></figcaption></figure>
+<figure style="margin:0 0 32px;break-inside:avoid"><div style="display:grid;grid-template-columns:1fr 18px 1fr;gap:10px;align-items:center"><img src="../images/tokyo-joshi-2026/online-zoom.jpg" alt="オンライン協働の Zoom の画面。両国の生徒が画面ごとに手でハートの形をつくっている" style="width:100%;height:auto;aspect-ratio:1297/738;object-fit:cover;border:1px solid #D3DBE1;display:block"><svg viewBox="0 0 14 24" width="14" height="24" aria-hidden="true" style="justify-self:center"><path d="M0 0L14 12L0 24Z" fill="#C9D3DC"/></svg><img src="../images/tokyo-joshi-2026/day4-finale.jpg" alt="現地最終日、教室で撮った両校の生徒と先生方の集合写真" style="width:100%;height:auto;aspect-ratio:1297/738;object-fit:cover;border:1px solid #D3DBE1;display:block"></div><figcaption>左：オンライン協働（Zoom）　右：現地最終日の集合写真<small style="display:block;text-align:right;font-size:.6875rem;margin-top:4px">*写真は全て学校の許可を得て掲載しています</small></figcaption></figure>
 
 ::: facts
 プロジェクト名
@@ -107,11 +107,11 @@ Canva でチームの発表スライドを共同編集し、1枚ずつ内容を�
 
 <p style="margin-top:24px">オンライン期間の途中には、インドネシア出身の先生、AirPangaea の留学生、現地の大学生をゲストに招き、日本語でジャカルタの暮らしや訪問先の見どころを聞く特別セッションも行いました（2月26日）。</p>
 
-<figure style="margin-top:24px"><img src="../images/tokyo-joshi-2025/worksheet-day3.jpg" alt="ワークシートの Day 3 のページ。Kota Tua、Ancol Dreamland、TMII、ボゴール宮殿・植物園ごとに、確かめる観点（質問）と確認方法を書き込んだ表。1行目は記入例" style="width:100%;height:auto;border:1px solid #D3DBE1"><figcaption>グループ別ワークシート（Google スライド）の Day 3 のページ。訪問先ごとに、現地で確かめる観点と確認方法を両国の生徒が書き込みました。1行目は AirPangaea が書いた記入例。</figcaption></figure>
+<figure style="margin-top:24px"><img src="../images/tokyo-joshi-2026/worksheet-day3.jpg" alt="ワークシートの Day 3 のページ。Kota Tua、Ancol Dreamland、TMII、ボゴール宮殿・植物園ごとに、確かめる観点（質問）と確認方法を書き込んだ表。1行目は記入例" style="width:100%;height:auto;border:1px solid #D3DBE1"><figcaption>グループ別ワークシート（Google スライド）の Day 3 のページ。訪問先ごとに、現地で確かめる観点と確認方法を両国の生徒が書き込みました。1行目は AirPangaea が書いた記入例。</figcaption></figure>
 
 <style>@media print{figure.tall img{width:150mm!important;margin-inline:auto}.cta{margin-bottom:10px;padding-top:18px}.site-foot{padding-block:8px 0}.ig-note a::after{content:" " attr(href);word-break:break-all}}</style>
 
-<figure class="tall" style="margin-top:24px"><img src="../images/tokyo-joshi-2025/checklist-sample.jpg" alt="現地チェックリストの記入例の Kota Tua のページ。訪問先の写真、事前調査でインドネシア側・日本側が調べた魅力と課題、現地で確かめるチェックポイント、新発見と改善仮説が並ぶ" style="width:100%;height:auto;border:1px solid #D3DBE1"><figcaption>Day 5 の前に配った、現地チェックリストの記入例（日本語版。英語版も配布）。よく議論できていたチームのワークシートをもとに、AirPangaea が作成。</figcaption></figure>
+<figure class="tall" style="margin-top:24px"><img src="../images/tokyo-joshi-2026/checklist-sample.jpg" alt="現地チェックリストの記入例の Kota Tua のページ。訪問先の写真、事前調査でインドネシア側・日本側が調べた魅力と課題、現地で確かめるチェックポイント、新発見と改善仮説が並ぶ" style="width:100%;height:auto;border:1px solid #D3DBE1"><figcaption>Day 5 の前に配った、現地チェックリストの記入例（日本語版。英語版も配布）。よく議論できていたチームのワークシートをもとに、AirPangaea が作成。</figcaption></figure>
 
 ### 現地での4日間（2026年5月11日〜14日）
 
@@ -123,11 +123,11 @@ Day 1
 朝、旧市街の Kota Tua で、半年間オンラインで話してきたチームの仲間と初めて対面しました。画面越しには知っている相手でも、実際に会うと少し緊張した様子でしたが、チェックシートを手に一緒に歩くうちに、会話が増えていきました。両校の生徒は終日同じバスで各訪問先を巡り、Ancol Dreamland (Dufan) では、各チームに先生が1人ずつ付き添い、3時間のフィールドワークを行いました。予定していた TMII（Taman Mini Indonesia Indah）は、強い日差しの中で疲れの見える生徒もいたため、先生方と相談して安全を優先し、バスの車窓から見るだけにしました。
 :::
 
-<div class="photos"><img src="../images/tokyo-joshi-2025/day1-kotatua.jpg" alt="Kota Tua の建物の前で、両校の生徒が並んだ集合写真" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2025/day1-checksheet.jpg" alt="現地チェックシートを手に、書き込みながら話す両校の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
+<div class="photos"><img src="../images/tokyo-joshi-2026/day1-kotatua.jpg" alt="Kota Tua の建物の前で、両校の生徒が並んだ集合写真" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2026/day1-checksheet.jpg" alt="現地チェックシートを手に、書き込みながら話す両校の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
 
 <p class="photos-cap">左：Kota Tua で、初めて対面した両校の生徒　右：現地チェックシートに書き込む両校の生徒</p>
 
-<figure class="tall" style="margin-top:24px"><img src="../images/tokyo-joshi-2025/checksheet-kotatua.jpg" alt="現地チェックシートの Kota Tua のページ（1チーム・1か所分）。観光地としての魅力、確かめる課題と仮説、案内表示と言語・支払い・清潔さ・交通・設備の観点ごとのチェック内容と方法、現地で書き込む欄がある" style="width:100%;height:auto;border:1px solid #D3DBE1"><figcaption>Kota Tua で使った現地チェックシート（1チーム・1か所分。各チームに訪問先ごとの4枚を配布）。チームのワークシートと発表の下書きをもとに AirPangaea が作成。右端の列と下の2つの欄は、現地で書き込みます。</figcaption></figure>
+<figure class="tall" style="margin-top:24px"><img src="../images/tokyo-joshi-2026/checksheet-kotatua.jpg" alt="現地チェックシートの Kota Tua のページ（1チーム・1か所分）。観光地としての魅力、確かめる課題と仮説、案内表示と言語・支払い・清潔さ・交通・設備の観点ごとのチェック内容と方法、現地で書き込む欄がある" style="width:100%;height:auto;border:1px solid #D3DBE1"><figcaption>Kota Tua で使った現地チェックシート（1チーム・1か所分。各チームに訪問先ごとの4枚を配布）。チームのワークシートと発表の下書きをもとに AirPangaea が作成。右端の列と下の2つの欄は、現地で書き込みます。</figcaption></figure>
 
 ::: days
 Day 2
@@ -135,7 +135,7 @@ SMA Dwiwarna での1日（5月12日）
 前日より打ち解けた雰囲気の中、日本の生徒にとっては、寮で暮らす同世代の学校生活を間近に見る1日になりました。校長先生・副校長先生への挨拶の後、日本の生徒は校内を見学し、英語で行われる授業3つに分かれて参加しました。協働学習では、前日のフィールドワークの気づきをチームで共有し、発表に書き込む部分を決めたうえで、ボゴール以外の部分の発表の骨組み（題名、構成、担当）をつくりました。
 :::
 
-<div class="photos"><img src="../images/tokyo-joshi-2025/day2-campus.jpg" alt="SMA Dwiwarna の校舎と中庭の間を歩く日本の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2025/day2-class.jpg" alt="SMA Dwiwarna の教室での授業の一場面" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
+<div class="photos"><img src="../images/tokyo-joshi-2026/day2-campus.jpg" alt="SMA Dwiwarna の校舎と中庭の間を歩く日本の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2026/day2-class.jpg" alt="SMA Dwiwarna の教室での授業の一場面" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
 
 <p class="photos-cap">左：SMA Dwiwarna の校内を見学する日本の生徒　右：授業体験の一場面</p>
 
@@ -145,7 +145,7 @@ Day 3
 午前は学校近くのボゴール宮殿・植物園を両校の生徒で歩きました。その後、現地のイオンモールでグループごとに散策して昼食をとり、学校に戻って発表の仕上げに取り組みました。日を追うごとに打ち解け、両国の生徒が意見を出し合いながら、担当を分けて準備を進めています。担当部分を仕上げて3回練習してくることが、翌日までの課題です。
 :::
 
-<div class="photos"><img src="../images/tokyo-joshi-2025/day3-palace.jpg" alt="白いボゴール宮殿と蓮の池を背にした両校の生徒の集合写真" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2025/day3-groupwork.jpg" alt="教室で、両校の生徒が机を囲んで発表の準備をする協働学習の場面" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
+<div class="photos"><img src="../images/tokyo-joshi-2026/day3-palace.jpg" alt="白いボゴール宮殿と蓮の池を背にした両校の生徒の集合写真" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2026/day3-groupwork.jpg" alt="教室で、両校の生徒が机を囲んで発表の準備をする協働学習の場面" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
 
 <p class="photos-cap">左：ボゴール宮殿の前で　右：協働学習で発表を準備する両校の生徒</p>
 
@@ -155,7 +155,7 @@ Day 4
 7チームが英語で発表しました（各チーム発表10分・質疑2分）。発表ごとに質問役のチームを決め、会場の生徒が質問を投げかけます。ゲストに招いたジャカルタの旅行会社の経営者から講評をいただき、SMA Dwiwarna の校長先生の挨拶の後、両校で集合写真を撮りました。最後はチームごとに昼食をとり、学校の玄関で SMA Dwiwarna の生徒たちに見送られて別れました。その場で涙を流すチームも少なくありませんでした。
 :::
 
-<div class="photos"><img src="../images/tokyo-joshi-2025/day4-presentation.jpg" alt="最後のスライドの前で最終発表を行う両校の生徒と、聞いている会場" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2025/day4-qa.jpg" alt="質疑で、会場からマイクを持って質問する日本の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
+<div class="photos"><img src="../images/tokyo-joshi-2026/day4-presentation.jpg" alt="最後のスライドの前で最終発表を行う両校の生徒と、聞いている会場" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2026/day4-qa.jpg" alt="質疑で、会場からマイクを持って質問する日本の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
 
 <p class="photos-cap">左：最終発表を行う両校の生徒　右：質疑で、会場から質問する日本の生徒</p>
 
@@ -175,7 +175,7 @@ Day 4
 
 現地では、日本の生徒が「自分の当たり前」が通じない場面に何度も出会いました。
 
-<div class="photos"><img src="../images/tokyo-joshi-2025/kotatua-bridge.jpg" alt="Kota Tua の木の橋。板が外れたりずれたりして、すき間から下が見えている" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2025/dufan-walk.jpg" alt="Ancol Dreamland (Dufan) の広い園内を歩く両校の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
+<div class="photos"><img src="../images/tokyo-joshi-2026/kotatua-bridge.jpg" alt="Kota Tua の木の橋。板が外れたりずれたりして、すき間から下が見えている" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"><img src="../images/tokyo-joshi-2026/dufan-walk.jpg" alt="Ancol Dreamland (Dufan) の広い園内を歩く両校の生徒" style="aspect-ratio:4/3;object-fit:cover;height:auto;border:1px solid #D3DBE1"></div>
 
 <p class="photos-cap" style="margin-bottom:24px">左：板が一部割れた Kota Tua の木の橋　右：Ancol Dreamland (Dufan) の広い園内を歩くチーム</p>
 
@@ -189,7 +189,7 @@ Day 4
 
 <ul class="list"><li>待ち列の日よけ、屋内の涼しい休憩所、給水所など、暑さへの対策</li><li>多言語の紙の地図とパンフレット、分かりやすい案内表示、QRコードで読める解説</li><li>オンライン予約と、混雑する時間帯の表示</li><li>清掃員とごみ箱を増やし、傷んだ通路や設備を直す</li><li>露店の配置を整理し、SNS で魅力を発信する</li></ul>
 
-<figure style="margin-top:24px"><div style="display:grid;grid-template-columns:1.793fr 1.782fr;gap:12px;align-items:start"><img src="../images/tokyo-joshi-2025/slide-appeal.jpg" alt="発表スライド「Tourist Appeals &amp; Current Issues」。Kota Tua とボゴール宮殿について、観光の魅力と現在の課題を英語で並べている" style="width:100%;height:auto;aspect-ratio:918/512;border:1px solid #D3DBE1;display:block"><img src="../images/tokyo-joshi-2025/slide-conclusion.jpg" alt="発表スライド「Conclusion」。ジャカルタとボゴールの訪問で見つけた魅力と、清潔さ・安全・衛生などの改善点を英語でまとめている" style="width:100%;height:auto;aspect-ratio:775/435;border:1px solid #D3DBE1;display:block"></div><figcaption>最終発表のスライドの例（左：訪問先の魅力と課題、右：結論）</figcaption></figure>
+<figure style="margin-top:24px"><div style="display:grid;grid-template-columns:1.793fr 1.782fr;gap:12px;align-items:start"><img src="../images/tokyo-joshi-2026/slide-appeal.jpg" alt="発表スライド「Tourist Appeals &amp; Current Issues」。Kota Tua とボゴール宮殿について、観光の魅力と現在の課題を英語で並べている" style="width:100%;height:auto;aspect-ratio:918/512;border:1px solid #D3DBE1;display:block"><img src="../images/tokyo-joshi-2026/slide-conclusion.jpg" alt="発表スライド「Conclusion」。ジャカルタとボゴールの訪問で見つけた魅力と、清潔さ・安全・衛生などの改善点を英語でまとめている" style="width:100%;height:auto;aspect-ratio:775/435;border:1px solid #D3DBE1;display:block"></div><figcaption>最終発表のスライドの例（左：訪問先の魅力と課題、右：結論）</figcaption></figure>
 
 ### ゲストの講評
 
@@ -199,7 +199,7 @@ Day 4
 
 ## 先生の声
 
-<div style="margin-top:24px;display:grid;grid-template-columns:minmax(96px,28%) 1fr;gap:20px;align-items:start;break-inside:avoid"><img src="../images/tokyo-joshi-2025/teacher-karasawa.jpg" alt="唐澤 博 先生" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border:1px solid #D3DBE1;display:block"><div><p style="margin:0 0 10px;font-size:.875rem;color:#4A5B6B">東京女子学園中学校高等学校（芝国際中学校・高等学校）<br>英語科／探究学習指導担当　<b style="color:#16283D;font-size:1rem">唐澤 博 先生</b></p><p style="margin:0 0 10px">探究学習では、知識を得るだけでなく、生徒が自分で調べ、話し合い、確かめる仕組みをどうつくるかが大切だと考えています。今回のプロジェクトでは、半年間オンラインでインドネシアの生徒と一緒に調べて仮説を立て、それを現地で自分の目で確かめ、最後に英語で発表するところまでを、生徒たちが一つの流れとして経験しました。</p><p style="margin:0 0 10px">観光という一見扱いやすそうなトピックでしたが、英語がお互いの母国語ではなく、事前のオンラインでの意見交換だけでは難しかった意思疎通が、実際に会うことで、価値観の違いだけでなく同じ考えも共有・体感でき、異文化交流の新しい取り組みとなったと思います。</p><p style="margin:0 0 10px">教室の中だけでは出会えない問いに、海外の仲間と一緒に向き合う。その経験そのものが、生徒にとって大きな学びになったと感じています。</p></div></div>
+<div style="margin-top:24px;display:grid;grid-template-columns:minmax(96px,28%) 1fr;gap:20px;align-items:start;break-inside:avoid"><img src="../images/tokyo-joshi-2026/teacher-karasawa.jpg" alt="唐澤 博 先生" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border:1px solid #D3DBE1;display:block"><div><p style="margin:0 0 10px;font-size:.875rem;color:#4A5B6B">東京女子学園中学校高等学校（芝国際中学校・高等学校）<br>英語科／探究学習指導担当　<b style="color:#16283D;font-size:1rem">唐澤 博 先生</b></p><p style="margin:0 0 10px">探究学習では、知識を得るだけでなく、生徒が自分で調べ、話し合い、確かめる仕組みをどうつくるかが大切だと考えています。今回のプロジェクトでは、半年間オンラインでインドネシアの生徒と一緒に調べて仮説を立て、それを現地で自分の目で確かめ、最後に英語で発表するところまでを、生徒たちが一つの流れとして経験しました。</p><p style="margin:0 0 10px">観光という一見扱いやすそうなトピックでしたが、英語がお互いの母国語ではなく、事前のオンラインでの意見交換だけでは難しかった意思疎通が、実際に会うことで、価値観の違いだけでなく同じ考えも共有・体感でき、異文化交流の新しい取り組みとなったと思います。</p><p style="margin:0 0 10px">教室の中だけでは出会えない問いに、海外の仲間と一緒に向き合う。その経験そのものが、生徒にとって大きな学びになったと感じています。</p></div></div>
 
 ## 先生方との役割分担
 
